@@ -8,5 +8,9 @@
     <string name="btn_masuk">Masuk</string>
     <string name="email">Email</string>
     <string name="password">Kata Sandi</string>
+    <string name="confirmasi_password">Konfirmasi Kata Sandi</string>
     <string name="rememberMe">Ingat saya</string>
+    <string name="name">Nama</string>
+    <string name="phone">No. Telepon</string>
+    <string name="setuju_privasi">Dengan Daftar, Anda menyetujui Persyaratan Layanan dan Kebijakan Privasi</string>
 </resources>

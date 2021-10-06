@@ -19,4 +19,9 @@ public class GetStartedActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void daftar(View view){
+        Intent intent = new Intent(GetStartedActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
 }

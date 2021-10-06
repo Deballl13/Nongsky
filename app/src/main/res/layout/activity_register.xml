@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/imageLogo4"
+        android:layout_width="125dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_nongskuy"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="@string/todo" />
+
+    <EditText
+        android:id="@+id/inputEmail2"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="60dp"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="12sp"
+        android:ems="10"
+        android:fontFamily="@font/manrope_regular"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo4"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/inputNama"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="12sp"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail2"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/inputPhone"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="@string/phone"
+        android:drawableStart="@drawable/ic_baseline_phone_24"
+        android:drawablePadding="12sp"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNama"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/inputPassword2"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/password"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="12sp"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPhone"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/inputPassword3"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/confirmasi_password"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="12sp"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword2"
+        android:importantForAutofill="no" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="315sp"
+        android:layout_height="32sp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/manrope_regular"
+        android:text="@string/setuju_privasi"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword3"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="30dp"
+        android:text="@string/btn_daftar"
+        android:background="@drawable/rounded_btn"
+        android:fontFamily="@font/manrope_extrabold"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
