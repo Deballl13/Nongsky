@@ -6,4 +6,7 @@
     <string name="todo">TODO</string>
     <string name="btn_daftar">Daftar</string>
     <string name="btn_masuk">Masuk</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="rememberMe">Ingat saya</string>
 </resources>

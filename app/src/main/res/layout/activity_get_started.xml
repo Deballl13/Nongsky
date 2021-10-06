@@ -7,7 +7,7 @@
     tools:context=".GetStartedActivity">
 
     <ImageView
-        android:id="@+id/logo_Nongskuy"
+        android:id="@+id/imageLogo2"
         android:layout_width="125dp"
         android:layout_height="120dp"
         android:layout_marginTop="50dp"
@@ -15,29 +15,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/ic_logo_nongskuy"
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/txt_GetStarted1"
+        android:id="@+id/textAsGuest"
+        android:layout_width="50dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/manrope_bold"
+        android:text="@string/get_started_guest"
+        android:textAllCaps="false"
+        android:textColor="#757575"
+        android:textSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText1"
         android:layout_width="301dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/manrope_extrabold"
         android:gravity="center_horizontal"
         android:text="@string/getstarted_title"
         android:textAllCaps="false"
-        android:textColor="@color/black"
 
+        android:textColor="@color/black"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_Nongskuy" />
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo2" />
 
     <TextView
-        android:id="@+id/txt_GetStarted2"
+        android:id="@+id/subtitileText1"
         android:layout_width="301dp"
         android:layout_height="16dp"
         android:layout_marginTop="7dp"
@@ -50,37 +65,38 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_GetStarted1" />
+        app:layout_constraintTop_toBottomOf="@+id/titleText1" />
 
     <ImageView
-        android:id="@+id/logo_getStarted"
-        android:layout_width="238dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="15dp"
+        android:id="@+id/illustrationImage1"
+        android:layout_width="248dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toTopOf="@+id/btn_Daftar"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDaftar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitileText1"
         app:srcCompat="@drawable/ic_logo_getstarted" />
 
     <Button
-        android:id="@+id/btn_Daftar"
+        android:id="@+id/buttonDaftar"
         android:layout_width="315dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/btn_daftar"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_btn"
         android:fontFamily="@font/manrope_extrabold"
-        android:textSize="16sp"
+        android:shadowColor="@color/black"
+        android:text="@string/btn_daftar"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:background="@drawable/rounded_btn"
-        android:shadowColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonMasuk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonMasuk"
         android:layout_width="315dp"
         android:layout_height="55dp"
         android:layout_marginBottom="50dp"
@@ -93,20 +109,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textAsGuest"
-        android:layout_width="50dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="40dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="@string/get_started_guest"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
