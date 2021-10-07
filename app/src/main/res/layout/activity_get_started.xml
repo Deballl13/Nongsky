@@ -31,7 +31,8 @@
         android:textSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/titleText1"
@@ -79,12 +80,11 @@
         app:layout_constraintTop_toBottomOf="@+id/subtitileText1"
         app:srcCompat="@drawable/ic_logo_getstarted" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonDaftar1"
         android:layout_width="315dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_btn"
+        android:layout_height="65dp"
+        android:layout_marginBottom="1dp"
         android:fontFamily="@font/manrope_extrabold"
         android:onClick="daftar"
         android:shadowColor="@color/black"
@@ -94,14 +94,15 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMasuk1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="50dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonMasuk1"
         android:layout_width="315dp"
-        android:layout_height="55dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/rounded_btn"
+        android:backgroundTint="@color/gray"
         android:fontFamily="@font/manrope_extrabold"
         android:onClick="masuk"
         android:text="@string/btn_masuk"
@@ -110,6 +111,9 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="50dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

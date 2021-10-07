@@ -67,12 +67,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword1" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonMasuk2"
         android:layout_width="315sp"
-        android:layout_height="56sp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/rounded_btn"
+        android:layout_height="65sp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/manrope_extrabold"
         android:text="@string/btn_masuk"
         android:textAllCaps="false"
@@ -81,6 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1"
+        app:cornerRadius="50dp"
         tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
