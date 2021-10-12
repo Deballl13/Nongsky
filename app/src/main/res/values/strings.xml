@@ -13,4 +13,8 @@
     <string name="name">Nama</string>
     <string name="phone">No. Telepon</string>
     <string name="setuju_privasi">Dengan Daftar, Anda menyetujui Persyaratan Layanan dan Kebijakan Privasi</string>
+    <string name="beranda">Beranda</string>
+    <string name="promo">Promo</string>
+    <string name="terdekat">Terdekat</string>
+    <string name="profil">Profil</string>
 </resources>
