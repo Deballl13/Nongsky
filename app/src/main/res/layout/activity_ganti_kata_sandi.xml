@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GantiKataSandiActivity"
-    android:background="@color/background_gray">
+    android:background="@color/background_gray"
+    android:id="@+id/containerGantiPassword">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarUbahProfil"
@@ -18,5 +19,69 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textGantiPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/fredokaone_regular"
+        android:text="@string/ganti_kata_sandi"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarUbahProfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputPasswordBaru"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="50dp"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="12sp"
+        android:ems="10"
+        android:fontFamily="@font/manrope_regular"
+        android:hint="@string/password_baru"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarUbahProfil" />
+
+    <EditText
+        android:id="@+id/inputConfirmPasswordBaru"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="12sp"
+        android:ems="10"
+        android:fontFamily="@font/manrope_regular"
+        android:hint="@string/confirm_password_baru"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputPasswordBaru" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGantiPassword"
+        android:layout_width="315dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/manrope_semibold"
+        android:text="@string/simpan_perubahan"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputConfirmPasswordBaru"
+        tools:ignore="OnClick,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

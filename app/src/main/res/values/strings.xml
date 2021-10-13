@@ -39,4 +39,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="simpan_perubahan">Simpan Perubahan</string>
+    <string name="password_baru">Kata Sandi Baru</string>
+    <string name="confirm_password_baru">Konfirmasi Kata Sandi Baru</string>
 </resources>

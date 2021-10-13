@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UbahProfilActivity"
-    android:background="@color/background_gray">
+    android:background="@color/background_gray"
+    android:id="@+id/containerUbahProfil">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarUbahProfil"
@@ -43,7 +44,7 @@
         android:inputType="textPersonName"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawablePadding="12sp"
-        android:hint="@string/name"
+        android:hint="@string/nama"
         android:fontFamily="@font/manrope_regular"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,7 @@
         android:inputType="phone"
         android:drawableStart="@drawable/ic_baseline_phone_24"
         android:drawablePadding="12sp"
-        android:hint="@string/no_telepon"
+        android:hint="@string/phone"
         android:fontFamily="@font/manrope_regular"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,9 +71,9 @@
         android:importantForAutofill="no" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonMasuk2"
+        android:id="@+id/buttonUbahProfil1"
         android:layout_width="315dp"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:layout_marginTop="35dp"
         android:fontFamily="@font/manrope_semibold"
         android:text="@string/simpan_perubahan"
