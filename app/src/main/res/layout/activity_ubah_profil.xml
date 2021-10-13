@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UbahProfilActivity"
+    android:background="@color/background_gray">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarUbahProfil"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textUbahProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/fredokaone_regular"
+        android:text="@string/ubah_profil"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarUbahProfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ubahNama"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="12sp"
+        android:hint="@string/name"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarUbahProfil"
+        tools:ignore="SpeakableTextPresentCheck"/>
+
+    <EditText
+        android:id="@+id/ubahNoTelepon"
+        android:layout_width="315sp"
+        android:layout_height="56sp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:drawableStart="@drawable/ic_baseline_phone_24"
+        android:drawablePadding="12sp"
+        android:hint="@string/no_telepon"
+        android:fontFamily="@font/manrope_regular"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ubahNama"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:importantForAutofill="no" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonMasuk2"
+        android:layout_width="315dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/manrope_semibold"
+        android:text="@string/simpan_perubahan"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ubahNoTelepon"
+        app:cornerRadius="50dp"
+        tools:ignore="OnClick,TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
