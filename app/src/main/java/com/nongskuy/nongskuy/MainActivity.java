@@ -10,45 +10,61 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+
     private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        Intent profil = getIntent();
+//        if(profil.getStringExtra("TOPROFIL") != null){
+//            onNavigationItemSelected(R.menu);
+//            loadFragments(new ProfilFragment());
+//        }
+//        else{
+//            loadFragments(new BerandaFragment());
+//        }
+
+        loadFragments(new BerandaFragment());
         bottomNavigationView = findViewById(R.id.BottomNavigationMenu);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,new BerandaFragment()).commit();
-        
-//        Intent gantiPassword = getIntent();
-//        Integer navPass = gantiPassword.getIntExtra("NAVIGATION");
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
-    //Listener Nav Bar
-   BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selected_fragment = null;
+    public boolean loadFragments(Fragment fragment){
 
-            switch(item.getItemId()){
-                case R.id.menu_beranda:
-                    selected_fragment = new BerandaFragment();
-                    break;
-
-                case R.id.menu_promo:
-                    selected_fragment = new PromoFragment();
-                    break;
-
-                case R.id.menu_terdekat:
-                    selected_fragment = new TerdekatFragment();
-                    break;
-
-                case R.id.menu_profil:
-                    selected_fragment = new ProfilFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,selected_fragment).commit();
-            return true;
+        if(fragment != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,fragment).commit();
         }
-    };
+
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment fragment = null;
+
+        switch(item.getItemId()){
+            case R.id.menu_beranda:
+                fragment = new BerandaFragment();
+                break;
+
+            case R.id.menu_promo:
+                fragment = new PromoFragment();
+                break;
+
+            case R.id.menu_terdekat:
+                fragment = new TerdekatFragment();
+                break;
+
+            case R.id.menu_profil:
+                fragment = new ProfilFragment();
+                break;
+        }
+
+        return loadFragments(fragment);
+    }
 }
