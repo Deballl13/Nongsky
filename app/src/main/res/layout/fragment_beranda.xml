@@ -58,16 +58,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
-    <!--    <SearchView-->
-<!--        android:id="@+id/searchView"-->
-<!--        android:layout_width="355dp"-->
-<!--        android:layout_height="38dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:background="@drawable/searchview_style"-->
-<!--        android:queryHint="Cari Tempat Nongkrong"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textSearch" />-->
+        <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="355dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/searchview_style"
+        android:queryHint="Cari Tempat Nongkrong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSearch" />
 
 <!--    foto profil-->
     <com.google.android.material.imageview.ShapeableImageView
