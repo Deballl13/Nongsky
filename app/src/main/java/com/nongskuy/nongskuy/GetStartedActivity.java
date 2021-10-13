@@ -17,7 +17,6 @@ public class GetStartedActivity extends AppCompatActivity {
     public void masuk(View view){
         Intent intent = new Intent(GetStartedActivity.this, LoginActivity.class);
         startActivity(intent);
-
     }
 
     public void daftar(View view){
