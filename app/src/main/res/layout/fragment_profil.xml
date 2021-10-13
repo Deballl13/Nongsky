@@ -1,16 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfilFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfilFragment"
+    android:background="@color/background_gray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarProfil"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/yellow"
-        android:gravity="center"
-        android:text="PROFIL" />
+        android:layout_height="137dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/fredokaone_regular"
+        android:text="@string/profil"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbarProfil" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageView"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="36dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarProfil"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="@+id/toolbarProfil"
+        app:layout_constraintTop_toTopOf="@id/textProfil"
+        app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
+        app:srcCompat="@drawable/ic_logo_getstarted" />
+
+    <TextView
+        android:id="@+id/textNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/name"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/manrope_bold"
+        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toBottomOf="@+id/textProfil" />
+
+    <TextView
+        android:id="@+id/textPhoneProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/no_telepon"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/manrope_bold"
+        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toBottomOf="@+id/textNameProfile" />
+
+    <TextView
+        android:id="@+id/textEmailProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/manrope_bold"
+        android:text="@string/profil_email"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+        app:layout_constraintTop_toBottomOf="@+id/textPhoneProfile" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonUbahProfil"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:text="@string/ubah_profil"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:paddingHorizontal="35dp"
+        android:textAlignment="textStart"
+        app:icon="@drawable/ic_baseline_navigate_next"
+        app:iconGravity="end"
+        app:iconTint="@color/yellow"
+        app:iconSize="24sp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmailProfile" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGantiKataSandi"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:paddingHorizontal="35dp"
+        android:text="@string/ganti_kata_sandi"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:icon="@drawable/ic_baseline_navigate_next"
+        app:iconGravity="end"
+        app:iconTint="@color/yellow"
+        app:iconSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUbahProfil"
+        app:strokeColor="@color/gray"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonKeluar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:paddingHorizontal="35dp"
+        android:text="@string/keluar"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGantiKataSandi"
+        app:strokeColor="@color/gray"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/fredokaone_regular"
         android:text="@string/hello"
         android:textColor="@color/black"
@@ -71,8 +71,9 @@
 
 <!--    foto profil-->
     <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarBeranda"
@@ -80,7 +81,7 @@
         app:layout_constraintTop_toTopOf="@+id/toolbarBeranda"
         app:layout_constraintVertical_bias="0.537"
         app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-        app:srcCompat="@drawable/ic_book_history" />
+        app:srcCompat="@drawable/ic_logo_getstarted" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonPesanTempat"
@@ -89,12 +90,17 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/manrope_bold"
-        android:text="Riwayat Pemesanan Tempat"
+        android:text="@string/riwayat_pemesanan_tempat"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textSize="13sp"
-        android:drawableLeft="@drawable/ic_book_history"
-        android:drawableRight="@drawable/ic_baseline_navigate_next"
+        android:textSize="14sp"
+        android:textAlignment="textStart"
+        android:paddingHorizontal="30dp"
+        app:icon="@drawable/ic_book_history"
+        app:iconSize="30dp"
+        app:iconTint="@color/yellow"
+        app:iconGravity="start"
+        app:iconPadding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarBeranda" />
@@ -117,7 +123,7 @@
             android:fontFamily="@font/manrope_bold"
             android:textSize="14sp"
             android:textColor="@color/black"
-            android:text="Paling Populer"/>
+            android:text="@string/paling_populer"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -133,7 +139,7 @@
             android:layout_marginTop="20dp"
             android:textSize="14sp"
             android:textColor="@color/black"
-            android:text="Promo Buat Kamu"/>
+            android:text="@string/promo_buat_kamu"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -149,7 +155,7 @@
             android:layout_marginTop="20dp"
             android:textSize="14sp"
             android:textColor="@color/black"
-            android:text="Promo Buat Kamu"/>
+            android:text="@string/promo_buat_kamu"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
