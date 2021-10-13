@@ -12,4 +12,5 @@
     <color name="true_black">#000000</color>
     <color name="gray">#C8C8C8</color>
     <color name="background_gray">#F7F7F7</color>
+    <color name="dark_gray">#666666</color>
 </resources>

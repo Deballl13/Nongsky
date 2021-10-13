@@ -10,12 +10,15 @@
     <string name="password">Kata Sandi</string>
     <string name="confirmasi_password">Konfirmasi Kata Sandi</string>
     <string name="rememberMe">Ingat saya</string>
-    <string name="name">Nama</string>
+    <string name="nama">Nama</string>
     <string name="phone">No. Telepon</string>
     <string name="setuju_privasi">Dengan Daftar, Anda menyetujui Persyaratan Layanan dan Kebijakan Privasi</string>
     <string name="beranda">Beranda</string>
     <string name="promo">Promo</string>
     <string name="terdekat">Terdekat</string>
     <string name="profil">Profil</string>
+    <string name="hello">Hello,</string>
+    <string name="name">William Wahyu</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_tanya">Nongkrong dimana hari ini?</string>>
 </resources>
