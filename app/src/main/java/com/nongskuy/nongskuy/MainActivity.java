@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private BottomNavigationView bottomNavigationView;
+    static String userEmail = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         Intent intent = getIntent();
         String profil = intent.getStringExtra("TOPROFIL");
+        userEmail = intent.getStringExtra("EMAIL");
+        intent.removeExtra("EMAIL");
+
         if(profil != null){
             loadFragments(new ProfilFragment());
             bottomNavigationView.setSelectedItemId(R.id.menu_profil);

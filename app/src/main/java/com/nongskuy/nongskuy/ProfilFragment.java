@@ -1,8 +1,14 @@
 package com.nongskuy.nongskuy;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -32,34 +38,46 @@ public class ProfilFragment extends Fragment {
         btnLogout = (MaterialButton) view.findViewById(R.id.buttonKeluar);
 
 
-        //Toast pemberitahuan
-        String notif = getActivity().getIntent().getStringExtra("TOPROFIL");
-        if(notif != null){
-            Toast.makeText(getActivity(), notif, Toast.LENGTH_SHORT).show();
+        //tampilan profil user dan guest
+        if(MainActivity.userEmail != null){
+            view.findViewById(R.id.layoutUser).setVisibility(view.VISIBLE);
+            view.findViewById(R.id.layoutGuest).setVisibility(view.INVISIBLE);
         }
+
+
+        //Get response
+        ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result->{
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        String response = result.getData().getStringExtra("TOPROFIL");
+                        Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
 
         //Intent Fragment Profil ke Ubah Profil
         btnUbahProfil.setOnClickListener(view1 -> {
-        Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
-        getActivity().finish();
-        startActivity(intent);
+            Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
+            intentResult.launch(intent);
         });
 
 
         //Intent Fragment Profil ke Ganti Kata Sandi
         btnGantiKataSandi.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), GantiKataSandiActivity.class);
-            getActivity().finish();
-            startActivity(intent);
+            intentResult.launch(intent);
         });
 
 
         //Intent logout ke halaman login
         btnLogout.setOnClickListener(view1 -> {
+            MainActivity.userEmail = null;
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             getActivity().finish();
-            intent.putExtra("LOGOUT", "berhasil keluar");
             startActivity(intent);
+            Toast.makeText(getActivity(), "berhasil keluar", Toast.LENGTH_SHORT).show();
         });
 
 

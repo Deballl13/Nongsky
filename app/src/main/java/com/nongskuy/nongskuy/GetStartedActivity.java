@@ -27,6 +27,5 @@ public class GetStartedActivity extends AppCompatActivity {
     public void toHomeAsGuest(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish();
     }
 }

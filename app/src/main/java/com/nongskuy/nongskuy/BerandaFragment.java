@@ -29,16 +29,10 @@ public class BerandaFragment extends Fragment {
 
 
         //Mengambil email login user
-        String email = getActivity().getIntent().getStringExtra("EMAIL");
         namaUser = view.findViewById(R.id.textName);
 
-        if(email != null){
-            Toast.makeText(getActivity(), "login berhasil", Toast.LENGTH_SHORT).show();
+        if(MainActivity.userEmail != null){
             namaUser.setText("William Wahyu");
-            getActivity().getIntent().removeExtra("EMAIL");
-        }
-        else{
-            namaUser.setText("Guest");
         }
 
 
