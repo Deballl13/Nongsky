@@ -19,17 +19,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Intent profil = getIntent();
-//        if(profil.getStringExtra("TOPROFIL") != null){
-//            onNavigationItemSelected(R.menu);
-//            loadFragments(new ProfilFragment());
-//        }
-//        else{
-//            loadFragments(new BerandaFragment());
-//        }
-
-        loadFragments(new BerandaFragment());
         bottomNavigationView = findViewById(R.id.BottomNavigationMenu);
+
+        Intent profil = getIntent();
+        if(profil.getStringExtra("TOPROFIL") != null){
+            loadFragments(new ProfilFragment());
+            bottomNavigationView.setSelectedItemId(R.id.menu_profil);
+        }
+        else{
+            loadFragments(new BerandaFragment());
+        }
+
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 

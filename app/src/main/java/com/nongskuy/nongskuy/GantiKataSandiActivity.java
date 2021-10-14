@@ -13,13 +13,12 @@ public class GantiKataSandiActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ganti_kata_sandi);
-
     }
 
     public void toProfil(View view){
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.putExtra("TOPROFIL", "success");
-//        startActivity(intent);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("TOPROFIL", "kata sandi berhasil diubah");
+        startActivity(intent);
     }
 
 }
