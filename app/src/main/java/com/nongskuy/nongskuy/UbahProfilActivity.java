@@ -23,6 +23,7 @@ public class UbahProfilActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("TOPROFIL", "profil berhasil diubah");
         startActivity(intent);
+        finish();
     }
 
 }
