@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,16 +22,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView = findViewById(R.id.BottomNavigationMenu);
 
-        Intent profil = getIntent();
-        if(profil.getStringExtra("TOPROFIL") != null){
+        Intent intent = getIntent();
+        String profil = intent.getStringExtra("TOPROFIL");
+        if(profil != null){
             loadFragments(new ProfilFragment());
             bottomNavigationView.setSelectedItemId(R.id.menu_profil);
         }
         else{
             loadFragments(new BerandaFragment());
+            bottomNavigationView.setOnNavigationItemSelectedListener(this);
         }
-
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     public boolean loadFragments(Fragment fragment){

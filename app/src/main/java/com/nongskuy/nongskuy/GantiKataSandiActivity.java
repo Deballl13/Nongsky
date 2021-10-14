@@ -16,9 +16,9 @@ public class GantiKataSandiActivity extends AppCompatActivity {
     }
 
     public void toProfil(View view){
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("TOPROFIL", "kata sandi berhasil diubah");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

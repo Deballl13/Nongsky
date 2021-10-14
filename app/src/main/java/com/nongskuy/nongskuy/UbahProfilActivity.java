@@ -20,9 +20,9 @@ public class UbahProfilActivity extends AppCompatActivity {
     }
 
     public void toProfil(View view){
-        Intent intent = new Intent();
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("TOPROFIL", "profil berhasil diubah");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
         finish();
     }
 

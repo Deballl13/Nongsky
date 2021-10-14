@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -30,24 +31,37 @@ public class ProfilFragment extends Fragment {
         btnGantiKataSandi = (MaterialButton) view.findViewById(R.id.buttonGantiKataSandi);
         btnLogout = (MaterialButton) view.findViewById(R.id.buttonKeluar);
 
+
+        //Toast pemberitahuan
+        String notif = getActivity().getIntent().getStringExtra("TOPROFIL");
+        if(notif != null){
+            Toast.makeText(getActivity(), notif, Toast.LENGTH_SHORT).show();
+        }
+
         //Intent Fragment Profil ke Ubah Profil
         btnUbahProfil.setOnClickListener(view1 -> {
-            Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
+        getActivity().finish();
+        startActivity(intent);
         });
+
 
         //Intent Fragment Profil ke Ganti Kata Sandi
         btnGantiKataSandi.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), GantiKataSandiActivity.class);
+            getActivity().finish();
             startActivity(intent);
         });
 
-        //Intent Fragment Profil ke Halaman login
+
+        //Intent logout ke halaman login
         btnLogout.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
-            startActivity(intent);
             getActivity().finish();
+            intent.putExtra("LOGOUT", "berhasil keluar");
+            startActivity(intent);
         });
+
 
         //Inflate the layout for this fragment
         return view;
