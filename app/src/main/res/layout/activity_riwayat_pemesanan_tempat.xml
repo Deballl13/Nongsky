@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RiwayatPemesananTempatActivity">
+    tools:context=".RiwayatPemesananTempatActivity"
+    android:background="@color/background_gray">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRiwayatPemesananTempat"
@@ -36,7 +37,8 @@
         android:id="@+id/cardRiwayatNongskuy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:background="@color/background_gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRiwayatNongskuy"
