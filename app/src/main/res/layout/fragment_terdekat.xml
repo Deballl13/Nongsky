@@ -26,7 +26,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/fredokaone_regular"
         android:text="@string/nongskuy_terdekat"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -58,25 +58,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textTerdekat" />
 
-<!--    <SearchView-->
-<!--            android:id="@+id/searchView"-->
-<!--            android:layout_width="355dp"-->
-<!--            android:layout_height="38dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:background="@drawable/searchview_style"-->
-<!--            android:queryHint="Cari Tempat Nongkrong"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textAlamatGPS" />-->
-
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="545dp"
+        android:layout_height="600dp"
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarTerdekat" />
+
+        <SearchView
+            android:id="@+id/searchViewMap"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/searchview_style"
+            android:queryHint="Cari Tempat Nongkrong"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textAlamatGPS" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
