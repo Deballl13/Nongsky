@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="4dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_gravity="top"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/logoStore"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_store"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/textNamaToko"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="McDonald's Ahmad Yani, Padang"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/textStatusPesanan"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toEndOf="@+id/logoStore"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textStatusPesanan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="Dipesan"
+            android:textAlignment="textEnd"
+            android:textColor="@color/gray"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.943"
+            app:layout_constraintStart_toEndOf="@+id/textNamaToko"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logoToko"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoStore"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/TotalKursi"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Total Kursi Dipesan"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintTop_toBottomOf="@+id/textNamaToko" />
+
+        <TextView
+            android:id="@+id/TotalDeposit"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:text="Total Deposit"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintTop_toBottomOf="@+id/TotalKursi" />
+
+        <TextView
+            android:id="@+id/CaraBayar"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:text="Cara Pembayaran"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintTop_toBottomOf="@+id/TotalDeposit" />
+
+        <TextView
+            android:id="@+id/TanggalPesan"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:text="Tanggal Pemesanan"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintTop_toBottomOf="@+id/CaraBayar" />
+
+        <TextView
+            android:id="@+id/WaktuPesan"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:text="Waktu Pemesanan"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintTop_toBottomOf="@+id/TanggalPesan" />
+
+        <TextView
+            android:id="@+id/SatuanKursi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="Kursi"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/TextTotalKursiPesan"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toEndOf="@+id/TextTotalKursiPesan" />
+
+        <TextView
+            android:id="@+id/TextTotalKursiPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="4"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintBottom_toBottomOf="@+id/TotalKursi"
+            app:layout_constraintStart_toEndOf="@+id/TotalKursi" />
+
+        <TextView
+            android:id="@+id/TextUang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="10000"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintBottom_toBottomOf="@id/satuanUang"
+            app:layout_constraintStart_toEndOf="@+id/satuanUang" />
+
+        <TextView
+            android:id="@+id/satuanUang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:text="Rp"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:fontFamily="@font/manrope_regular"
+            app:layout_constraintBottom_toBottomOf="@id/TotalDeposit"
+            app:layout_constraintStart_toEndOf="@+id/TotalDeposit" />
+
+        <TextView
+            android:id="@+id/TextTanggalPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="29/10/2021"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/TanggalPesan"
+            app:layout_constraintStart_toEndOf="@+id/TanggalPesan" />
+
+        <TextView
+            android:id="@+id/textCaraBayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="OVO"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/CaraBayar"
+            app:layout_constraintStart_toEndOf="@+id/CaraBayar" />
+
+        <TextView
+            android:id="@+id/TextWaktuPesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="21:00:03"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/WaktuPesan"
+            app:layout_constraintStart_toEndOf="@+id/WaktuPesan" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

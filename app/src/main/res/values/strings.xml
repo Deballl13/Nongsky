@@ -43,4 +43,5 @@
     <string name="confirm_password_baru">Konfirmasi Kata Sandi Baru</string>
     <string name="nongskuy_terdekat">Nongskuy Terdekat</string>
     <string name="gps_alamat">Jl.Ahmad Yani</string>
+    <string name="bar_riwayat_pemesanan_tempat">Riwayat Nongskuy Kamu</string>
 </resources>
