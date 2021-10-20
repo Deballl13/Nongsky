@@ -2,7 +2,11 @@ package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 
 public class GantiKataSandiActivity extends AppCompatActivity {
 
@@ -11,4 +15,12 @@ public class GantiKataSandiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ganti_kata_sandi);
     }
+
+    public void toProfil(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("TOPROFIL", "kata sandi berhasil diubah");
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
 }

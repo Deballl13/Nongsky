@@ -14,13 +14,18 @@ public class GetStartedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_get_started);
     }
 
-    public void masuk(View view){
+    public void toLogin(View view){
         Intent intent = new Intent(GetStartedActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void daftar(View view){
+    public void toRegister(View view){
         Intent intent = new Intent(GetStartedActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void toHomeAsGuest(View view){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

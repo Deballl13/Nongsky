@@ -25,6 +25,7 @@
         android:layout_marginTop="53dp"
         android:layout_marginEnd="40dp"
         android:fontFamily="@font/manrope_bold"
+        android:onClick="toHomeAsGuest"
         android:text="@string/get_started_guest"
         android:textAllCaps="false"
         android:textColor="#757575"
@@ -32,7 +33,7 @@
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/titleText1"
@@ -86,16 +87,16 @@
         android:layout_height="65dp"
         android:layout_marginBottom="1dp"
         android:fontFamily="@font/manrope_extrabold"
-        android:onClick="daftar"
+        android:onClick="toRegister"
         android:shadowColor="@color/black"
         android:text="@string/btn_daftar"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMasuk1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="50dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonMasuk1"
@@ -104,15 +105,15 @@
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/gray"
         android:fontFamily="@font/manrope_extrabold"
-        android:onClick="masuk"
+        android:onClick="toLogin"
         android:text="@string/btn_masuk"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp"
+        app:cornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="50dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 
