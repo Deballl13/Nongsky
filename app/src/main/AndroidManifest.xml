@@ -10,15 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nongskuy">
         <activity
-            android:name=".pencarian_tdk_ditemukan"
-            android:exported="true" />
-        <activity
-            android:name=".riwayat_cari"
-            android:exported="true" />
-        <activity
-            android:name=".riwayat"
-            android:exported="true" />
-        <activity
             android:name=".LauncherActivity"
             android:exported="true">
             <intent-filter>
@@ -38,6 +29,21 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".UbahProfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GantiKataSandiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pencarian_tdk_ditemukan"
+            android:exported="true" />
+        <activity
+            android:name=".riwayat_cari"
+            android:exported="true" />
+        <activity
+            android:name=".riwayat"
             android:exported="true" />
     </application>
 
