@@ -11,12 +11,12 @@
         android:id="@+id/layoutUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:visibility="invisible" >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarProfil"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
+            android:layout_height="260dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -29,11 +29,11 @@
             android:id="@+id/textProfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/fredokaone_regular"
             android:text="@string/profil"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,56 +47,55 @@
             android:layout_marginTop="36dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="@+id/toolbarProfil"
-            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="@+id/toolbarProfil"
             app:layout_constraintTop_toTopOf="@id/textProfil"
             app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-            app:srcCompat="@drawable/ic_logo_getstarted" />
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/textNameProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/manrope_bold"
             android:text="@string/name"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-            app:layout_constraintTop_toBottomOf="@+id/textProfil" />
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
 
         <TextView
             android:id="@+id/textPhoneProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/manrope_bold"
+            android:fontFamily="@font/manrope_regular"
             android:text="@string/no_telepon"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textNameProfile" />
 
         <TextView
             android:id="@+id/textEmailProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/manrope_bold"
+            android:layout_marginTop="0dp"
+            android:fontFamily="@font/manrope_regular"
             android:text="@string/profil_email"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPhoneProfile" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonUbahProfil"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/manrope_regular"
             android:paddingHorizontal="35dp"
@@ -110,10 +109,10 @@
             app:iconSize="24sp"
             app:iconTint="@color/yellow"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textEmailProfile"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="1dp" />
+            app:strokeColor="@color/gray" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonGantiKataSandi"
@@ -127,6 +126,7 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="14sp"
+            android:layout_marginTop="-10dp"
             app:icon="@drawable/ic_baseline_navigate_next"
             app:iconGravity="end"
             app:iconSize="24sp"
@@ -136,7 +136,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonUbahProfil"
             app:strokeColor="@color/gray"
-            app:strokeWidth="1dp"
             tools:ignore="DuplicateClickableBoundsCheck" />
 
         <com.google.android.material.button.MaterialButton
@@ -151,12 +150,12 @@
             android:textAllCaps="false"
             android:textColor="@color/red"
             android:textSize="14sp"
+            android:layout_marginTop="-10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonGantiKataSandi"
             app:strokeColor="@color/gray"
-            app:strokeWidth="1dp"
             tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -164,7 +163,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutGuest"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <ImageView
             android:id="@+id/profilSearch"
@@ -193,8 +192,8 @@
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
-            android:text="Silahkan login ke akun kamuuntuk mendapatkan informasi promo"
             android:gravity="center"
+            android:text="Silahkan login ke akun kamu untuk mendapatkan informasi promo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textUtama" />

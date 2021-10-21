@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRiwayatPemesananTempat"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -23,7 +23,7 @@
         android:id="@+id/textRiwayatPemesananTempat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/fredokaone_regular"
         android:text="@string/bar_riwayat_pemesanan_tempat"
         android:textColor="@color/black"
@@ -37,14 +37,13 @@
         android:id="@+id/cardRiwayatNongskuy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:background="@color/background_gray">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRiwayatNongskuy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="8dp"
             tools:listitem="@layout/card_riwayat_pemesanan_tempat" />
     </androidx.cardview.widget.CardView>
 

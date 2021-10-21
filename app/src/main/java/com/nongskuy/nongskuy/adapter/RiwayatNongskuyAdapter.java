@@ -1,6 +1,7 @@
 package com.nongskuy.nongskuy.adapter;
 
 import android.animation.LayoutTransition;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,13 +53,21 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
     @Override
     public void onBindViewHolder(@NonNull RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder viewHolder, int position) {
         RiwayatNongskuy riwayatNongskuy = listRiwayatNongskuy.get(position);
-        viewHolder.textNamaToko.setText(riwayatNongskuy.namaToko);
-        viewHolder.textStatusPesan.setText(riwayatNongskuy.statusPesan);
-        viewHolder.textTotalKursi.setText(riwayatNongskuy.totalKursi.toString());
-        viewHolder.textTotalDeposit.setText(riwayatNongskuy.totalDeposit.toString());
-        viewHolder.textCaraBayar.setText(riwayatNongskuy.caraBayar);
-        viewHolder.textTglPesan.setText(riwayatNongskuy.tglPesan);
-        viewHolder.textWaktuPesan.setText(riwayatNongskuy.waktuPesan);
+        viewHolder.textNamaToko.setText(riwayatNongskuy.getNamaToko());
+        viewHolder.textTotalKursi.setText(riwayatNongskuy.getTotalKursi().toString());
+        viewHolder.textTotalDeposit.setText(riwayatNongskuy.getTotalDeposit().toString());
+        viewHolder.textCaraBayar.setText(riwayatNongskuy.getCaraBayar());
+        viewHolder.textTglPesan.setText(riwayatNongskuy.getTglPesan());
+        viewHolder.textWaktuPesan.setText(riwayatNongskuy.getWaktuPesan());
+
+        if(riwayatNongskuy.getStatusPesan().equals(1)){
+            viewHolder.textStatusPesan.setText("Dipesan");
+            viewHolder.textStatusPesan.setTextColor(Color.GREEN);
+        }
+        else if(riwayatNongskuy.getStatusPesan().equals(0)){
+            viewHolder.textStatusPesan.setText("Dibatalkan");
+            viewHolder.textStatusPesan.setTextColor(Color.RED);
+        }
     }
 
     @Override

@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarTerdekat"
         android:layout_width="0dp"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -23,7 +23,7 @@
         android:id="@+id/textTerdekat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/fredokaone_regular"
         android:text="@string/nongskuy_terdekat"
         android:textSize="24sp"
@@ -37,18 +37,19 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/ic_outline_place"
         app:layout_constraintEnd_toStartOf="@+id/textAlamatGPS"
         app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textTerdekat" />
+        app:layout_constraintTop_toTopOf="@id/textTerdekat"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/textAlamatGPS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="240dp"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/gps_alamat"
@@ -58,10 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textTerdekat" />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:id="@+id/google_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,8 +72,9 @@
 
         <SearchView
             android:id="@+id/searchViewMap"
-            android:layout_width="355dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/searchview_style"
             android:queryHint="Cari Tempat Nongkrong"

@@ -10,25 +10,29 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBeranda"
         android:layout_width="0dp"
-        android:layout_height="156dp"
+        android:layout_height="148dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/fredokaone_regular"
         android:text="@string/hello"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,13 +44,13 @@
         android:layout_marginTop="3dp"
         android:fontFamily="@font/fredokaone_regular"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="24sp"
         android:text="Guest"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textHello" />
 
     <TextView
-        android:id="@+id/textSearch"
+        android:id="@+id/textNongky"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -54,10 +58,22 @@
         android:fontFamily="@font/manrope_bold"
         android:text="@string/search_tanya"
         android:textColor="@color/dark_gray"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
+    <SearchView
+        android:id="@+id/searchViewMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/searchview_style"
+        android:queryHint="Cari Tempat Nongkrong"
+        android:elevation="1000dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNongky" />
     <!--    <SearchView-->
 <!--        android:id="@+id/searchView"-->
 <!--        android:layout_width="355dp"-->
@@ -73,21 +89,21 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="-30dp"
+        android:layout_marginEnd="24dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarBeranda"
         app:layout_constraintEnd_toEndOf="@+id/toolbarBeranda"
         app:layout_constraintTop_toTopOf="@+id/toolbarBeranda"
         app:layout_constraintVertical_bias="0.537"
         app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-        app:srcCompat="@drawable/ic_logo_getstarted" />
+        app:srcCompat="@drawable/ic_launcher_background" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonPesanTempat"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="-5dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/manrope_bold"
         android:text="@string/riwayat_pemesanan_tempat"
@@ -96,6 +112,7 @@
         android:textSize="14sp"
         android:textAlignment="textStart"
         android:paddingHorizontal="30dp"
+        android:paddingTop="20dp"
         app:icon="@drawable/ic_book_history"
         app:iconSize="30dp"
         app:iconTint="@color/yellow"
