@@ -54,24 +54,11 @@
         tools:ignore="SpeakableTextPresentCheck"
         android:importantForAutofill="no" />
 
-    <CheckBox
-        android:id="@+id/rememberMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/manrope_regular"
-        android:text="@string/rememberMe"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword1" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonMasuk2"
         android:layout_width="315sp"
         android:layout_height="65sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/manrope_extrabold"
         android:onClick="toHome"
         android:text="@string/btn_masuk"
@@ -81,7 +68,7 @@
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rememberMe"
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword1"
         tools:ignore="OnClick,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

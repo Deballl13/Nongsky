@@ -8,7 +8,7 @@
     android:background="@color/background_gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutUser"
+        android:id="@+id/layoutProfilUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible" >
@@ -95,7 +95,7 @@
             android:id="@+id/buttonUbahProfil"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/manrope_regular"
             android:paddingHorizontal="35dp"
@@ -161,12 +161,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutGuest"
+        android:id="@+id/layoutProfilGuest"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <ImageView
-            android:id="@+id/profilSearch"
+            android:id="@+id/profilGuest"
             android:layout_width="220dp"
             android:layout_height="236dp"
             android:layout_marginTop="190dp"
@@ -185,15 +185,15 @@
             android:text="Oops! Kamu belum login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profilSearch" />
+            app:layout_constraintTop_toBottomOf="@+id/profilGuest" />
 
         <TextView
-            android:id="@+id/textPelengkap"
+            android:id="@+id/textPelengkapProfil"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="Silahkan login ke akun kamu untuk mendapatkan informasi promo"
+            android:text="Silahkan login ke akun kamu untuk melihat profil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textUtama" />

@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean loadFragments(Fragment fragment){
 
         if(fragment != null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,fragment).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.flFragment,fragment)
+                    .commit();
         }
 
         return true;
@@ -71,5 +73,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         return loadFragments(fragment);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (bottomNavigationView.getSelectedItemId() == R.id.menu_beranda){
+            super.onBackPressed();
+
+            if(userEmail != null){
+                this.finishAffinity();
+            }
+            else{
+                finish();
+            }
+        }
+        else{
+            bottomNavigationView.setSelectedItemId(R.id.menu_beranda);
+        }
+
     }
 }

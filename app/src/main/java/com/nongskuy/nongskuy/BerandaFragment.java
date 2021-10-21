@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ public class BerandaFragment extends Fragment {
     RecyclerView recyclerViewBerandaPopuler;
     TextView namaUser;
     MaterialButton btnRiwayatPemesananTempat;
+    ConstraintLayout contentBeranda;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -33,12 +36,17 @@ public class BerandaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         btnRiwayatPemesananTempat = view.findViewById(R.id.buttonPesanTempat);
+        contentBeranda = view.findViewById(R.id.contentBeranda);
 
         //Mengambil email login user
         namaUser = view.findViewById(R.id.textName);
 
         if(MainActivity.userEmail != null){
             namaUser.setText("William Wahyu");
+            btnRiwayatPemesananTempat.setVisibility(view.VISIBLE);
+            ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) contentBeranda.getLayoutParams();
+            layoutParams.topMargin = 0;
+            contentBeranda.setLayoutParams(layoutParams);
         }
 
         //Intent Fragment Beranda ke Activity Riwayat Pesan Tempat

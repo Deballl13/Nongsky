@@ -9,11 +9,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class LoginActivity extends AppCompatActivity {
 
     EditText inputEmail;
     EditText inputPassword;
-    CheckBox rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,6 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
 
         inputEmail = findViewById(R.id.inputEmail1);
         inputPassword = findViewById(R.id.inputPassword1);
-        rememberMe = (CheckBox) findViewById(R.id.rememberMe);
 
     }
 
@@ -35,10 +33,6 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("EMAIL", email);
 
-            //remember me
-//            SharedPreferences preferences = getSharedPreferences("rememberMe", MODE_PRIVATE);
-//            String checkbox = preferences.getString("remember", "");
-
             startActivity(intent);
             finish();
             Toast.makeText(this, "login berhasil", Toast.LENGTH_SHORT).show();
@@ -49,21 +43,4 @@ public class LoginActivity extends AppCompatActivity implements CompoundButton.O
 
     }
 
-    //remember me
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-//        if (compoundButton.isChecked()){
-//            SharedPreferences preferences = getSharedPreferences("rememberMe", MODE_PRIVATE);
-//            SharedPreferences.Editor editor = preferences.edit();
-//            editor.putString("remember", "true");
-//            editor.apply();
-//        }
-//        else if (!compoundButton.isChecked()){
-//            SharedPreferences preferences = getSharedPreferences("rememberMe", MODE_PRIVATE);
-//            SharedPreferences.Editor editor = preferences.edit();
-//            editor.putString("remember", "false");
-//            editor.apply();
-//        }
-    }
 }

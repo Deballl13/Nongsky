@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textName" />
 
     <SearchView
-        android:id="@+id/searchViewMap"
+        android:id="@+id/searchViewBeranda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -97,7 +97,8 @@
         app:layout_constraintTop_toTopOf="@+id/toolbarBeranda"
         app:layout_constraintVertical_bias="0.537"
         app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonPesanTempat"
@@ -113,6 +114,7 @@
         android:textAlignment="textStart"
         android:paddingHorizontal="30dp"
         android:paddingTop="20dp"
+        android:visibility="invisible"
         app:icon="@drawable/ic_book_history"
         app:iconSize="30dp"
         app:iconTint="@color/yellow"
@@ -122,63 +124,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarBeranda" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contentBeranda"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
+        android:paddingHorizontal="24dp"
         android:paddingVertical="15dp"
+        android:layout_marginTop="-60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonPesanTempat">
 
         <!--Paling Populer-->
         <TextView
+            android:id="@+id/textBerandaPopuler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_bold"
-            android:textSize="14sp"
+            android:text="@string/paling_populer"
             android:textColor="@color/black"
-            android:text="@string/paling_populer"/>
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/recyclerViewBerandaPopuler"/>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerViewBerandaPopuler"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />-->
 
         <!--Promo-->
         <TextView
+            android:id="@+id/textBerandaPromo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_bold"
-            android:layout_marginTop="20dp"
-            android:textSize="14sp"
+            android:text="@string/promo_buat_kamu"
             android:textColor="@color/black"
-            android:text="@string/promo_buat_kamu"/>
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/recyclerViewBerandaPromo"/>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerViewBerandaPromo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />-->
 
         <!--Terdekat-->
         <TextView
+            android:id="@+id/textBerandaTerdekat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_bold"
-            android:layout_marginTop="20dp"
-            android:textSize="14sp"
+            android:text="@string/promo_buat_kamu"
             android:textColor="@color/black"
-            android:text="@string/promo_buat_kamu"/>
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/recyclerViewBerandaTerdekat"/>
-    </LinearLayout>
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerViewBerandaTerdekat"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaTerdekat" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
