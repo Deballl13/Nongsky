@@ -1,10 +1,12 @@
 package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
@@ -21,14 +23,14 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riwayat_pemesanan_tempat);
 
-        riwayatNongskuyAdapter = new RiwayatNongskuyAdapter();
-        riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
-
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
 
         rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
         rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
         rvRiwayatNongskuy.setLayoutManager(layoutManager);
+
+        riwayatNongskuyAdapter = new RiwayatNongskuyAdapter();
+        riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
     }
 
     public ArrayList<RiwayatNongskuy> dataDummy(){
@@ -78,4 +80,5 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
         return listRiwayatNongskuy;
     }
+
 }

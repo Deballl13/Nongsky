@@ -85,7 +85,7 @@ public class ProfilFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), LoginActivity.class);
                             getActivity().finish();
                             startActivity(intent);
-                            Toast.makeText(getActivity(), "berhasil keluar", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Berhasil Keluar", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {

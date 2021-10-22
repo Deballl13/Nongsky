@@ -20,6 +20,7 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
     //View Holder
     public class RiwayatNongskuyViewHolder extends RecyclerView.ViewHolder {
         TextView textNamaToko,textStatusPesan, textTotalKursi, textTotalDeposit, textCaraBayar, textTglPesan, textWaktuPesan;
+
         public RiwayatNongskuyViewHolder(@NonNull View itemView) {
             super(itemView);
             textNamaToko = itemView.findViewById(R.id.textNamaToko);
@@ -29,7 +30,6 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
             textCaraBayar= itemView.findViewById(R.id.textCaraBayar);
             textTglPesan = itemView.findViewById(R.id.textTglPesan);
             textWaktuPesan = itemView.findViewById(R.id.textWaktuPesan);
-
         }
     }
 

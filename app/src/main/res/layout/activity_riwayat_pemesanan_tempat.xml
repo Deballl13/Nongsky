@@ -33,8 +33,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardRiwayatNongskuy"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRiwayatPesanDitemukan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="90dp"
@@ -45,6 +45,51 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/card_riwayat_pemesanan_tempat" />
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRiwayatPesanTidakDitemukan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/noDataAvail"
+            android:layout_width="210dp"
+            android:layout_height="226dp"
+            android:layout_marginTop="150dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_no_data_available"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textUtama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Riwayat pemesanan tidak ditemukan!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/noDataAvail" />
+
+        <TextView
+            android:id="@+id/textPelengkap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Kamu belum pernah pesan tempat nongkrong nih"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textUtama" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
