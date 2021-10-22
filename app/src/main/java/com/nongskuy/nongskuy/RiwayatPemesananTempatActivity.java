@@ -17,6 +17,8 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
     RecyclerView rvRiwayatNongskuy;
     RiwayatNongskuyAdapter riwayatNongskuyAdapter;
+    ConstraintLayout layoutRiwayatPesanDitemukan;
+    ConstraintLayout layoutRiwayatPesanTidakDitemukan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +27,21 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager= new LinearLayoutManager(this);
 
-        rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
-        rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
-        rvRiwayatNongskuy.setLayoutManager(layoutManager);
+        layoutRiwayatPesanDitemukan = findViewById(R.id.layoutRiwayatPesanDitemukan);
+        layoutRiwayatPesanTidakDitemukan = findViewById(R.id.layoutRiwayatPesanTidakDitemukan);
 
         riwayatNongskuyAdapter = new RiwayatNongskuyAdapter();
         riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
+
+        if(riwayatNongskuyAdapter.getItemCount() > 0){
+            rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
+            rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
+            rvRiwayatNongskuy.setLayoutManager(layoutManager);
+
+            layoutRiwayatPesanDitemukan.setVisibility(View.VISIBLE);
+            layoutRiwayatPesanTidakDitemukan.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     public ArrayList<RiwayatNongskuy> dataDummy(){
