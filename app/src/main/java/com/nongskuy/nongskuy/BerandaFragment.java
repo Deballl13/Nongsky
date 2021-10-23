@@ -21,6 +21,7 @@ public class BerandaFragment extends Fragment {
     RecyclerView recyclerViewBerandaPopuler;
     TextView namaUser;
     MaterialButton btnRiwayatPemesananTempat;
+    MaterialButton btnLihatSemuaPopuler;
     ConstraintLayout contentBeranda;
 
     public BerandaFragment() {
@@ -36,6 +37,7 @@ public class BerandaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         btnRiwayatPemesananTempat = view.findViewById(R.id.buttonPesanTempat);
+        btnLihatSemuaPopuler = view.findViewById(R.id.buttonLihatSemuaPopuler);
         contentBeranda = view.findViewById(R.id.contentBeranda);
 
         //Mengambil email login user
@@ -54,6 +56,16 @@ public class BerandaFragment extends Fragment {
             Intent intent = new Intent(getActivity(), RiwayatPemesananTempatActivity.class);
             startActivity(intent);
         });
+
+        //Intent ke Fragment Populer
+//        btnLihatSemuaPopuler.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+
+
 
         return view;
     }
