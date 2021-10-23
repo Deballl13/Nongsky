@@ -3,21 +3,27 @@ package com.nongskuy.nongskuy;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.nongskuy.nongskuy.adapter.PromoAdapter;
+import com.nongskuy.nongskuy.model.Promo;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
+
+import java.util.ArrayList;
 
 
 public class PromoFragment extends Fragment {
 
     CarouselView carouselView;
     Integer[] sampleImages = {R.drawable.gado, R.drawable.nuget, R.drawable.pempek, R.drawable.rempah, R.drawable.sushi};
-
+    RecyclerView recyclerView;
 
     public PromoFragment() {
         // Required empty public constructor
@@ -27,11 +33,15 @@ public class PromoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_promo, container, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_promo, container, false);
 
         carouselView = view.findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
+
+        recyclerView = view.findViewById(R.id.rvPromo);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new PromoAdapter(getData()));
 
         if(MainActivity.userEmail != null){
             view.findViewById(R.id.layoutPromoUser).setVisibility(view.VISIBLE);
@@ -47,4 +57,80 @@ public class PromoFragment extends Fragment {
             imageView.setImageResource(sampleImages[position]);
         }
     };
+
+    public ArrayList<Promo> getData(){
+        ArrayList<Promo> listPromo = new ArrayList<>();
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+        listPromo.add(new Promo(
+                "Sate Taichan",
+                "Taichan Mimi Peri",
+                25000,
+                30000,
+                "Diskon 5%"
+        ));
+
+        return listPromo;
+    }
 }

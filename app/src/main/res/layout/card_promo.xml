@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
-    app:cardElevation="10dp">
+    app:cardElevation="5dp">
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/manrope_bold"
             android:text="Nama makanan"
             android:textColor="@color/black"
@@ -37,13 +38,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textTempatPromo"
+            android:id="@+id/textTokoPromo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
             android:layout_marginTop="2sp"
             android:fontFamily="@font/manrope_regular"
-            android:text="Deskripsi"
+            android:text="Nama tempat"
             android:textSize="14sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/imagePromo"
@@ -57,7 +58,7 @@
             android:layout_marginTop="2sp"
             android:background="@android:color/darker_gray"
             app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toBottomOf="@+id/textTempatPromo" />
+            app:layout_constraintTop_toBottomOf="@+id/textTokoPromo" />
 
         <TextView
             android:id="@+id/textHargaSetelahPromo"
@@ -82,9 +83,23 @@
             android:layout_marginStart="10sp"
             android:layout_marginTop="2sp"
             android:textColor="@color/black"
-
             app:layout_constraintStart_toEndOf="@+id/imagePromo"
             app:layout_constraintTop_toBottomOf="@+id/textHargaSetelahPromo" />
+
+        <TextView
+            android:id="@+id/keteranganPromo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7sp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Keterangan Promo"
+            android:textColor="@color/dark_gray"
+            android:textSize="9sp"
+            android:background="@drawable/background_ket_promo"
+            android:paddingHorizontal="10sp"
+            app:layout_constraintStart_toEndOf="@+id/textHargaSetelahPromo"
+            app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
