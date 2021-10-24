@@ -11,7 +11,6 @@
         android:id="@+id/layoutPromoUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="270dp"
+            android:paddingBottom="10dp"
+            android:clipToPadding="false"
             tools:listitem="@layout/card_promo"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,6 +75,7 @@
         android:id="@+id/layoutPromoGuest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

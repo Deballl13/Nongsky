@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardPromo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:layout_marginTop="10dp"
-    app:cardElevation="5dp">
+    app:cardElevation="2dp">
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:layout_width="80dp"
             android:layout_height="82dp"
             android:src="@drawable/ic_launcher_background"
+            android:foreground="@drawable/ic_launcher_foreground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -70,6 +72,7 @@
             android:text="Harga setelah promo"
             android:textColor="@color/black"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imagePromo"
             app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
 
@@ -80,9 +83,9 @@
             android:fontFamily="@font/manrope_regular"
             android:text="Harga sebelum promo"
             android:textSize="10sp"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="12sp"
             android:layout_marginTop="2sp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_gray"
             app:layout_constraintStart_toEndOf="@+id/imagePromo"
             app:layout_constraintTop_toBottomOf="@+id/textHargaSetelahPromo" />
 

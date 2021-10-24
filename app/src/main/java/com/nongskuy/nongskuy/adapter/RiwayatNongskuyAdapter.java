@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder>{
 
@@ -52,10 +54,15 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
 
     @Override
     public void onBindViewHolder(@NonNull RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder viewHolder, int position) {
+        // format mata uang rupiah
+        Locale localeID = new Locale("in", "ID");
+        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+        formatRupiah.setMaximumFractionDigits(0);
+
         RiwayatNongskuy riwayatNongskuy = listRiwayatNongskuy.get(position);
         viewHolder.textNamaToko.setText(riwayatNongskuy.getNamaToko());
         viewHolder.textTotalKursi.setText(riwayatNongskuy.getTotalKursi().toString());
-        viewHolder.textTotalDeposit.setText(riwayatNongskuy.getTotalDeposit().toString());
+        viewHolder.textTotalDeposit.setText(formatRupiah.format((Integer) riwayatNongskuy.getTotalDeposit()).toString());
         viewHolder.textCaraBayar.setText(riwayatNongskuy.getCaraBayar());
         viewHolder.textTglPesan.setText(riwayatNongskuy.getTglPesan());
         viewHolder.textWaktuPesan.setText(riwayatNongskuy.getWaktuPesan());
