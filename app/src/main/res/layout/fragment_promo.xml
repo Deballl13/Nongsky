@@ -11,6 +11,7 @@
         android:id="@+id/layoutPromoUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +20,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarPromo"
             android:layout_width="0dp"
-            android:layout_height="270dp"
+            android:layout_height="260dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -64,7 +65,7 @@
             android:id="@+id/rvPromo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="260dp"
             android:paddingBottom="10dp"
             android:clipToPadding="false"
             tools:listitem="@layout/card_promo"/>
@@ -75,7 +76,6 @@
         android:id="@+id/layoutPromoGuest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

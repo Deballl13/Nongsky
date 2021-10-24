@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
-    android:layout_marginTop="10dp"
     app:cardElevation="2dp">
     
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_regular"
             android:text="Harga sebelum promo"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:layout_marginStart="12sp"
             android:layout_marginTop="2sp"
             android:textColor="@color/dark_gray"

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.Promo;
 
@@ -36,14 +37,12 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
     @Override
     public void onBindViewHolder(@NonNull PromoAdapter.PromoViewHolder holder, int position) {
         // format mata uang rupiah
-        Locale localeID = new Locale("in", "ID");
-        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-        formatRupiah.setMaximumFractionDigits(0);
+        Helper helper = new Helper();
 
         holder.textMakananPromo.setText(listPromo.get(position).getNamaMakanan());
         holder.textTokoPromo.setText(listPromo.get(position).getNamaToko());
-        holder.textHargaSetelahPromo.setText(formatRupiah.format((Integer) listPromo.get(position).getHargaPromo()).toString());
-        holder.textHargaSebelumPromo.setText(formatRupiah.format((Integer) listPromo.get(position).getHargaAwal()).toString());
+        holder.textHargaSetelahPromo.setText(helper.mataUangRupiah(listPromo.get(position).getHargaPromo()));
+        holder.textHargaSebelumPromo.setText(helper.mataUangRupiah(listPromo.get(position).getHargaAwal()));
         holder.keterangan.setText(listPromo.get(position).getKeterangan());
 
         holder.textHargaSebelumPromo.setPaintFlags(holder.textHargaSebelumPromo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

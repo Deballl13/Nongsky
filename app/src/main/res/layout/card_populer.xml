@@ -6,16 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="top"
     android:layout_marginTop="10dp"
-    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="12dp"
     android:elevation="2dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="18dp">
+        android:padding="8dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/logoTokoPopuler"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:fontFamily="@font/manrope_bold"
-            android:text="McDonald's Ahmad Yani, Padang"
+            android:text="Nama toko"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -80,12 +80,21 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="Jl. Ahmad Yani Padang"
+            android:text="Alamat"
             android:textAlignment="textStart"
             android:textColor="@color/dark_gray"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
             app:layout_constraintTop_toBottomOf="@+id/textNamaTokoPopuler" />
+
+        <View
+            android:id="@+id/viewGaris"
+            android:layout_width="249dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="15dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
+            app:layout_constraintTop_toBottomOf="@+id/textAlamatTokoPopuler" />
 
         <TextView
             android:id="@+id/textTipeTongkrongan"
@@ -94,12 +103,12 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="Aneka Nasi, Jajanan"
+            android:text="Tipe toko"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toBottomOf="@+id/textAlamatTokoPopuler"
+            app:layout_constraintTop_toBottomOf="@+id/viewGaris"
             tools:ignore="DuplicateIds" />
 
         <TextView
@@ -109,7 +118,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="5.3"
+            android:text="Jarak toko"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="13sp"
