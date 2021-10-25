@@ -3,10 +3,17 @@ package com.nongskuy.nongskuy;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.nongskuy.nongskuy.adapter.PromoAdapter;
+import com.nongskuy.nongskuy.model.Populer;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +30,7 @@ public class PopulerFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    RecyclerView rvBeranda, rvPopuler;
 
     public PopulerFragment() {
         // Required empty public constructor
@@ -59,6 +67,98 @@ public class PopulerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_populer, container, false);
+        View view = inflater.inflate(R.layout.fragment_populer, container, false);
+
+        rvBeranda = view.findViewById(R.id.recyclerViewBerandaPopuler);
+        rvBeranda.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvBeranda.setAdapter(new PromoAdapter(getData()));
+
+        return view;
+    }
+
+    public ArrayList<Populer> getData(){
+        ArrayList<Populer> listPopuler = new ArrayList<>();
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+        listPopuler.add(new Populer(
+                4.2,
+                "McDonald’s Padang",
+                "Jl. Khatib Sulaeman",
+                "Cepat saji",
+                4.5,
+                "km"
+        ));
+
+        return listPopuler;
     }
 }
