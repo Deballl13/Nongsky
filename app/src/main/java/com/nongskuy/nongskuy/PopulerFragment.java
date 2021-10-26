@@ -69,9 +69,9 @@ public class PopulerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_populer, container, false);
 
-        rvBeranda = view.findViewById(R.id.recyclerViewBerandaPopuler);
-        rvBeranda.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvBeranda.setAdapter(new PromoAdapter(getData()));
+//        rvBeranda = view.findViewById(R.id.recyclerViewBerandaPopuler);
+//        rvBeranda.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        rvBeranda.setAdapter(new PromoAdapter(getData()));
 
         return view;
     }
