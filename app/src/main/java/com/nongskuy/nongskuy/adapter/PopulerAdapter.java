@@ -10,15 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.R;
-import com.nongskuy.nongskuy.model.Populer;
+import com.nongskuy.nongskuy.model.Store;
 
 import java.util.ArrayList;
 
 public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerViewHolder> {
 
-    private ArrayList<Populer> listPopuler;
+    private ArrayList<Store> listPopuler;
 
-    public PopulerAdapter(ArrayList<Populer> listPopuler) {
+    public PopulerAdapter(ArrayList<Store> listPopuler) {
         this.listPopuler = listPopuler;
     }
 

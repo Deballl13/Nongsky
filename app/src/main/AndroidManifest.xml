@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/LightTheme">
         <activity
+            android:name=".PopulerActivity"
+            android:exported="true" />
+        <activity
             android:name=".PencarianActivity"
             android:exported="true" />
         <activity

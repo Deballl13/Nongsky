@@ -1,6 +1,6 @@
 package com.nongskuy.nongskuy.model;
 
-public class Populer {
+public class Store {
 
     private Double rating;
     private String namaToko;
@@ -9,7 +9,7 @@ public class Populer {
     private Double jarakToko;
     private String satuanJarak;
 
-    public Populer(Double rating, String namaToko, String alamatToko, String tipeToko, Double jarakToko, String satuanJarak) {
+    public Store(Double rating, String namaToko, String alamatToko, String tipeToko, Double jarakToko, String satuanJarak) {
         this.rating = rating;
         this.namaToko = namaToko;
         this.alamatToko = alamatToko;

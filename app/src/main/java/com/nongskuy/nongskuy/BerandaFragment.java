@@ -18,7 +18,6 @@ import com.google.android.material.button.MaterialButton;
 
 public class BerandaFragment extends Fragment {
 
-    RecyclerView recyclerViewBerandaPopuler;
     TextView namaUser;
     MaterialButton btnRiwayatPemesananTempat;
     MaterialButton btnLihatSemuaPopuler;
@@ -58,12 +57,13 @@ public class BerandaFragment extends Fragment {
         });
 
         //Intent ke Fragment Populer
-//        btnLihatSemuaPopuler.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        btnLihatSemuaPopuler.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PopulerActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
