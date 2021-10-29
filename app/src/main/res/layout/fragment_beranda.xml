@@ -1,206 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BerandaFragment"
-    android:background="@color/background_gray">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarBeranda"
-        android:layout_width="match_parent"
-        android:layout_height="148dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/textHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/fredokaone_regular"
-        android:text="@string/hello"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="3dp"
-        android:fontFamily="@font/fredokaone_regular"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:text="Guest"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textHello" />
-
-    <TextView
-        android:id="@+id/textNongky"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="@string/search_tanya"
-        android:textColor="@color/dark_gray"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-    <SearchView
-        android:id="@+id/searchViewBeranda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginHorizontal="24dp"
-        android:background="@drawable/searchview_style"
-        android:queryHint="Cari Tempat Nongkrong"
-        android:elevation="1000dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNongky" />
-
-<!--    foto profil-->
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="-30dp"
-        android:layout_marginEnd="24dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarBeranda"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarBeranda"
-        app:layout_constraintTop_toTopOf="@+id/toolbarBeranda"
-        app:layout_constraintVertical_bias="0.537"
-        app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
-        app:srcCompat="@drawable/ic_launcher_background"
-        tools:ignore="ImageContrastCheck" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonPesanTempat"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="-5dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/manrope_bold"
-        android:text="@string/riwayat_pemesanan_tempat"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textAlignment="textStart"
-        android:paddingHorizontal="30dp"
-        android:paddingTop="20dp"
-        android:visibility="invisible"
-        app:icon="@drawable/ic_book_history"
-        app:iconSize="30dp"
-        app:iconTint="@color/yellow"
-        app:iconGravity="start"
-        app:iconPadding="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarBeranda" />
+    android:background="@color/background_gray"
+    tools:context=".BerandaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentBeranda"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="-60dp"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPesanTempat"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent" >
 
-        <!--Paling Populer-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarBeranda"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.Toolbar>
+
         <TextView
-            android:id="@+id/textBerandaPopuler"
+            android:id="@+id/textHello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="@string/paling_populer"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/fredokaone_regular"
+            android:text="@string/hello"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonLihatSemuaPopuler"
+        <TextView
+            android:id="@+id/textName"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:fontFamily="@font/manrope_extrabold"
-            android:text="lihat semua"
-            android:textAllCaps="false"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/fredokaone_regular"
+            android:text="Guest"
             android:textColor="@color/black"
-            android:textSize="10sp"
-            app:cornerRadius="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.909"
-            app:layout_constraintStart_toEndOf="@+id/textBerandaPopuler"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textHello" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewBerandaPopuler"
+        <TextView
+            android:id="@+id/textNongky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="@string/search_tanya"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+        <SearchView
+            android:id="@+id/searchViewBeranda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/searchview_style"
+            android:elevation="1000dp"
+            android:queryHint="Cari Tempat Nongkrong"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />
+            app:layout_constraintTop_toBottomOf="@+id/textNongky" />
 
-        <!--Promo-->
-        <TextView
-            android:id="@+id/textBerandaPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <!--    foto profil-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="-30dp"
+            android:layout_marginEnd="24dp"
+            android:scaleType="centerCrop"
+            android:foreground="@drawable/ic_launcher_foreground"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbarBeranda"
+            app:layout_constraintEnd_toEndOf="@+id/toolbarBeranda"
+            app:layout_constraintTop_toTopOf="@+id/toolbarBeranda"
+            app:layout_constraintVertical_bias="0.537"
+            app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
+            app:srcCompat="@drawable/ic_launcher_background"
+            tools:ignore="ImageContrastCheck" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonPesanTempat"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="-5dp"
+            android:backgroundTint="@color/white"
             android:fontFamily="@font/manrope_bold"
-            android:text="@string/promo_buat_kamu"
+            android:paddingHorizontal="30dp"
+            android:paddingTop="20dp"
+            android:text="@string/riwayat_pemesanan_tempat"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:icon="@drawable/ic_book_history"
+            app:iconGravity="start"
+            app:iconPadding="20dp"
+            app:iconSize="30dp"
+            app:iconTint="@color/yellow"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarBeranda" />
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recyclerViewBerandaPromo"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />-->
-
-        <!--Terdekat-->
-        <TextView
-            android:id="@+id/textBerandaTerdekat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope_bold"
-            android:text="@string/nongskuy_terdekat"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentBeranda"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-60dp"
+            android:paddingVertical="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonPesanTempat"
+            app:layout_constraintVertical_bias="0.0">
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recyclerViewBerandaTerdekat"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaTerdekat" />-->
+            <!--Paling Populer-->
+            <TextView
+                android:id="@+id/textBerandaPopuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/paling_populer"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/contentBeranda" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLihatSemuaPopuler"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="lihat semua"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:cornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textBerandaPopuler"
+                app:layout_constraintTop_toTopOf="@+id/contentBeranda"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBerandaPopuler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="3dp"
+                android:paddingHorizontal="19dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />
+
+            <!--Promo-->
+            <TextView
+                android:id="@+id/textBerandaPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/promo_buat_kamu"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPopuler" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLihatSemuaPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="lihat semua"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:cornerRadius="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textBerandaPromo"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPopuler"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBerandaPromo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="3dp"
+                android:paddingHorizontal="19dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />
+
+            <!--Terdekat-->
+            <TextView
+                android:id="@+id/textBerandaTerdekat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/nongskuy_terdekat"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPromo" />
+
+            <!--        <androidx.recyclerview.widget.RecyclerView-->
+            <!--            android:id="@+id/recyclerViewBerandaTerdekat"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/textBerandaTerdekat" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

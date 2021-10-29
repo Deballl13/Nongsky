@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="148dp"
+    android:layout_height="160dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:elevation="2dp"
+    android:background="@color/black"
+    app:cardCornerRadius="10dp"
+    android:layout_centerInParent="true" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="148dp"
+        android:layout_height="160dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imagePopulerBeranda"
+            android:layout_width="148dp"
+            android:layout_height="92dp"
+            android:src="@drawable/mcdonald"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textNamaTokoPopulerBeranda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Nama toko"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePopulerBeranda" />
+
+        <TextView
+            android:id="@+id/textTipeTokoPopulerBeranda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/manrope_regular"
+            android:layout_marginStart="8dp"
+            android:text="Tipe toko"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textNamaTokoPopulerBeranda" />
+
+        <TextView
+            android:id="@+id/textJarakPopulerBeranda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_regular"
+            android:layout_marginStart="8dp"
+            android:text="Jarak toko"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textTipeTokoPopulerBeranda" />
+
+        <TextView
+            android:id="@+id/textSatuanJarakPopulerBeranda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_regular"
+            android:layout_marginStart="4dp"
+            android:textAlignment="textStart"
+            android:text="Km"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textJarakPopulerBeranda"
+            app:layout_constraintTop_toBottomOf="@+id/textTipeTokoPopulerBeranda" />
+
+        <TextView
+            android:id="@+id/ratingPopulerBeranda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:drawableLeft="@drawable/ic_star"
+            android:fontFamily="@font/manrope_bold"
+            android:text="4.2"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/textSatuanJarakPopulerBeranda"
+            app:layout_constraintTop_toBottomOf="@+id/textTipeTokoPopulerBeranda" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

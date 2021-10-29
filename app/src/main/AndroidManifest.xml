@@ -15,21 +15,26 @@
         android:theme="@style/LightTheme">
         <activity
             android:name=".PopulerActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PencarianActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RiwayatPemesananTempatActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC1XF99g6TPp_nmsQRQs_jDGLhDqci4R2s" />
+            android:value="AIzaSyC1XF99g6TPp_nmsQRQs_jDGLhDqci4R2s"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".LauncherActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,22 +43,28 @@
         </activity>
         <activity
             android:name=".GetStartedActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RegisterActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UbahProfilActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".GantiKataSandiActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

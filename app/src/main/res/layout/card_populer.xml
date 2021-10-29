@@ -34,14 +34,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="63dp"
             android:backgroundTint="@color/white"
 
             android:fontFamily="@font/fredokaone_regular"
             android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
-            android:insetBottom="0dp"
+            android:insetBottom="2dp"
             android:minWidth="0dp"
 
             android:minHeight="0dp"

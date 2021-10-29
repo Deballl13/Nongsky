@@ -16,6 +16,12 @@ public class Promo {
         this.keterangan = keterangan;
     }
 
+    public Promo(String namaMakanan, String namaToko, String keterangan) {
+        this.namaMakanan = namaMakanan;
+        this.namaToko = namaToko;
+        this.keterangan = keterangan;
+    }
+
     public String getNamaMakanan() {
         return namaMakanan;
     }
