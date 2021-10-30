@@ -26,6 +26,13 @@ public class Store {
         this.satuanJarak = satuanJarak;
     }
 
+    public Store(String namaToko, String alamatToko, Double jarakToko, String satuanJarak) {
+        this.namaToko = namaToko;
+        this.alamatToko = alamatToko;
+        this.jarakToko = jarakToko;
+        this.satuanJarak = satuanJarak;
+    }
+
     public Double getRating() {
         return rating;
     }

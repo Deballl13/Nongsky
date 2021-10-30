@@ -1,15 +1,15 @@
 package com.nongskuy.nongskuy;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -50,13 +50,17 @@ public class ProfilFragment extends Fragment {
         //Get response
         ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        String response = result.getData().getStringExtra("TOPROFIL");
-                        Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent intent = result.getData();
+                            // Handle the Intent
+                            String response = intent.getStringExtra("TOPROFIL");
+                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-        );
+                });
 
 
         //Intent Fragment Profil ke Ubah Profil
