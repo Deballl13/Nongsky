@@ -33,16 +33,16 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new PopulerAdapter(getData()));
 
-//        bottomNavigationViewPopuler = findViewById(R.id.BottomNavigationMenuPopuler);
-//        bottomNavigationViewPopuler.setOnNavigationItemSelectedListener(this);
+        bottomNavigationViewPopuler = findViewById(R.id.BottomNavigationMenuPopuler);
+        bottomNavigationViewPopuler.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        Intent intent = new Intent();
-//        intent.putExtra("FRAGMENT", String.valueOf(item));
-//        setResult(RESULT_OK, intent);
-//        finish();
+        Intent intent = new Intent();
+        intent.putExtra("FRAGMENT", String.valueOf(item));
+        setResult(RESULT_OK, intent);
+        finish();
 
         return true;
     }
