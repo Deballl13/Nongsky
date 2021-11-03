@@ -40,11 +40,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:background="@color/background_gray"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian"
-        android:visibility="invisible">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian">
 
         <TextView
             android:id="@+id/textHasilCari"
@@ -80,11 +80,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:background="@color/background_gray"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian"
-        android:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian">
 
         <ImageView
             android:id="@+id/noSearchFound"
@@ -103,9 +103,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/manrope_bold"
+            android:text="Pencarian tidak ditemukan!"
             android:textAlignment="center"
             android:textSize="16sp"
-            android:text="Pencarian tidak ditemukan!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/noSearchFound" />
@@ -115,10 +115,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:textColor="@color/gray"
             android:text="Coba cari pake kata kunci lain deh"
             android:textAlignment="center"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textUtama" />

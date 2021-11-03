@@ -24,4 +24,8 @@
     <style name="Theme.Nongskuy.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Nongskuy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="LightTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="LightTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

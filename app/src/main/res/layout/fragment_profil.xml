@@ -11,7 +11,7 @@
         android:id="@+id/layoutProfilUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible" >
+        android:visibility="visible">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarProfil"
@@ -118,6 +118,7 @@
             android:id="@+id/buttonGantiKataSandi"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_marginTop="-10dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/manrope_regular"
             android:paddingHorizontal="35dp"
@@ -126,7 +127,6 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:layout_marginTop="-10dp"
             app:icon="@drawable/ic_baseline_navigate_next"
             app:iconGravity="end"
             app:iconSize="24sp"
@@ -142,6 +142,7 @@
             android:id="@+id/buttonKeluar"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_marginTop="-10dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/manrope_regular"
             android:paddingHorizontal="35dp"
@@ -150,7 +151,6 @@
             android:textAllCaps="false"
             android:textColor="@color/red"
             android:textSize="14sp"
-            android:layout_marginTop="-10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,45 +158,48 @@
             app:strokeColor="@color/gray"
             tools:ignore="TextContrastCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutProfilGuest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-1dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutProfilGuest"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+            <ImageView
+                android:id="@+id/profilGuest"
+                android:layout_width="220dp"
+                android:layout_height="236dp"
+                android:layout_marginTop="190dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_undraw_people_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/profilGuest"
-            android:layout_width="220dp"
-            android:layout_height="236dp"
-            android:layout_marginTop="190dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_undraw_people_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textUtama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="Oops! Kamu belum login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profilGuest" />
 
-        <TextView
-            android:id="@+id/textUtama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Oops! Kamu belum login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profilGuest" />
+            <TextView
+                android:id="@+id/textPelengkapProfil"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Silahkan login ke akun kamu untuk melihat profil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textUtama" />
 
-        <TextView
-            android:id="@+id/textPelengkapProfil"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Silahkan login ke akun kamu untuk melihat profil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUtama" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
