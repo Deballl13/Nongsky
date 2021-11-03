@@ -83,6 +83,20 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_promo.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_terdekat.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/menu/menu.xml" value="0.16574074074074074" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/drawable/custom_carousel.xml" value="0.15989583333333332" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/drawable/custom_edit_text.xml" value="0.15989583333333332" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_launcher.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_login.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_main.xml" value="0.1598731884057971" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_pembayaran.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_pencarian.xml" value="0.2" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_pesan_tempat.xml" value="0.264" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_populer.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_riwayat_pemesanan_tempat.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/activity_ubah_profil.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/card_populer.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/fragment_beranda.xml" value="0.1334853090172239" />
+        <entry key="..\:/Users/user/StudioProjects/Nongsky/app/src/main/res/layout/fragment_profil.xml" value="0.1598731884057971" />
       </map>
     </option>
   </component>
@@ -95,7 +109,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.176" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>
