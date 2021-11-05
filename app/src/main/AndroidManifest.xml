@@ -15,7 +15,7 @@
         android:theme="@style/LightTheme">
         <activity
             android:name=".PesanTempatActivity"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".PopulerActivity"
             android:exported="true"
