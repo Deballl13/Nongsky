@@ -15,7 +15,13 @@
         android:theme="@style/LightTheme">
         <activity
             android:name=".PesanTempatActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".PopulerActivity"
             android:exported="true"
@@ -37,13 +43,8 @@
         <activity
             android:name=".LauncherActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".GetStartedActivity"
             android:exported="true"
