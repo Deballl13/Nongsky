@@ -46,6 +46,7 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="36dp"
             android:scaleType="centerCrop"
+            android:foreground="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="@+id/toolbarProfil"
             app:layout_constraintHorizontal_bias="0.437"
             app:layout_constraintStart_toStartOf="@+id/toolbarProfil"
