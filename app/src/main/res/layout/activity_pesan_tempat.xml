@@ -136,20 +136,22 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textJdlIsi5"
-            app:layout_constraintStart_toStartOf="@+id/total_dp"
-            app:layout_constraintTop_toBottomOf="@+id/Waktu" />
+            app:layout_constraintStart_toStartOf="@+id/btnKurangKursi"
+            app:layout_constraintTop_toTopOf="@+id/textJdlIsi5"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textJdlIsi5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/manrope_regular"
             android:text="Pilihan Pembayaran"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/bayar"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Tanggal" />
 
         <TextView
@@ -158,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/manrope_bold"
-            android:text="Total DP"
+            android:text="Rp0"
             android:textAlignment="center"
             android:textColor="@color/yellow"
             android:textSize="16sp"
@@ -170,14 +172,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="282dp"
             android:fontFamily="@font/manrope_bold"
             android:text="Total DP"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bayar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonPesanTempat2"
@@ -233,33 +235,49 @@
             android:textColor="@color/black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi5" />
+            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi5"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        <EditText
-            android:id="@+id/total_dp"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/custom_edit_text"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:fontFamily="@font/manrope_regular"
-            android:gravity="start"
-            android:hint="Jumlah kursi"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            app:layout_constraintBottom_toBottomOf="@+id/bayar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.903"
+        <Button
+            android:id="@+id/btnKurangKursi"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="12dp"
+            android:onClick="decrement"
+            android:padding="0dp"
+            android:text="-"
             app:layout_constraintStart_toEndOf="@+id/bayar"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4"></Button>
+
+        <Button
+            android:id="@+id/btnTambahKursi"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="56dp"
+            android:onClick="increment"
+            android:padding="0dp"
+            android:text="+"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4"></Button>
+
+        <TextView
+            android:id="@+id/jumlahKursi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="0"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnTambahKursi"
+            app:layout_constraintStart_toEndOf="@+id/btnKurangKursi"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4" />
 
         <EditText
             android:id="@+id/Waktu"
@@ -282,7 +300,8 @@
             app:layout_constraintHorizontal_bias="0.903"
             app:layout_constraintStart_toEndOf="@+id/Tanggal"
             app:layout_constraintTop_toBottomOf="@+id/textJdlIsi2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/Tanggal"

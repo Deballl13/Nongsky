@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PembayaranActivity">
+    tools:context=".pembayaran_gopay">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPesanTempat"
@@ -48,7 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textJudul" />
 
-
     <TextView
         android:id="@+id/textNorek"
         android:layout_width="91dp"
@@ -64,35 +63,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
 
+
     <TextView
         android:id="@+id/textNorek2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/manrope_extrabold"
-        android:text="8806 082386464069"
+        android:text="082386464069"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textNorek" />
 
     <TextView
         android:id="@+id/textTataCara"
-        android:layout_width="159dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="177dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="72dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="Petunjuk Transfer ATM :"
+        android:text="Petunjuk Transfer Gopay :"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.107"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNorek2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
 
     <TextView
         android:id="@+id/textIsi"
@@ -100,12 +100,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="Pilih Menu Lain -> Transfer"
+        android:text="Pilih Bayar -> Ketik Nomor HP"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTataCara" />
 
@@ -115,7 +115,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="Pilih jenis rekening asal dan pilih Virtual Account Billing"
+        android:text="Masukkan nomor Gopay 082386464069 -> Pilih Bayar ke 082386464069 dan Pilih (Percaya, Lanjut)"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="12sp"
@@ -124,18 +124,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIsi" />
 
+
     <TextView
         android:id="@+id/textIsi3"
-        android:layout_width="382dp"
-        android:layout_height="32dp"
+        android:layout_width="371dp"
+        android:layout_height="23dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="Masukkan nomor Virtual Account 8806 082386464069 dan Pilih benar"
+        android:text="Masukkan Jumlah DP yang akan dibayar dan Pilih Konfirmasi"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIsi2" />
 
@@ -154,14 +155,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIsi3" />
 
-
     <TextView
         android:id="@+id/textIsi5"
         android:layout_width="380dp"
         android:layout_height="33dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="Periksa Informasi yang tertera, pastikan sudah benar. Jika benar, pilih (Ya)"
+        android:text="Periksa Informasi yang tertera, pastikan sudah benar. Jika benar, pilih Konfirmasi dan Bayar"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="12sp"
@@ -170,87 +170,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIsi4" />
 
-    <TextView
-        android:id="@+id/textTataCara2"
-        android:layout_width="189dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="288dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Petunjuk Transfer mBanking :"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
-
-    <TextView
-        android:id="@+id/textIsi6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Pilih Transfer -> Virtual Account Billing"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTataCara2" />
-
-    <TextView
-        android:id="@+id/textIsi7"
-        android:layout_width="382dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Pilih Rekening Debet -> Masukkan nomor Virtual Account 8806 082386464069 pada menu input baru"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.862"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIsi6" />
-
-
-    <TextView
-        android:id="@+id/textIsi8"
-        android:layout_width="373dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Tagihan yang harus dibayar akan muncul pada layar konfirmasi"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIsi7" />
-
-    <TextView
-        android:id="@+id/textIsi9"
-        android:layout_width="386dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Periksa Informasi yang tertera, pastikan sudah benar. Jika benar, pilih (Ya)"
-        android:textAlignment="viewStart"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIsi8" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonPesanTempat2"
         android:layout_width="319dp"
         android:layout_height="51dp"
-        android:layout_marginTop="472dp"
+        android:layout_marginTop="460dp"
         android:fontFamily="@font/manrope_extrabold"
         android:text="Selesai Membayar"
         android:textAllCaps="false"

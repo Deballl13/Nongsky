@@ -6,18 +6,30 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+
+
+
 
 public class PesanTempatActivity extends AppCompatActivity {
 
     EditText Tanggal, Waktu;
     Calendar calendar;
+    TextView jumlahKursi, totalDp;
+    Button btnTambahKursi, btnKurangKursi;
     int Hour, Minute;
+    int count = 0, dp = 10000;
+    Helper helper = new Helper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +38,10 @@ public class PesanTempatActivity extends AppCompatActivity {
 
         Tanggal = findViewById(R.id.Tanggal);
         Waktu = findViewById(R.id.Waktu);
+        jumlahKursi = findViewById(R.id.jumlahKursi);
+        totalDp = findViewById(R.id.totalDP);
+        btnTambahKursi = findViewById(R.id.btnTambahKursi);
+        btnKurangKursi = findViewById(R.id.btnKurangKursi);
 
         calendar = Calendar.getInstance();
 
@@ -78,5 +94,29 @@ public class PesanTempatActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+    }
+
+    public void increment(View v){
+        if(count<=20){
+            count++;
+            btnTambahKursi.setEnabled(true);
+        }
+        else{
+            btnTambahKursi.setEnabled(false);
+        }
+        jumlahKursi.setText("" + count);
+        totalDp.setText(helper.mataUangRupiah(dp*count));
+    }
+    public void decrement (View v){
+        if(count <= 0) {
+            count = 0;
+            btnKurangKursi.setEnabled(false);
+        }
+        else {
+            count--;
+            btnKurangKursi.setEnabled(true);
+        }
+        jumlahKursi.setText("" + count);
+        totalDp.setText(helper.mataUangRupiah(dp*count));
     }
 }

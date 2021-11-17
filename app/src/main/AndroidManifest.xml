@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/LightTheme">
         <activity
+            android:name=".pembayaran_gopay"
+            android:exported="true" />
+        <activity
             android:name=".PesanTempatActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PopulerActivity"
             android:exported="true"
@@ -45,7 +48,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".GetStartedActivity"
             android:exported="true"
