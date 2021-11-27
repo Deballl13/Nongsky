@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -42,6 +43,7 @@ public class BerandaFragment extends Fragment {
     RecyclerView recyclerViewPopuler, recyclerViewPromo;
     ConstraintLayout contentBeranda;
     BottomNavigationView bottomNavigationView;
+    SharedPreferences sharedPreferences;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -55,6 +57,10 @@ public class BerandaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
+        sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+        String nama = sharedPreferences.getString("NAMA", null);
+        String token = sharedPreferences.getString("TOKEN", null);
+
         btnRiwayatPemesananTempat = view.findViewById(R.id.buttonPesanTempat);
         btnLihatSemuaPopuler = view.findViewById(R.id.buttonLihatSemuaPopuler);
         btnLihatSemuaPromo = view.findViewById(R.id.buttonLihatSemuaPromo);
@@ -65,8 +71,8 @@ public class BerandaFragment extends Fragment {
         //Mengambil email login user
         namaUser = view.findViewById(R.id.textName);
 
-        if (MainActivity.userEmail != null) {
-            namaUser.setText("William Wahyu");
+        if (token != null) {
+            namaUser.setText(nama.toString());
             btnRiwayatPemesananTempat.setVisibility(view.VISIBLE);
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) contentBeranda.getLayoutParams();
             layoutParams.topMargin = 0;

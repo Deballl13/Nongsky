@@ -3,20 +3,16 @@ package com.nongskuy.nongskuy;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
-    static String userEmail = null;
-    String fragment;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +20,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.BottomNavigationMenu);
-
-        Intent intent = getIntent();
-        userEmail = intent.getStringExtra("EMAIL");
-        intent.removeExtra("EMAIL");
+        sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", MODE_PRIVATE);
 
         loadFragments(new BerandaFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -72,11 +65,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void onBackPressed() {
+        String token = sharedPreferences.getString("TOKEN", null);
 
         if (bottomNavigationView.getSelectedItemId() == R.id.menu_beranda){
             super.onBackPressed();
 
-            if(userEmail != null){
+            if(token != null){
                 this.finishAffinity();
             }
             else{
@@ -88,30 +82,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
 
     }
-
-//    @Override
-//    protected void onPostResume() {
-//        super.onPostResume();
-//        final String data = this.getIntent().getStringExtra("FRAGMENT");
-//        if(data != null){
-//            switch (data){
-//                case "Beranda":
-//                    loadFragments(new BerandaFragment());
-//                    bottomNavigationView.setSelectedItemId(R.id.menu_beranda);
-//                    break;
-//                case "Promo":
-//                    loadFragments(new PromoFragment());
-//                    bottomNavigationView.setSelectedItemId(R.id.menu_promo);
-//                    break;
-//                case "Terdekat":
-//                    loadFragments(new TerdekatFragment());
-//                    bottomNavigationView.setSelectedItemId(R.id.menu_terdekat);
-//                    break;
-//                case "Profil":
-//                    loadFragments(new ProfilFragment());
-//                    bottomNavigationView.setSelectedItemId(R.id.menu_profil);
-//                    break;
-//            }
-//        }
-//    }
 }

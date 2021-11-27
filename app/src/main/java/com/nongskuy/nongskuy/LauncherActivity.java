@@ -2,10 +2,13 @@ package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -14,11 +17,19 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", MODE_PRIVATE);
+        String token = sharedPreferences.getString("TOKEN", null);
+
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                Intent intent = new Intent(LauncherActivity.this, GetStartedActivity.class);
-                startActivity(intent);
+                if (token != null){
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), GetStartedActivity.class);
+                    startActivity(intent);
+                }
                 finish();
             }
         }, 3000);
