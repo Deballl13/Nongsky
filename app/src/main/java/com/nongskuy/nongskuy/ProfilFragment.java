@@ -135,7 +135,7 @@ public class ProfilFragment extends Fragment {
 
                                 @Override
                                 public void onFailure(Call<MessageResponse> call, Throwable t) {
-
+                                    Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }

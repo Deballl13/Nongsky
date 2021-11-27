@@ -19,7 +19,7 @@
         android:contentDescription="@string/todo" />
 
     <EditText
-        android:id="@+id/inputEmail2"
+        android:id="@+id/inputEmailRegister"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="60dp"
@@ -31,30 +31,32 @@
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:textSize="14sp"
+        android:maxLength="30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo4"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/inputNama"
+        android:id="@+id/inputNamaRegister"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/name"
+        android:hint="@string/nama"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawablePadding="12sp"
         android:fontFamily="@font/manrope_regular"
         android:textSize="14sp"
+        android:maxLength="30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail2"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailRegister"
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/inputPhone"
+        android:id="@+id/inputPhoneRegister"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="10dp"
@@ -67,11 +69,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNama"
+        app:layout_constraintTop_toBottomOf="@+id/inputNamaRegister"
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/inputPassword2"
+        android:id="@+id/inputPasswordRegister"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="10dp"
@@ -84,11 +86,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPhone"
+        app:layout_constraintTop_toBottomOf="@+id/inputPhoneRegister"
         android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/inputPassword3"
+        android:id="@+id/inputConfirmPasswordRegister"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="10dp"
@@ -101,11 +103,11 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword2"
+        app:layout_constraintTop_toBottomOf="@+id/inputPasswordRegister"
         android:importantForAutofill="no" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBoxAgrement"
         android:layout_width="315sp"
         android:layout_height="32sp"
         android:layout_marginTop="10dp"
@@ -114,11 +116,11 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword3"
+        app:layout_constraintTop_toBottomOf="@+id/inputConfirmPasswordRegister"
         tools:ignore="TouchTargetSizeCheck" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/buttonRegister"
         android:layout_width="315sp"
         android:layout_height="65sp"
         android:layout_marginTop="30dp"
@@ -131,5 +133,5 @@
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxAgrement" />
 </androidx.constraintlayout.widget.ConstraintLayout>

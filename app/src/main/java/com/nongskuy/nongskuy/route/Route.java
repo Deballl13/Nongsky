@@ -18,4 +18,9 @@ public interface Route {
 
     @POST("logout")
     Call<MessageResponse> logout(@Header("Authorization") String token);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<MessageResponse> register(@Field("email") String email, @Field("nama") String nama,
+                                   @Field("no_hp") String no_hp, @Field("password") String password);
 }

@@ -19,7 +19,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <EditText
-        android:id="@+id/inputEmail1"
+        android:id="@+id/inputEmailLogin"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="72dp"
@@ -37,7 +37,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/inputPassword1"
+        android:id="@+id/inputPasswordLogin"
         android:layout_width="315sp"
         android:layout_height="56sp"
         android:layout_marginTop="10dp"
@@ -50,12 +50,12 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail1"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailLogin"
         tools:ignore="SpeakableTextPresentCheck"
         android:importantForAutofill="no" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonMasuk2"
+        android:id="@+id/buttonLogin"
         android:layout_width="315sp"
         android:layout_height="65sp"
         android:layout_marginTop="20dp"
@@ -68,7 +68,7 @@
         app:cornerRadius="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword1"
+        app:layout_constraintTop_toBottomOf="@+id/inputPasswordLogin"
         tools:ignore="OnClick,TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
