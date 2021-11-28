@@ -16,53 +16,37 @@
         android:layout_marginBottom="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imagePopulerBeranda"
+            android:id="@+id/imageMenuBeranda"
             android:layout_width="148dp"
             android:layout_height="92dp"
-            android:src="@drawable/nasgor"
+            android:src="@drawable/paket_panas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textMakananPromoBeranda"
+            android:id="@+id/textMakananMenuBeranda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
             android:fontFamily="@font/manrope_bold"
             android:text="Nama Makanan"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePopulerBeranda" />
+            app:layout_constraintTop_toBottomOf="@+id/imageMenuBeranda" />
 
         <TextView
-            android:id="@+id/textTokoPromoBeranda"
+            android:id="@+id/textHargaMenuBeranda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="Nama Toko"
+            android:text="Harga"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textMakananPromoBeranda" />
-
-        <TextView
-            android:id="@+id/keteranganPromoBeranda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/background_ket_promo"
-            android:fontFamily="@font/manrope_bold"
-            android:paddingHorizontal="10sp"
-            android:text="Keterangan Promo"
-            android:textColor="@color/dark_gray"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textMakananMenuBeranda" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

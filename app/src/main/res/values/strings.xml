@@ -30,6 +30,8 @@
     <string name="paling_populer">Paling Populer</string>
     <string name="promo_buat_kamu">Promo Buat Kamu</string>
     <string name="title_activity_ganti_kata_sandi">GantiKataSandiActivity</string>
+    <string name="menu">Menu Favorit</string>
+    <string name="review">Review</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
