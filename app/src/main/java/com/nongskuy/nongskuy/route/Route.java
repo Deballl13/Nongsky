@@ -9,6 +9,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface Route {
 
@@ -23,4 +24,8 @@ public interface Route {
     @POST("register")
     Call<MessageResponse> register(@Field("email") String email, @Field("nama") String nama,
                                    @Field("no_hp") String no_hp, @Field("password") String password);
+
+    @FormUrlEncoded
+    @PUT("ubahpassword")
+    Call<MessageResponse> ubahPassword(@Header("Authorization") String token, @Field("password") String password);
 }

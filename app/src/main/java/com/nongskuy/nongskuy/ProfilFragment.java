@@ -71,33 +71,33 @@ public class ProfilFragment extends Fragment {
             view.findViewById(R.id.layoutProfilGuest).setVisibility(view.INVISIBLE);
         }
 
-        //Get response dari ubah profil dan ubah password
-        ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent intent = result.getData();
-                            // Handle the Intent
-                            String response = intent.getStringExtra("TOPROFIL");
-                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+//        //Get response dari ubah profil dan ubah password
+//        ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
+//                new ActivityResultContracts.StartActivityForResult(),
+//                new ActivityResultCallback<ActivityResult>() {
+//                    @Override
+//                    public void onActivityResult(ActivityResult result) {
+//                        if (result.getResultCode() == Activity.RESULT_OK) {
+//                            Intent intent = result.getData();
+//                            // Handle the Intent
+//                            String response = intent.getStringExtra("TOPROFIL");
+//                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
 
 
         //Intent Fragment Profil ke Ubah Profil
         btnUbahProfil.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
-            intentResult.launch(intent);
+            startActivity(intent);
         });
 
 
         //Intent Fragment Profil ke Ganti Kata Sandi
         btnGantiKataSandi.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), GantiKataSandiActivity.class);
-            intentResult.launch(intent);
+            startActivity(intent);
         });
 
 
