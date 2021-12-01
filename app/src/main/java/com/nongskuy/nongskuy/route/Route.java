@@ -28,4 +28,11 @@ public interface Route {
     @FormUrlEncoded
     @PUT("ubahpassword")
     Call<MessageResponse> ubahPassword(@Header("Authorization") String token, @Field("password") String password);
+
+    @FormUrlEncoded
+    @PUT("ubahprofil")
+    Call<MessageResponse> ubahProfil(@Header("Authorization") String token,
+                                       @Field("nama") String nama,
+                                       @Field("no_hp") String no_hp);
+
 }
