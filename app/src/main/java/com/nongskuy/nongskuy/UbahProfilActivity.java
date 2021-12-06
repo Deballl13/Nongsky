@@ -16,6 +16,11 @@ import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.model.MessageResponse;
 import com.nongskuy.nongskuy.route.Route;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,14 +61,30 @@ public class UbahProfilActivity extends AppCompatActivity {
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                    MessageResponse messageResponse = response.body();
+                    String message = null;
+                    JSONObject jsonObject = null;
+
                     if (response.code() == 200){
                         if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), messageResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            message = response.body().getMessage();
+                            Intent intent = new Intent();
+                            intent.putExtra("NAMA", nama);
+                            intent.putExtra("NO_HP", no_hp);
+                            setResult(RESULT_OK, intent);
                             finish();
                         }
                     }
-
+                    else if(response.code() == 403){
+                        if(!response.isSuccessful()){
+                            try {
+                                jsonObject = new JSONObject(response.errorBody().string());
+                                message = jsonObject.getString("message");
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AuthClass> call, Response<AuthClass> response) {
                     String message = null;
+                    JSONObject jsonObject = null;
 
                     if(response.code() == 200){
                         if (response.isSuccessful()){
@@ -84,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else if(response.code() == 400){
                         if(!response.isSuccessful()) {
-                            JSONObject jsonObject = null;
                             try {
                                 jsonObject = new JSONObject(response.errorBody().string());
                                 message = jsonObject.getString("message");
@@ -94,7 +94,16 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                     }
-
+                    else if(response.code() == 403){
+                        if(!response.isSuccessful()){
+                            try {
+                                jsonObject = new JSONObject(response.errorBody().string());
+                                message = jsonObject.getString("message");
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 }
 

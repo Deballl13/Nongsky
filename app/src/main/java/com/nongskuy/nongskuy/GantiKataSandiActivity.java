@@ -16,6 +16,11 @@ import android.widget.Toast;
 import com.nongskuy.nongskuy.model.MessageResponse;
 import com.nongskuy.nongskuy.route.Route;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,14 +62,26 @@ public class GantiKataSandiActivity extends AppCompatActivity {
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                    MessageResponse messageResponse = response.body();
+                    String message = null;
+                    JSONObject jsonObject = null;
+
                     if (response.code() == 200){
                         if (response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), messageResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                            finish();
+                            message = response.body().getMessage();
                         }
                     }
-
+                    else if(response.code() == 403){
+                        if(!response.isSuccessful()){
+                            try {
+                                jsonObject = new JSONObject(response.errorBody().string());
+                                message = jsonObject.getString("message");
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
                 @Override

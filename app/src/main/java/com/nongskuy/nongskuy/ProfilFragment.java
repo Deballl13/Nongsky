@@ -72,25 +72,32 @@ public class ProfilFragment extends Fragment {
         }
 
 //        //Get response dari ubah profil dan ubah password
-//        ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
-//                new ActivityResultContracts.StartActivityForResult(),
-//                new ActivityResultCallback<ActivityResult>() {
-//                    @Override
-//                    public void onActivityResult(ActivityResult result) {
-//                        if (result.getResultCode() == Activity.RESULT_OK) {
-//                            Intent intent = result.getData();
-//                            // Handle the Intent
-//                            String response = intent.getStringExtra("TOPROFIL");
-//                            Toast.makeText(getActivity(), response, Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
+        ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent intent = result.getData();
+                            // Handle the Intent
+                            String response_nama = intent.getStringExtra("NAMA");
+                            String response_no_hp = intent.getStringExtra("NO_HP");
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("NAMA", response_nama);
+                            editor.putString("NO_HP", response_no_hp);
+                            editor.apply();
+
+                            namaProfil.setText(response_nama);
+                            noHpProfil.setText(response_no_hp);
+                        }
+                    }
+                });
 
 
         //Intent Fragment Profil ke Ubah Profil
         btnUbahProfil.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), UbahProfilActivity.class);
-            startActivity(intent);
+            intentResult.launch(intent);
         });
 
 
@@ -121,11 +128,10 @@ public class ProfilFragment extends Fragment {
                             call.enqueue(new Callback<MessageResponse>() {
                                 @Override
                                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                                    MessageResponse messageResponse = response.body();
                                     if (response.code() == 200){
                                         if (response.isSuccessful()){
                                             Intent intent = new Intent(getActivity(), LoginActivity.class);
-                                            Toast.makeText(getActivity(), messageResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                             getActivity().finish();
                                             startActivity(intent);
                                             sharedPreferences.edit().clear().apply();
