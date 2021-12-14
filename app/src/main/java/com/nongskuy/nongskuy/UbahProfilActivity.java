@@ -10,6 +10,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -58,6 +59,7 @@ public class UbahProfilActivity extends AppCompatActivity {
             String token = sharedPreferences.getString("TOKEN", null);
 
             Call<MessageResponse> call = route.ubahProfil(token, nama, no_hp);
+            toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
@@ -85,6 +87,7 @@ public class UbahProfilActivity extends AppCompatActivity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                 }
 
                 @Override
@@ -93,6 +96,33 @@ public class UbahProfilActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void toggleViewProgressBar(Boolean active){
+        MaterialButton buttonUbahProfil = findViewById(R.id.buttonUbahProfil1);
+        ProgressBar progressBar = findViewById(R.id.progressBarUbahProfil);
+
+        if(active){
+            inputNamaBaru.setEnabled(false);
+            inputNoHpBaru.setEnabled(false);
+            buttonUbahProfil.setEnabled(false);
+            buttonUbahProfil.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else{
+            inputNamaBaru.setEnabled(true);
+            inputNoHpBaru.setEnabled(true);
+            buttonUbahProfil.setEnabled(true);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inputNamaBaru.getBackground().clearColorFilter();
+        inputNoHpBaru.getBackground().clearColorFilter();
+        finish();
     }
 
     public Integer validation(String nama, String no_hp) {

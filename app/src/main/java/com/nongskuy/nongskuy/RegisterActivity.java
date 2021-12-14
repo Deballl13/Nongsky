@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.model.MessageResponse;
 import com.nongskuy.nongskuy.route.Route;
 
@@ -69,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             Log.i("sadasd", email+" "+nama+" "+no_hp+" "+password+" "+confirm_passowrd);
             Call<MessageResponse> call = route.register(email, nama, no_hp, password);
+            toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
@@ -77,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (response.isSuccessful()){
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             Toast.makeText(getApplicationContext(), messageResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            toggleViewProgressBar(false);
                             startActivity(intent);
                             finish();
                         }
@@ -89,6 +93,43 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void toggleViewProgressBar(Boolean active){
+        MaterialButton buttonRegister = findViewById(R.id.buttonRegister);
+        ProgressBar progressBar = findViewById(R.id.progressBarRegister);
+
+        if(active){
+            inputEmail.setEnabled(false);
+            inputNama.setEnabled(false);
+            inputNoHp.setEnabled(false);
+            inputPassword.setEnabled(false);
+            inputConfirmPassword.setEnabled(false);
+            checkBoxAgrement.setEnabled(false);
+            buttonRegister.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else{
+            inputEmail.setEnabled(true);
+            inputNama.setEnabled(true);
+            inputNoHp.setEnabled(true);
+            inputPassword.setEnabled(true);
+            inputConfirmPassword.setEnabled(true);
+            checkBoxAgrement.setEnabled(true);
+            buttonRegister.setEnabled(true);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inputEmail.getBackground().clearColorFilter();
+        inputNama.getBackground().clearColorFilter();
+        inputNoHp.getBackground().clearColorFilter();
+        inputPassword.getBackground().clearColorFilter();
+        inputConfirmPassword.getBackground().clearColorFilter();
+        finish();
     }
 
     public Integer validation(String email, String nama, String no_hp, String password, String confirm_password){

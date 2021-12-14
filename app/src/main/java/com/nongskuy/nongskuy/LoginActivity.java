@@ -3,14 +3,17 @@ package com.nongskuy.nongskuy;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.nongskuy.nongskuy.model.AuthClass;
@@ -55,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             Route route = retrofit.create(Route.class);
 
             Call<AuthClass> call = route.login(email, password);
+            toggleViewProgressBar(true);
             call.enqueue(new Callback<AuthClass>() {
                 @Override
                 public void onResponse(Call<AuthClass> call, Response<AuthClass> response) {
@@ -105,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                 }
 
                 @Override
@@ -115,10 +120,37 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inputEmail.getBackground().clearColorFilter();
+        inputPassword.getBackground().clearColorFilter();
+        finish();
+    }
+
+    public void toggleViewProgressBar(Boolean active){
+        MaterialButton buttonLogin = findViewById(R.id.buttonLogin);
+        ProgressBar progressBar = findViewById(R.id.progressBarLogin);
+
+        if(active){
+            inputEmail.setEnabled(false);
+            inputPassword.setEnabled(false);
+            buttonLogin.setEnabled(false);
+            buttonLogin.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else{
+            inputEmail.setEnabled(true);
+            inputPassword.setEnabled(true);
+            buttonLogin.setEnabled(true);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
     public Integer validation(String email, String password){
         Integer valid = 1;
         if(email.isEmpty()){
-            inputEmail.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC_ATOP);
+            inputEmail.getBackground().setColorFilter(getResources().getColor(R.color.red), PorterDuff.Mode.SRC_IN);
             inputEmail.setError("Masukkan email!");
             valid = 0;
         }

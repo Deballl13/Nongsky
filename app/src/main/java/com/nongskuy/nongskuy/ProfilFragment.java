@@ -68,7 +68,7 @@ public class ProfilFragment extends Fragment {
             noHpProfil.setText(no_hp);
 
             view.findViewById(R.id.layoutProfilUser).setVisibility(view.VISIBLE);
-            view.findViewById(R.id.layoutProfilGuest).setVisibility(view.INVISIBLE);
+            view.findViewById(R.id.layoutProfilGuest).setVisibility(view.GONE);
         }
 
 //        //Get response dari ubah profil dan ubah password
@@ -130,7 +130,7 @@ public class ProfilFragment extends Fragment {
                                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                                     if (response.code() == 200){
                                         if (response.isSuccessful()){
-                                            Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                            Intent intent = new Intent(getActivity(), GetStartedActivity.class);
                                             Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                             getActivity().finish();
                                             startActivity(intent);

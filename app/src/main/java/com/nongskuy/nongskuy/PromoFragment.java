@@ -51,7 +51,7 @@ public class PromoFragment extends Fragment {
 
         if(token != null){
             view.findViewById(R.id.layoutPromoUser).setVisibility(view.VISIBLE);
-            view.findViewById(R.id.layoutPromoGuest).setVisibility(view.INVISIBLE);
+            view.findViewById(R.id.layoutPromoGuest).setVisibility(view.GONE);
         }
 
         return view;

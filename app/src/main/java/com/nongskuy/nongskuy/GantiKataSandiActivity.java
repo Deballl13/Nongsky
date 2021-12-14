@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.model.MessageResponse;
 import com.nongskuy.nongskuy.route.Route;
 
@@ -59,6 +61,7 @@ public class GantiKataSandiActivity extends AppCompatActivity {
             String token = sharedPreferences.getString("TOKEN", null);
 
             Call<MessageResponse> call = route.ubahPassword(token, password);
+            toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
@@ -81,6 +84,7 @@ public class GantiKataSandiActivity extends AppCompatActivity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                     finish();
                 }
 
@@ -90,6 +94,33 @@ public class GantiKataSandiActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void toggleViewProgressBar(Boolean active){
+        MaterialButton buttonGantiPassowrd = findViewById(R.id.buttonGantiKataSandi);
+        ProgressBar progressBar = findViewById(R.id.progressBarGantiKataSandi);
+
+        if(active){
+            inputPasswordBaru.setEnabled(false);
+            inputConfirmPasswordBaru.setEnabled(false);
+            buttonGantiPassowrd.setEnabled(false);
+            buttonGantiPassowrd.setEnabled(false);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        else{
+            inputPasswordBaru.setEnabled(true);
+            inputPasswordBaru.setEnabled(true);
+            buttonGantiPassowrd.setEnabled(true);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        inputPasswordBaru.getBackground().clearColorFilter();
+        inputConfirmPasswordBaru.getBackground().clearColorFilter();
+        finish();
     }
 
     public Integer validation(String password, String confirm_password){
