@@ -5,13 +5,26 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
+import com.nongskuy.nongskuy.model.RiwayatItem;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
+import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
+import com.nongskuy.nongskuy.route.Route;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
@@ -19,6 +32,8 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
     RiwayatNongskuyAdapter riwayatNongskuyAdapter;
     ConstraintLayout layoutRiwayatPesanDitemukan;
     ConstraintLayout layoutRiwayatPesanTidakDitemukan;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +46,10 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
         layoutRiwayatPesanTidakDitemukan = findViewById(R.id.layoutRiwayatPesanTidakDitemukan);
 
         riwayatNongskuyAdapter = new RiwayatNongskuyAdapter();
-        riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
+//        riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
+        sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("TOKEN", null);
+        loadDataFromServer(token);
 
         if(riwayatNongskuyAdapter.getItemCount() > 0){
             rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
