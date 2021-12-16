@@ -12,21 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
-import com.nongskuy.nongskuy.adapter.PromoAdapter;
-import com.nongskuy.nongskuy.model.Promo;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
-
-import java.util.ArrayList;
 
 
 public class PromoFragment extends Fragment {
 
-    CarouselView carouselView;
-    Integer[] sampleImages = {R.drawable.gado, R.drawable.nuget, R.drawable.pempek, R.drawable.rempah, R.drawable.sushi};
-    RecyclerView recyclerView;
-    SharedPreferences sharedPreferences;
+    private CarouselView carouselView;
+    private Integer[] sampleImages = {R.drawable.gado, R.drawable.nuget, R.drawable.pempek, R.drawable.rempah, R.drawable.sushi};
+    private RecyclerView recyclerView;
+    private SharedPreferences sharedPreferences;
 
     public PromoFragment() {
         // Required empty public constructor
@@ -39,7 +34,7 @@ public class PromoFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_promo, container, false);
 
         sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("TOKEN", null);
+        String token = sharedPreferences.getString("Token", null);
 
         carouselView = view.findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);
@@ -47,7 +42,7 @@ public class PromoFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvPromo);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new PromoAdapter(getData()));
+//        recyclerView.setAdapter(new PromoAdapter(getData()));
 
         if(token != null){
             view.findViewById(R.id.layoutPromoUser).setVisibility(view.VISIBLE);
@@ -64,79 +59,79 @@ public class PromoFragment extends Fragment {
         }
     };
 
-    public ArrayList<Promo> getData(){
-        ArrayList<Promo> listPromo = new ArrayList<>();
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-        listPromo.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                25000,
-                30000,
-                "Diskon 5%"
-        ));
-
-        return listPromo;
-    }
+//    public ArrayList<Promo> getData(){
+//        ArrayList<Promo> listPromo = new ArrayList<>();
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//        listPromo.add(new Promo(
+//                "Sate Taichan",
+//                "Taichan Mimi Peri",
+//                25000,
+//                30000,
+//                "Diskon 5%"
+//        ));
+//
+//        return listPromo;
+//    }
 }

@@ -1,14 +1,19 @@
 package com.nongskuy.nongskuy.adapter;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.nongskuy.nongskuy.Helper;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.Promo;
 
@@ -17,6 +22,13 @@ import java.util.ArrayList;
 public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapter.BerandaPromoViewHolder>{
 
     ArrayList<Promo> listPromoBeranda;
+    private Context context;
+    private boolean isShimmer = true;
+    Integer numberShimmer = 10;
+
+    public void setShimmer(boolean shimmer) {
+        isShimmer = shimmer;
+    }
 
     public BerandaPromoAdapter(ArrayList<Promo> listPromoBeranda) {
         this.listPromoBeranda = listPromoBeranda;
@@ -27,30 +39,73 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
     public BerandaPromoAdapter.BerandaPromoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.card_promo_horizontal, parent, false);
-
+        context = view.getContext();
         return new BerandaPromoViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BerandaPromoAdapter.BerandaPromoViewHolder holder, int position) {
-        holder.textMakananPromo.setText(listPromoBeranda.get(position).getNamaMakanan());
-        holder.textTokoPromo.setText(listPromoBeranda.get(position).getNamaToko());
-        holder.keterangan.setText(listPromoBeranda.get(position).getKeterangan());
+        if(isShimmer){
+            holder.shimmerFrameLayout.startShimmer();
+        }
+        else{
+            holder.shimmerFrameLayout.stopShimmer();
+            holder.shimmerFrameLayout.setShimmer(null);
+
+            Promo promo = listPromoBeranda.get(position);
+
+            holder.imagePromo.setBackground(null);
+            Glide.with(context)
+                    .load(Uri.parse(promo.getGambar()))
+                    .apply(new RequestOptions()
+                            .override(148, 92))
+                    .into(holder.imagePromo);
+
+            holder.textMenuPromo.setBackground(null);
+            holder.textMenuPromo.setText(promo.getNamaMenu());
+
+            holder.textTokoPromo.setBackground(null);
+            holder.textTokoPromo.setText(promo.getNamaToko());
+
+            holder.keterangan.setText(promo.getJenis_promo() + " " + promo.getPersentase().toString() + "%");
+
+            if(promo.getJenis_promo().equals("diskon")){
+                holder.keterangan.setTextColor(ContextCompat.getColor(context, R.color.dark_gray));
+                holder.keterangan.setBackgroundResource(R.drawable.background_ket_diskon);
+
+            }
+            else if(promo.getJenis_promo().equals("cashback")){
+                holder.keterangan.setTextColor(Color.WHITE);
+                holder.keterangan.setBackgroundResource(R.drawable.background_ket_cashback);
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return listPromoBeranda.size();
+        if(isShimmer){
+            return numberShimmer;
+        }
+        else{
+            if(listPromoBeranda.size() > 10){
+                return 10;
+            }
+            return listPromoBeranda.size();
+        }
     }
 
     public class BerandaPromoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textMakananPromo, textTokoPromo, keterangan;
+        TextView textMenuPromo, textTokoPromo, keterangan;
+        ShapeableImageView imagePromo;
+        ShimmerFrameLayout shimmerFrameLayout;
 
         public BerandaPromoViewHolder(@NonNull View itemView) {
             super(itemView);
-            textMakananPromo = itemView.findViewById(R.id.textMakananPromoBeranda);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmerPromoBeranda);
+            imagePromo = itemView.findViewById(R.id.imagePopulerBeranda);
             textTokoPromo = itemView.findViewById(R.id.textTokoPromoBeranda);
+            textMenuPromo = itemView.findViewById(R.id.textMenuPromoBeranda);
             keterangan = itemView.findViewById(R.id.keteranganPromoBeranda);
         }
     }

@@ -20,8 +20,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class TerdekatFragment extends Fragment {
 
-    SupportMapFragment supportMapFragment;
-    SearchView searchView;
+    private SupportMapFragment supportMapFragment;
+    private SearchView searchView;
 
 
        public TerdekatFragment() {

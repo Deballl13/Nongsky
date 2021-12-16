@@ -26,8 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText inputEmail, inputNama, inputNoHp, inputPassword, inputConfirmPassword;
-    CheckBox checkBoxAgrement;
+    private EditText inputEmail, inputNama, inputNoHp, inputPassword, inputConfirmPassword;
+    private CheckBox checkBoxAgrement;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if(validation(email, nama, no_hp, password, confirm_passowrd).equals(1) && checkBoxAgrement.isChecked()){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Config.API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            Route route = retrofit.create(Route.class);
+            config = new Config();
 
-            Log.i("sadasd", email+" "+nama+" "+no_hp+" "+password+" "+confirm_passowrd);
-            Call<MessageResponse> call = route.register(email, nama, no_hp, password);
+            Call<MessageResponse> call = config.configRetrofit().register(email, nama, no_hp, password);
             toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
@@ -100,6 +96,12 @@ public class RegisterActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBarRegister);
 
         if(active){
+            inputEmail.getText().clear();
+            inputNama.getText().clear();
+            inputNoHp.getText().clear();
+            inputPassword.getText().clear();
+            inputConfirmPassword.getText().clear();
+            checkBoxAgrement.setChecked(false);
             inputEmail.setEnabled(false);
             inputNama.setEnabled(false);
             inputNoHp.setEnabled(false);

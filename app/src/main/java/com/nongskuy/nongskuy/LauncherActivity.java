@@ -18,7 +18,7 @@ public class LauncherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
 
         SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", MODE_PRIVATE);
-        String token = sharedPreferences.getString("TOKEN", null);
+        String token = sharedPreferences.getString("Token", null);
 
         new Handler().postDelayed(new Runnable(){
             @Override

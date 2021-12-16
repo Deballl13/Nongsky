@@ -2,32 +2,29 @@ package com.nongskuy.nongskuy.model;
 
 public class Promo {
 
-    private String namaMakanan;
     private String namaToko;
+    private String namaMenu;
     private Integer hargaAwal;
-    private Integer hargaPromo;
-    private String keterangan;
+    private String gambar;
+    private Integer persentase;
+    private String jenis_promo;
 
-    public Promo(String namaMakanan, String namaToko, Integer hargaAwal, Integer hargaPromo, String keterangan) {
-        this.namaMakanan = namaMakanan;
+
+    public Promo(String namaToko, String namaMenu, Integer hargaAwal, String gambar, Integer persentase, String jenis_promo) {
         this.namaToko = namaToko;
+        this.namaMenu = namaMenu;
         this.hargaAwal = hargaAwal;
-        this.hargaPromo = hargaPromo;
-        this.keterangan = keterangan;
+        this.gambar = gambar;
+        this.persentase = persentase;
+        this.jenis_promo = jenis_promo;
     }
 
-    public Promo(String namaMakanan, String namaToko, String keterangan) {
-        this.namaMakanan = namaMakanan;
+    public Promo(String namaToko, String namaMenu, String gambar, Integer persentase, String jenis_promo) {
         this.namaToko = namaToko;
-        this.keterangan = keterangan;
-    }
-
-    public String getNamaMakanan() {
-        return namaMakanan;
-    }
-
-    public void setNamaMakanan(String namaMakanan) {
-        this.namaMakanan = namaMakanan;
+        this.namaMenu = namaMenu;
+        this.gambar = gambar;
+        this.persentase = persentase;
+        this.jenis_promo = jenis_promo;
     }
 
     public String getNamaToko() {
@@ -38,6 +35,14 @@ public class Promo {
         this.namaToko = namaToko;
     }
 
+    public String getNamaMenu() {
+        return namaMenu;
+    }
+
+    public void setNamaMenu(String namaMenu) {
+        this.namaMenu = namaMenu;
+    }
+
     public Integer getHargaAwal() {
         return hargaAwal;
     }
@@ -46,19 +51,25 @@ public class Promo {
         this.hargaAwal = hargaAwal;
     }
 
-    public Integer getHargaPromo() {
-        return hargaPromo;
+    public String getGambar() { return gambar; }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 
-    public void setHargaPromo(Integer hargaPromo) {
-        this.hargaPromo = hargaPromo;
+    public Integer getPersentase() {
+        return persentase;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public void setPersentase(Integer persentase) {
+        this.persentase = persentase;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public String getJenis_promo() {
+        return jenis_promo;
+    }
+
+    public void setJenis_promo(String jenis_promo) {
+        this.jenis_promo = jenis_promo;
     }
 }

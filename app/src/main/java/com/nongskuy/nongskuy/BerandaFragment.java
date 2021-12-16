@@ -2,48 +2,50 @@ package com.nongskuy.nongskuy;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.adapter.BerandaPopulerAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaPromoAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaTerdekatAdapter;
+import com.nongskuy.nongskuy.data.PromoData;
 import com.nongskuy.nongskuy.model.Promo;
+import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Store;
-
 import java.util.ArrayList;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BerandaFragment extends Fragment {
 
-    TextView namaUser;
-    MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
+    private TextView namaUser;
+    private MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
             btnLihatSemuaPromo, btnLihatSemuaTerdekat;
-    RecyclerView recyclerViewPopuler, recyclerViewPromo;
-    ConstraintLayout contentBeranda;
-    BottomNavigationView bottomNavigationView;
-    SharedPreferences sharedPreferences;
+    private RecyclerView recyclerViewPopuler, recyclerViewPromo, recyclerViewTerdekat;
+    private ConstraintLayout contentBeranda;
+    private BottomNavigationView bottomNavigationView;
+    private SharedPreferences sharedPreferences;
+    private SwipeRefreshLayout refreshLayout;
+    private Config config;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -58,26 +60,42 @@ public class BerandaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        String nama = sharedPreferences.getString("NAMA", null);
-        String token = sharedPreferences.getString("TOKEN", null);
+        String nama = sharedPreferences.getString("Nama", null);
+        String token = sharedPreferences.getString("Token", null);
 
+
+        config = new Config();
         btnRiwayatPemesananTempat = view.findViewById(R.id.buttonPesanTempat);
         btnLihatSemuaPopuler = view.findViewById(R.id.buttonLihatSemuaPopuler);
         btnLihatSemuaPromo = view.findViewById(R.id.buttonLihatSemuaPromo);
         btnLihatSemuaTerdekat = view.findViewById(R.id.buttonLihatSemuaTerdekat);
         contentBeranda = view.findViewById(R.id.contentBeranda);
         bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.BottomNavigationMenu);
-
-        //Mengambil email login user
         namaUser = view.findViewById(R.id.textName);
 
+
+
+        // refresh halaman
+        refreshLayout  = view.findViewById(R.id.refreshBeranda);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshPage(token);
+            }
+        });
+
+
+
+        //cek ketersediaan token
         if (token != null) {
             namaUser.setText(nama.toString());
-            btnRiwayatPemesananTempat.setVisibility(view.VISIBLE);
+            btnRiwayatPemesananTempat.setVisibility(View.VISIBLE);
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) contentBeranda.getLayoutParams();
             layoutParams.topMargin = 0;
             contentBeranda.setLayoutParams(layoutParams);
         }
+
+
 
         // recycler view populer
         LinearLayoutManager linearLayoutManagerPopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -89,13 +107,15 @@ public class BerandaFragment extends Fragment {
         LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPromo = view.findViewById(R.id.recyclerViewBerandaPromo);
         recyclerViewPromo.setLayoutManager(linearLayoutManagerPromo);
-        recyclerViewPromo.setAdapter(new BerandaPromoAdapter(getDataPromo()));
+        loadDataPromo(token);
 
         // recyclerview terdekat
         LinearLayoutManager linearLayoutManagerTerdekat = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewPromo = view.findViewById(R.id.recyclerViewBerandaTerdekat);
-        recyclerViewPromo.setLayoutManager(linearLayoutManagerTerdekat);
-        recyclerViewPromo.setAdapter(new BerandaTerdekatAdapter(getDataTerdekat()));
+        recyclerViewTerdekat = view.findViewById(R.id.recyclerViewBerandaTerdekat);
+        recyclerViewTerdekat.setLayoutManager(linearLayoutManagerTerdekat);
+        recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(getDataTerdekat()));
+
+
 
         // getFragment
         ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
@@ -106,7 +126,7 @@ public class BerandaFragment extends Fragment {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent intent = result.getData();
                             // Handle the Intent
-                            String data = intent.getStringExtra("FRAGMENT");
+                            String data = intent.getStringExtra("Fragment");
                             menuNavigation(data);
                         }
                     }
@@ -169,6 +189,50 @@ public class BerandaFragment extends Fragment {
                 break;
 
         }
+    }
+
+    public void refreshPage(String token){
+        loadDataPromo(token);
+        refreshLayout.setRefreshing(false);
+    }
+
+    public void loadDataPromo(String token){
+        recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
+        Call<PromoClass> call = config.configRetrofit().promo(token);
+        call.enqueue(new Callback<PromoClass>() {
+            @Override
+            public void onResponse(Call<PromoClass> call, Response<PromoClass> response) {
+                if(response.code() == 200){
+                    if (response.isSuccessful()){
+                        PromoClass promoClass = response.body();
+                        List<PromoData> listPromo = promoClass.getPromo();
+                        ArrayList<Promo> arrayListPromo = new ArrayList<>();
+
+                        for (PromoData promoData: listPromo) {
+                            Promo promo = new Promo(
+                                    promoData.getNamaToko(),
+                                    promoData.getNamaMenu(),
+                                    promoData.getGambar(),
+                                    promoData.getPersentase(),
+                                    promoData.getJenisPromo()
+                            );
+
+                            BerandaPromoAdapter recyclerViewPromoAdaper = new BerandaPromoAdapter(arrayListPromo);
+                            arrayListPromo.add(promo);
+                            recyclerViewPromoAdaper.setShimmer(false);
+                            recyclerViewPromo.setAdapter(recyclerViewPromoAdaper);
+                            recyclerViewPromoAdaper.notifyDataSetChanged();
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PromoClass> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public ArrayList<Store> getDataPopuler() {
@@ -245,62 +309,6 @@ public class BerandaFragment extends Fragment {
         ));
 
         return listPopulerBeranda;
-    }
-
-    public ArrayList<Promo> getDataPromo() {
-        ArrayList<Promo> listPromoBeranda = new ArrayList<>();
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-        listPromoBeranda.add(new Promo(
-                "Sate Taichan",
-                "Taichan Mimi Peri",
-                "Diskon 5%"
-        ));
-
-        return listPromoBeranda;
     }
 
     public ArrayList<Store> getDataTerdekat() {

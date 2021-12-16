@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,11 +33,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfilFragment extends Fragment {
-    MaterialButton btnUbahProfil;
-    MaterialButton btnGantiKataSandi;
-    MaterialButton btnLogout;
-    TextView namaProfil, emailProfil, noHpProfil;
-    SharedPreferences sharedPreferences;
+    private MaterialButton btnUbahProfil;
+    private MaterialButton btnGantiKataSandi;
+    private MaterialButton btnLogout;
+    private TextView namaProfil, emailProfil, noHpProfil;
+    private SharedPreferences sharedPreferences;
+    private Config config;
 
     public ProfilFragment() {
         // Required empty public constructor
@@ -49,10 +51,10 @@ public class ProfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
 
         sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("TOKEN", null);
-        String nama = sharedPreferences.getString("NAMA", null);
-        String email = sharedPreferences.getString("EMAIL", null);
-        String no_hp = sharedPreferences.getString("NO_HP", null);
+        String token = sharedPreferences.getString("Token", null);
+        String nama = sharedPreferences.getString("Nama", null);
+        String email = sharedPreferences.getString("Email", null);
+        String no_hp = sharedPreferences.getString("NoHp", null);
 
         btnUbahProfil = (MaterialButton) view.findViewById(R.id.buttonUbahProfil);
         btnGantiKataSandi = (MaterialButton) view.findViewById(R.id.buttonGantiKataSandi);
@@ -80,11 +82,11 @@ public class ProfilFragment extends Fragment {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent intent = result.getData();
                             // Handle the Intent
-                            String response_nama = intent.getStringExtra("NAMA");
-                            String response_no_hp = intent.getStringExtra("NO_HP");
+                            String response_nama = intent.getStringExtra("Nama");
+                            String response_no_hp = intent.getStringExtra("NoHp");
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("NAMA", response_nama);
-                            editor.putString("NO_HP", response_no_hp);
+                            editor.putString("Nama", response_nama);
+                            editor.putString("NoHp", response_no_hp);
                             editor.apply();
 
                             namaProfil.setText(response_nama);
@@ -116,15 +118,11 @@ public class ProfilFragment extends Fragment {
                     .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Retrofit retrofit = new Retrofit.Builder()
-                                    .baseUrl(Config.API_BASE_URL)
-                                    .addConverterFactory(GsonConverterFactory.create())
-                                    .build();
+                            config = new Config();
+                            String token = sharedPreferences.getString("Token", null);
 
-                            Route route = retrofit.create(Route.class);
-                            String token = sharedPreferences.getString("TOKEN", null);
-
-                            Call<MessageResponse> call = route.logout(token);
+                            Call<MessageResponse> call = config.configRetrofit().logout(token);
+                            toggleViewProgressBar();
                             call.enqueue(new Callback<MessageResponse>() {
                                 @Override
                                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
@@ -158,5 +156,11 @@ public class ProfilFragment extends Fragment {
 
         //Inflate the layout for this fragment
         return view;
+    }
+
+    public void toggleViewProgressBar(){
+        btnUbahProfil.setEnabled(false);
+        btnGantiKataSandi.setEnabled(false);
+        btnLogout.setEnabled(false);
     }
 }

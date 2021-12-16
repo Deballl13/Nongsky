@@ -5,17 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.Promo;
-
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHolder> {
 
@@ -38,12 +33,10 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
     public void onBindViewHolder(@NonNull PromoAdapter.PromoViewHolder holder, int position) {
         // format mata uang rupiah
         Helper helper = new Helper();
-
-        holder.textMakananPromo.setText(listPromo.get(position).getNamaMakanan());
+        Promo promo = listPromo.get(position);
+        holder.textMenuPromo.setText(promo.getNamaMenu());
         holder.textTokoPromo.setText(listPromo.get(position).getNamaToko());
-        holder.textHargaSetelahPromo.setText(helper.mataUangRupiah(listPromo.get(position).getHargaPromo()));
         holder.textHargaSebelumPromo.setText(helper.mataUangRupiah(listPromo.get(position).getHargaAwal()));
-        holder.keterangan.setText(listPromo.get(position).getKeterangan());
 
         holder.textHargaSebelumPromo.setPaintFlags(holder.textHargaSebelumPromo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
     }
@@ -55,11 +48,11 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
 
     public class PromoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textMakananPromo, textTokoPromo, textHargaSetelahPromo, textHargaSebelumPromo, keterangan;
+        TextView textMenuPromo, textTokoPromo, textHargaSetelahPromo, textHargaSebelumPromo, keterangan;
 
         public PromoViewHolder(@NonNull View view){
             super(view);
-            textMakananPromo = view.findViewById(R.id.textMakananPromo);
+            textMenuPromo = view.findViewById(R.id.textMakananPromo);
             textTokoPromo = view.findViewById(R.id.textTokoPromo);
             textHargaSetelahPromo = view.findViewById(R.id.textHargaSetelahPromo);
             textHargaSebelumPromo = view.findViewById(R.id.textHargaSebelumPromo);

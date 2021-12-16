@@ -1,8 +1,6 @@
 
 package com.nongskuy.nongskuy.model;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.nongskuy.nongskuy.data.AuthData;

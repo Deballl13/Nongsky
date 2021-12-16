@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
-    RecyclerView rvRiwayatNongskuy;
-    RiwayatNongskuyAdapter riwayatNongskuyAdapter;
-    ConstraintLayout layoutRiwayatPesanDitemukan;
-    ConstraintLayout layoutRiwayatPesanTidakDitemukan;
+    private RecyclerView rvRiwayatNongskuy;
+    private RiwayatNongskuyAdapter riwayatNongskuyAdapter;
+    private ConstraintLayout layoutRiwayatPesanDitemukan;
+    private ConstraintLayout layoutRiwayatPesanTidakDitemukan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

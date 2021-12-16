@@ -32,8 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GantiKataSandiActivity extends AppCompatActivity {
 
-    EditText inputPasswordBaru, inputConfirmPasswordBaru;
-    SharedPreferences sharedPreferences;
+    private EditText inputPasswordBaru, inputConfirmPasswordBaru;
+    private SharedPreferences sharedPreferences;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,16 +52,14 @@ public class GantiKataSandiActivity extends AppCompatActivity {
         String password = inputPasswordBaru.getText().toString().trim();
         String confirm_password = inputConfirmPasswordBaru.getText().toString().trim();
 
+
+
         //kondisi validasi inputan
         if(validation(password, confirm_password).equals(1)) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Config.API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            Route route = retrofit.create(Route.class);
-            String token = sharedPreferences.getString("TOKEN", null);
+            config = new Config();
+            String token = sharedPreferences.getString("Token", null);
 
-            Call<MessageResponse> call = route.ubahPassword(token, password);
+            Call<MessageResponse> call = config.configRetrofit().ubahPassword(token, password);
             toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
@@ -101,15 +100,16 @@ public class GantiKataSandiActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBarGantiKataSandi);
 
         if(active){
+            inputPasswordBaru.getText().clear();
+            inputConfirmPasswordBaru.getText().clear();
             inputPasswordBaru.setEnabled(false);
             inputConfirmPasswordBaru.setEnabled(false);
-            buttonGantiPassowrd.setEnabled(false);
             buttonGantiPassowrd.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
         }
         else{
             inputPasswordBaru.setEnabled(true);
-            inputPasswordBaru.setEnabled(true);
+            inputConfirmPasswordBaru.setEnabled(true);
             buttonGantiPassowrd.setEnabled(true);
             progressBar.setVisibility(View.GONE);
         }

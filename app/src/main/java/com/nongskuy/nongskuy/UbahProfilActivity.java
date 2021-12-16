@@ -30,8 +30,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UbahProfilActivity extends AppCompatActivity {
 
-    EditText inputNamaBaru, inputNoHpBaru;
-    SharedPreferences sharedPreferences;
+    private EditText inputNamaBaru, inputNoHpBaru;
+    private SharedPreferences sharedPreferences;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,14 +52,10 @@ public class UbahProfilActivity extends AppCompatActivity {
 
         //validasi inputan
         if(validation(nama, no_hp).equals(1)) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Config.API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            Route route = retrofit.create(Route.class);
-            String token = sharedPreferences.getString("TOKEN", null);
+            config = new Config();
+            String token = sharedPreferences.getString("Token", null);
 
-            Call<MessageResponse> call = route.ubahProfil(token, nama, no_hp);
+            Call<MessageResponse> call = config.configRetrofit().ubahProfil(token, nama, no_hp);
             toggleViewProgressBar(true);
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
@@ -70,8 +67,8 @@ public class UbahProfilActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             message = response.body().getMessage();
                             Intent intent = new Intent();
-                            intent.putExtra("NAMA", nama);
-                            intent.putExtra("NO_HP", no_hp);
+                            intent.putExtra("Nama", nama);
+                            intent.putExtra("NoHp", no_hp);
                             setResult(RESULT_OK, intent);
                             finish();
                         }
@@ -103,6 +100,8 @@ public class UbahProfilActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBarUbahProfil);
 
         if(active){
+            inputNamaBaru.getText().clear();
+            inputNoHpBaru.getText().clear();
             inputNamaBaru.setEnabled(false);
             inputNoHpBaru.setEnabled(false);
             buttonUbahProfil.setEnabled(false);

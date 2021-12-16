@@ -7,21 +7,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nongskuy.nongskuy.adapter.PopulerAdapter;
-import com.nongskuy.nongskuy.adapter.PromoAdapter;
 import com.nongskuy.nongskuy.model.Store;
 
 import java.util.ArrayList;
 
 public class PopulerActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     private BottomNavigationView bottomNavigationViewPopuler;
 
     @Override
@@ -40,7 +35,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent = new Intent();
-        intent.putExtra("FRAGMENT", String.valueOf(item));
+        intent.putExtra("Fragment", String.valueOf(item));
         setResult(RESULT_OK, intent);
         finish();
 

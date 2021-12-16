@@ -33,8 +33,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText inputEmail;
-    EditText inputPassword;
+    private EditText inputEmail;
+    private EditText inputPassword;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +51,8 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getText().toString().trim();
 
         if(validation(email, password).equals(1)){
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Config.API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            Route route = retrofit.create(Route.class);
-
-            Call<AuthClass> call = route.login(email, password);
+            config = new Config();
+            Call<AuthClass> call = config.configRetrofit().login(email, password);
             toggleViewProgressBar(true);
             call.enqueue(new Callback<AuthClass>() {
                 @Override
@@ -76,10 +71,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("TOKEN", token);
-                            editor.putString("NAMA", nama);
-                            editor.putString("EMAIL", email);
-                            editor.putString("NO_HP", no_hp);
+                            editor.putString("Token", token);
+                            editor.putString("Nama", nama);
+                            editor.putString("Email", email);
+                            editor.putString("NoHp", no_hp);
                             editor.apply();
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -133,6 +128,8 @@ public class LoginActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.progressBarLogin);
 
         if(active){
+            inputEmail.getText().clear();
+            inputPassword.getText().clear();
             inputEmail.setEnabled(false);
             inputPassword.setEnabled(false);
             buttonLogin.setEnabled(false);
