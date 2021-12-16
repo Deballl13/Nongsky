@@ -1,109 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardPromo"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginTop="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    android:background="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp">
     
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerPromo"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:padding="8dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imagePromo"
-            android:layout_width="80dp"
-            android:layout_height="82dp"
-            android:src="@drawable/ic_launcher_background"
-            android:foreground="@drawable/ic_launcher_foreground"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/textMakananPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Nama makanan"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagePromo"
+                android:layout_width="82dp"
+                android:layout_height="84dp"
+                android:background="@drawable/shimmer_background_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
-        <TextView
-            android:id="@+id/textTokoPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="2sp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Nama tempat"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toBottomOf="@+id/textMakananPromo" />
+            <TextView
+                android:id="@+id/textMenuPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shimmer_background_text"
+                android:fontFamily="@font/manrope_bold"
+                android:minWidth="250dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imagePromo"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/viewGaris"
-            android:layout_width="249dp"
-            android:layout_height="0.5dp"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="2sp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toBottomOf="@+id/textTokoPromo" />
+            <TextView
+                android:id="@+id/textTokoPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/manrope_regular"
+                android:background="@drawable/shimmer_background_text"
+                android:minWidth="100dp"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/imagePromo"
+                app:layout_constraintTop_toBottomOf="@+id/textMenuPromo" />
 
-        <TextView
-            android:id="@+id/textHargaSetelahPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="5sp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Harga setelah promo"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
+            <View
+                android:id="@+id/viewGaris"
+                android:layout_width="249dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="5sp"
+                android:background="@color/dark_gray"
+                app:layout_constraintStart_toEndOf="@+id/imagePromo"
+                app:layout_constraintTop_toBottomOf="@+id/textTokoPromo" />
 
-        <TextView
-            android:id="@+id/textHargaSebelumPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Harga sebelum promo"
-            android:textSize="13sp"
-            android:layout_marginStart="12sp"
-            android:layout_marginTop="2sp"
-            android:textColor="@color/dark_gray"
-            app:layout_constraintStart_toEndOf="@+id/imagePromo"
-            app:layout_constraintTop_toBottomOf="@+id/textHargaSetelahPromo" />
+            <TextView
+                android:id="@+id/textHargaSetelahPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="5sp"
+                android:fontFamily="@font/manrope_regular"
+                android:minWidth="150dp"
+                android:textColor="@color/black"
+                android:background="@drawable/shimmer_background_text"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imagePromo"
+                app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
 
-        <TextView
-            android:id="@+id/keteranganPromo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7sp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Keterangan Promo"
-            android:textColor="@color/dark_gray"
-            android:textSize="9sp"
-            android:background="@drawable/background_ket_diskon"
-            android:paddingHorizontal="10sp"
-            app:layout_constraintStart_toEndOf="@+id/textHargaSetelahPromo"
-            app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
+            <TextView
+                android:id="@+id/textHargaSebelumPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/shimmer_background_text"
+                android:fontFamily="@font/manrope_regular"
+                android:minWidth="150dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/imagePromo"
+                app:layout_constraintTop_toBottomOf="@+id/textHargaSetelahPromo" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/keteranganPromo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7sp"
+                android:fontFamily="@font/manrope_bold"
+                android:textSize="10sp"
+                android:minWidth="70dp"
+                android:background="@drawable/shimmer_background_text"
+                android:paddingHorizontal="10sp"
+                app:layout_constraintStart_toEndOf="@+id/textHargaSetelahPromo"
+                app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.cardview.widget.CardView>

@@ -73,7 +73,12 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/option_selected.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/option_unselected.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/radio.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/rounded_image.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/searchview_style.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/shimmer_backgroud_image.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/shimmer_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/shimmer_background_image.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/shimmer_background_text.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_ganti_kata_sandi.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_get_started.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_launcher.xml" value="0.25416666666666665" />
@@ -88,7 +93,7 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_pencarian.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_populer.xml" value="0.6" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_populer_horizontal.xml" value="0.49447077409162715" />
-        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo.xml" value="0.536" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo.xml" value="0.4" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo_horizontal.xml" value="0.6" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_riwayat_pemesanan_tempat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_terdekat_horizontal.xml" value="0.8" />
