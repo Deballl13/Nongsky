@@ -79,7 +79,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
 
             holder.textHargaSetelahPromo.setBackground(null);
             holder.textHargaSetelahPromo.setText(
-                    helper.mataUangRupiah(promo.getHargaAwal() - ((promo.getPersentase() / 100) * promo.getHargaAwal()))
+                    helper.mataUangRupiah((100 - promo.getPersentase()) * (promo.getHargaAwal()/100))
             );
 
             holder.keterangan.setBackground(null);

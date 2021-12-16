@@ -2,6 +2,7 @@ package com.nongskuy.nongskuy.model;
 
 public class RiwayatNongskuy {
     private String namaToko;
+    private String gambarToko;
     private Integer statusPesan;
     private Integer totalKursi;
     private Integer totalDeposit;
@@ -9,10 +10,9 @@ public class RiwayatNongskuy {
     private String tglPesan;
     private String waktuPesan;
 
-    public RiwayatNongskuy() {}
-
-    public RiwayatNongskuy(String namaToko, Integer statusPesan, Integer totalKursi, Integer totalDeposit, String caraBayar, String tglPesan, String waktuPesan){
+    public RiwayatNongskuy(String namaToko, String gambarToko, Integer statusPesan, Integer totalKursi, Integer totalDeposit, String caraBayar, String tglPesan, String waktuPesan){
         this.namaToko = namaToko;
+        this.gambarToko = gambarToko;
         this.statusPesan = statusPesan;
         this.totalKursi = totalKursi;
         this.totalDeposit = totalDeposit;
@@ -27,6 +27,14 @@ public class RiwayatNongskuy {
 
     public void setNamaToko(String namaToko) {
         this.namaToko = namaToko;
+    }
+
+    public String getGambarToko() {
+        return gambarToko;
+    }
+
+    public void setGambarToko(String gambarToko) {
+        this.gambarToko = gambarToko;
     }
 
     public Integer getStatusPesan() {

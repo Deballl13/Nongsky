@@ -4,92 +4,138 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-
+import android.widget.Toast;
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
+import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
-
+import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 import java.util.ArrayList;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
     private RecyclerView rvRiwayatNongskuy;
-    private RiwayatNongskuyAdapter riwayatNongskuyAdapter;
     private ConstraintLayout layoutRiwayatPesanDitemukan;
     private ConstraintLayout layoutRiwayatPesanTidakDitemukan;
+    private SharedPreferences sharedPreferences;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riwayat_pemesanan_tempat);
 
-        LinearLayoutManager layoutManager= new LinearLayoutManager(this);
-
         layoutRiwayatPesanDitemukan = findViewById(R.id.layoutRiwayatPesanDitemukan);
         layoutRiwayatPesanTidakDitemukan = findViewById(R.id.layoutRiwayatPesanTidakDitemukan);
 
-        riwayatNongskuyAdapter = new RiwayatNongskuyAdapter();
-        riwayatNongskuyAdapter.setListRiwayatNongskuy(dataDummy());
+        config = new Config();
+        sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
 
-        if(riwayatNongskuyAdapter.getItemCount() > 0){
-            rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
-            rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
-            rvRiwayatNongskuy.setLayoutManager(layoutManager);
-
-            layoutRiwayatPesanDitemukan.setVisibility(View.VISIBLE);
-            layoutRiwayatPesanTidakDitemukan.setVisibility(View.INVISIBLE);
-        }
-
+        rvRiwayatNongskuy = findViewById(R.id.rvRiwayatNongskuy);
+        rvRiwayatNongskuy.setLayoutManager(new LinearLayoutManager(this));
+        loadDataRiwayatNongskuy(token);
     }
 
-    public ArrayList<RiwayatNongskuy> dataDummy(){
-        ArrayList<RiwayatNongskuy> listRiwayatNongskuy = new ArrayList<>();
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
-                1,
-                4,
-                40000,
-                "OVO",
-                "30-09-2021",
-                "09:30"));
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
-                1,
-                2,
-                20000,
-                "Gopay",
-                "31-09-2021",
-                "09:30"));
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
-                0,
-                3,
-                30000,
-                "ATM",
-                "30-09-2021",
-                "10:00"));
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
-                1,
-                4,
-                40000,
-                "OVO",
-                "30-09-2021",
-                "09:30"));
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
-                1,
-                2,
-                20000,
-                "Gopay",
-                "31-09-2021",
-                "09:30"));
-        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
-                0,
-                3,
-                30000,
-                "ATM",
-                "30-09-2021",
-                "10:00"));
+    public void loadDataRiwayatNongskuy(String token) {
+        Call<RiwayatNongskuyClass> call = config.configRetrofit().riwayat(token);
+        call.enqueue(new Callback<RiwayatNongskuyClass>() {
+            @Override
+            public void onResponse(Call<RiwayatNongskuyClass> call, Response<RiwayatNongskuyClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        RiwayatNongskuyClass riwayatNongskuyClass = response.body();
+                        List<RiwayatNongskuyData> listRiwayatNongskuy = riwayatNongskuyClass.getRiwayat();
+                        ArrayList<RiwayatNongskuy>  arrayListRiwayatNongskuy = new ArrayList<>();
 
-        return listRiwayatNongskuy;
+                        //cek isi arraylist listRiwayatNongskuy
+                        if(listRiwayatNongskuy.size() == 0){
+                            layoutRiwayatPesanDitemukan.setVisibility(View.INVISIBLE);
+                            layoutRiwayatPesanTidakDitemukan.setVisibility(View.VISIBLE);
+                        }
+
+                        //perulangan data item
+                        for (RiwayatNongskuyData riwayatNongskuyData: listRiwayatNongskuy) {
+                            RiwayatNongskuy riwayatNongskuy = new RiwayatNongskuy(
+                                    riwayatNongskuyData.getNamaToko(),
+                                    riwayatNongskuyData.getGambarToko(),
+                                    riwayatNongskuyData.getStatus(),
+                                    riwayatNongskuyData.getJumlahKursi(),
+                                    riwayatNongskuyData.getDp(),
+                                    riwayatNongskuyData.getMetodeBayar(),
+                                    riwayatNongskuyData.getTanggal(),
+                                    riwayatNongskuyData.getWaktu()
+                            );
+                            arrayListRiwayatNongskuy.add(riwayatNongskuy);
+                            RiwayatNongskuyAdapter riwayatNongskuyAdapter = new RiwayatNongskuyAdapter(arrayListRiwayatNongskuy);
+                            rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
+                            riwayatNongskuyAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RiwayatNongskuyClass> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
+//    public ArrayList<RiwayatNongskuy> dataDummy(){
+//        ArrayList<RiwayatNongskuy> listRiwayatNongskuy = new ArrayList<>();
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
+//                1,
+//                4,
+//                40000,
+//                "OVO",
+//                "30-09-2021",
+//                "09:30"));
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
+//                1,
+//                2,
+//                20000,
+//                "Gopay",
+//                "31-09-2021",
+//                "09:30"));
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
+//                0,
+//                3,
+//                30000,
+//                "ATM",
+//                "30-09-2021",
+//                "10:00"));
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
+//                1,
+//                4,
+//                40000,
+//                "OVO",
+//                "30-09-2021",
+//                "09:30"));
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
+//                1,
+//                2,
+//                20000,
+//                "Gopay",
+//                "31-09-2021",
+//                "09:30"));
+//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
+//                0,
+//                3,
+//                30000,
+//                "ATM",
+//                "30-09-2021",
+//                "10:00"));
+//
+//        return listRiwayatNongskuy;
+//    }
 
 }

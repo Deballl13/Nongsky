@@ -57,10 +57,11 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/logoToko"
+            android:id="@+id/imgTokoRiwayatNongskuy"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +78,7 @@
             android:text="Total Kursi Dipesan"
             android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintStart_toEndOf="@+id/imgTokoRiwayatNongskuy"
             app:layout_constraintTop_toBottomOf="@+id/textNamaToko" />
 
         <TextView
@@ -89,7 +90,7 @@
             android:text="Total Deposit"
             android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintStart_toEndOf="@+id/imgTokoRiwayatNongskuy"
             app:layout_constraintTop_toBottomOf="@+id/TotalKursi" />
 
         <TextView
@@ -101,7 +102,7 @@
             android:text="Cara Pembayaran"
             android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintStart_toEndOf="@+id/imgTokoRiwayatNongskuy"
             app:layout_constraintTop_toBottomOf="@+id/TotalDeposit" />
 
         <TextView
@@ -113,7 +114,7 @@
             android:text="Tanggal Pemesanan"
             android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintStart_toEndOf="@+id/imgTokoRiwayatNongskuy"
             app:layout_constraintTop_toBottomOf="@+id/CaraBayar" />
 
         <TextView
@@ -125,7 +126,7 @@
             android:text="Waktu Pemesanan"
             android:textSize="14sp"
             android:fontFamily="@font/manrope_regular"
-            app:layout_constraintStart_toEndOf="@+id/logoToko"
+            app:layout_constraintStart_toEndOf="@+id/imgTokoRiwayatNongskuy"
             app:layout_constraintTop_toBottomOf="@+id/TanggalPesan" />
 
         <TextView

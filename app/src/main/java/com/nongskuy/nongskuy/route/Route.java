@@ -3,6 +3,7 @@ package com.nongskuy.nongskuy.route;
 import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MessageResponse;
 import com.nongskuy.nongskuy.model.PromoClass;
+import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -38,4 +39,7 @@ public interface Route {
 
     @GET("promo")
     Call<PromoClass> promo(@Header("Authorization") String token);
+
+    @GET("pesan/riwayat")
+    Call<RiwayatNongskuyClass> riwayat(@Header("Authorization") String token);
 }
