@@ -4,20 +4,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.nongskuy.nongskuy.R;
-import com.nongskuy.nongskuy.model.Store;
-
+import com.nongskuy.nongskuy.model.Toko;
 import java.util.ArrayList;
 
 public class BerandaTerdekatAdapter extends RecyclerView.Adapter<BerandaTerdekatAdapter.BerandaTerdekatViewHolder>{
 
-    ArrayList<Store> listTerdekatBeranda;
+    ArrayList<Toko> listTerdekatBeranda;
 
-    public BerandaTerdekatAdapter(ArrayList<Store> listTerdekatBeranda) {
+    public BerandaTerdekatAdapter(ArrayList<Toko> listTerdekatBeranda) {
         this.listTerdekatBeranda = listTerdekatBeranda;
     }
 

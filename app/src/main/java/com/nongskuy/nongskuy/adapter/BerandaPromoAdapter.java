@@ -2,6 +2,7 @@ package com.nongskuy.nongskuy.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.Promo;
-
 import java.util.ArrayList;
 
 public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapter.BerandaPromoViewHolder>{
@@ -54,6 +55,9 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
 
             Promo promo = listPromoBeranda.get(position);
 
+            // format mata uang rupiah
+            Helper helper = new Helper();
+
             holder.imagePromo.setBackground(null);
             Glide.with(context)
                     .load(Uri.parse(promo.getGambar()))
@@ -66,6 +70,15 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
 
             holder.textTokoPromo.setBackground(null);
             holder.textTokoPromo.setText(promo.getNamaToko());
+
+            holder.textHargaSebelumPromo.setBackground(null);
+            holder.textHargaSebelumPromo.setText(helper.mataUangRupiah(promo.getHargaAwal()));
+            holder.textHargaSebelumPromo.setPaintFlags(holder.textHargaSebelumPromo.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            holder.textHargaSetelahPromo.setBackground(null);
+            holder.textHargaSetelahPromo.setText(
+                    helper.mataUangRupiah((100 - promo.getPersentase()) * (promo.getHargaAwal()/100))
+            );
 
             holder.keterangan.setText(promo.getJenis_promo() + " " + promo.getPersentase().toString() + "%");
 
@@ -83,29 +96,23 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
 
     @Override
     public int getItemCount() {
-        if(isShimmer){
-            return numberShimmer;
-        }
-        else{
-            if(listPromoBeranda.size() > 10){
-                return 10;
-            }
-            return listPromoBeranda.size();
-        }
+        return isShimmer || listPromoBeranda.size() > 10 ? 10 : listPromoBeranda.size();
     }
 
     public class BerandaPromoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textMenuPromo, textTokoPromo, keterangan;
+        TextView textMenuPromo, textHargaSebelumPromo, textHargaSetelahPromo, textTokoPromo, keterangan;
         ShapeableImageView imagePromo;
         ShimmerFrameLayout shimmerFrameLayout;
 
         public BerandaPromoViewHolder(@NonNull View itemView) {
             super(itemView);
             shimmerFrameLayout = itemView.findViewById(R.id.shimmerPromoBeranda);
-            imagePromo = itemView.findViewById(R.id.imagePopulerBeranda);
+            imagePromo = itemView.findViewById(R.id.imagePromoBeranda);
             textTokoPromo = itemView.findViewById(R.id.textTokoPromoBeranda);
             textMenuPromo = itemView.findViewById(R.id.textMenuPromoBeranda);
+            textHargaSebelumPromo = itemView.findViewById(R.id.textHargaAwalPromoBeranda);
+            textHargaSetelahPromo = itemView.findViewById(R.id.textHargaSetelahPromoBeranda);
             keterangan = itemView.findViewById(R.id.keteranganPromoBeranda);
         }
     }

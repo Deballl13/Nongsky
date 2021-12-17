@@ -1,6 +1,5 @@
 package com.nongskuy.nongskuy.adapter;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
@@ -8,20 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
-
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder>{
 

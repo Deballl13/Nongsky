@@ -18,14 +18,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="148dp"
-            android:layout_height="170dp">
+            android:layout_height="195dp">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imagePopulerBeranda"
+                android:id="@+id/imagePromoBeranda"
                 android:layout_width="148dp"
                 android:layout_height="92dp"
                 android:scaleType="fitXY"
-                android:background="@color/shimmerColor"
+                android:background="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -35,18 +35,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="4dp"
+                android:background="@drawable/shimmer_background_text"
+                android:ellipsize="end"
+                android:ems="3"
                 android:fontFamily="@font/manrope_bold"
                 android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                android:layout_marginTop="3dp"
                 android:maxWidth="132dp"
+                android:maxLines="2"
                 android:minWidth="132dp"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:background="@drawable/shimmer_background_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagePopulerBeranda"
+                app:layout_constraintTop_toBottomOf="@+id/imagePromoBeranda"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
@@ -54,18 +57,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="15dp"
-                android:fontFamily="@font/manrope_regular"
-                android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
-                android:maxWidth="132dp"
-                android:minWidth="132dp"
                 android:background="@drawable/shimmer_background_text"
+                android:ellipsize="end"
+                android:ems="3"
+                android:fontFamily="@font/manrope_regular"
+                android:maxWidth="132dp"
+                android:maxLines="1"
+                android:minWidth="132dp"
                 android:textColor="@color/black"
+                android:layout_marginBottom="3dp"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/textHargaSetelahPromoBeranda"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textHargaAwalPromoBeranda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/shimmer_background_text"
+                android:fontFamily="@font/manrope_regular"
+                android:minWidth="50dp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textHargaSetelahPromoBeranda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:background="@drawable/shimmer_background_text"
+                android:fontFamily="@font/manrope_regular"
+                android:minWidth="60dp"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="15dp"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textHargaAwalPromoBeranda"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <TextView

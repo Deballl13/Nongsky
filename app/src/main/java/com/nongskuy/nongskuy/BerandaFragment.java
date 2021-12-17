@@ -26,9 +26,11 @@ import com.nongskuy.nongskuy.adapter.BerandaPopulerAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaPromoAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaTerdekatAdapter;
 import com.nongskuy.nongskuy.data.PromoData;
+import com.nongskuy.nongskuy.data.TokoPopulerData;
 import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
-import com.nongskuy.nongskuy.model.Store;
+import com.nongskuy.nongskuy.model.Toko;
+import com.nongskuy.nongskuy.model.TokoPopulerClass;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -101,7 +103,7 @@ public class BerandaFragment extends Fragment {
         LinearLayoutManager linearLayoutManagerPopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopuler = view.findViewById(R.id.recyclerViewBerandaPopuler);
         recyclerViewPopuler.setLayoutManager(linearLayoutManagerPopuler);
-        recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(getDataPopuler()));
+        loadDataTokoPopuler();
 
         // recyclerview promo
         LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -146,14 +148,12 @@ public class BerandaFragment extends Fragment {
 
         // Intent ke fragment promo
         btnLihatSemuaPromo.setOnClickListener(view1 -> {
-            loadFragment(new PromoFragment());
-            bottomNavigationView.setSelectedItemId(R.id.menu_promo);
+            menuNavigation("Promo");
         });
 
         // Intent ke fragment terdekat
         btnLihatSemuaTerdekat.setOnClickListener(view1 -> {
-            loadFragment(new TerdekatFragment());
-            bottomNavigationView.setSelectedItemId(R.id.menu_terdekat);
+            menuNavigation("Terdekat");
         });
 
         return view;
@@ -192,8 +192,49 @@ public class BerandaFragment extends Fragment {
     }
 
     public void refreshPage(String token){
+        loadDataTokoPopuler();
         loadDataPromo(token);
         refreshLayout.setRefreshing(false);
+    }
+
+    public void loadDataTokoPopuler(){
+        recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
+        Call<TokoPopulerClass> call = config.configRetrofit().tokoPopuler();
+        call.enqueue(new Callback<TokoPopulerClass>() {
+            @Override
+            public void onResponse(Call<TokoPopulerClass> call, Response<TokoPopulerClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        TokoPopulerClass tokoPopulerClass = response.body();
+                        List<TokoPopulerData> listTokoPopuler = tokoPopulerClass.getTokoPopuler();
+                        ArrayList<Toko> arrayListTokoPopuler = new ArrayList<>();
+                        BerandaPopulerAdapter berandaPopulerAdapter = new BerandaPopulerAdapter(arrayListTokoPopuler);
+
+                        for(TokoPopulerData tokoPopulerData : listTokoPopuler){
+                            Toko toko = new Toko(
+                              tokoPopulerData.getId(),
+                              tokoPopulerData.getGambar(),
+                              tokoPopulerData.getNamaToko(),
+                              tokoPopulerData.getAlamat(),
+                              tokoPopulerData.getTipe(),
+                              4.5,
+                                    tokoPopulerData.getRating()
+                            );
+
+                            arrayListTokoPopuler.add(toko);
+                            berandaPopulerAdapter.setShimmer(false);
+                            recyclerViewPopuler.setAdapter(berandaPopulerAdapter);
+                            berandaPopulerAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokoPopulerClass> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void loadDataPromo(String token){
@@ -207,21 +248,23 @@ public class BerandaFragment extends Fragment {
                         PromoClass promoClass = response.body();
                         List<PromoData> listPromo = promoClass.getPromo();
                         ArrayList<Promo> arrayListPromo = new ArrayList<>();
+                        BerandaPromoAdapter berandaPromoAdapter = new BerandaPromoAdapter(arrayListPromo);
 
                         for (PromoData promoData: listPromo) {
                             Promo promo = new Promo(
+                                    promoData.getIdToko(),
                                     promoData.getNamaToko(),
                                     promoData.getNamaMenu(),
+                                    promoData.getHarga(),
                                     promoData.getGambar(),
                                     promoData.getPersentase(),
                                     promoData.getJenisPromo()
                             );
 
-                            BerandaPromoAdapter recyclerViewPromoAdaper = new BerandaPromoAdapter(arrayListPromo);
                             arrayListPromo.add(promo);
-                            recyclerViewPromoAdaper.setShimmer(false);
-                            recyclerViewPromo.setAdapter(recyclerViewPromoAdaper);
-                            recyclerViewPromoAdaper.notifyDataSetChanged();
+                            berandaPromoAdapter.setShimmer(false);
+                            recyclerViewPromo.setAdapter(berandaPromoAdapter);
+                            berandaPromoAdapter.notifyDataSetChanged();
                         }
 
                     }
@@ -235,145 +278,69 @@ public class BerandaFragment extends Fragment {
         });
     }
 
-    public ArrayList<Store> getDataPopuler() {
-        ArrayList<Store> listPopulerBeranda = new ArrayList<>();
-        listPopulerBeranda.add(new Store(
-                4.2,
+    public ArrayList<Toko> getDataTerdekat() {
+        ArrayList<Toko> listTerdekatBeranda = new ArrayList<>();
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listPopulerBeranda.add(new Store(
-                4.2,
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-
-        return listPopulerBeranda;
-    }
-
-    public ArrayList<Store> getDataTerdekat() {
-        ArrayList<Store> listTerdekatBeranda = new ArrayList<>();
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Store(
+        listTerdekatBeranda.add(new Toko(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,

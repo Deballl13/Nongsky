@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -27,7 +25,6 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
     private ArrayList<Promo> listPromo;
     private Context context;
     private boolean isShimmer = true;
-    Integer numberShimmer = 10;
 
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
@@ -99,12 +96,12 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
 
     @Override
     public int getItemCount() {
-        return isShimmer?numberShimmer:listPromo.size();
+        return isShimmer ? 10 : listPromo.size();
     }
 
     public class PromoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textMenuPromo, textTokoPromo, textHargaSetelahPromo, textHargaSebelumPromo, keterangan;
+        TextView textMenuPromo, textTokoPromo, textHargaSebelumPromo, textHargaSetelahPromo, keterangan;
         ShapeableImageView imagePromo;
         ShimmerFrameLayout shimmerFrameLayout;
 

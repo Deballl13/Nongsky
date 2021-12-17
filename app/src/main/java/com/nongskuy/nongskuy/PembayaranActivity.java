@@ -1,7 +1,6 @@
 package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 public class PembayaranActivity extends AppCompatActivity {

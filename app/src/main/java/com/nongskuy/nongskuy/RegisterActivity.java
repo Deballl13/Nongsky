@@ -1,28 +1,21 @@
 package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-import com.nongskuy.nongskuy.model.MessageResponse;
-import com.nongskuy.nongskuy.route.Route;
-
+import com.nongskuy.nongskuy.model.MessageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -66,16 +59,15 @@ public class RegisterActivity extends AppCompatActivity {
         if(validation(email, nama, no_hp, password, confirm_passowrd).equals(1) && checkBoxAgrement.isChecked()){
             config = new Config();
 
-            Call<MessageResponse> call = config.configRetrofit().register(email, nama, no_hp, password);
+            Call<MessageClass> call = config.configRetrofit().register(email, nama, no_hp, password);
             toggleViewProgressBar(true);
-            call.enqueue(new Callback<MessageResponse>() {
+            call.enqueue(new Callback<MessageClass>() {
                 @Override
-                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                    MessageResponse messageResponse = response.body();
+                public void onResponse(Call<MessageClass> call, Response<MessageClass> response) {
                     if (response.code() == 200){
                         if (response.isSuccessful()){
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            Toast.makeText(getApplicationContext(), messageResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             toggleViewProgressBar(false);
                             startActivity(intent);
                             finish();
@@ -84,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<MessageResponse> call, Throwable t) {
+                public void onFailure(Call<MessageClass> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

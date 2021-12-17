@@ -1,33 +1,22 @@
 package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-import com.nongskuy.nongskuy.model.MessageResponse;
-import com.nongskuy.nongskuy.route.Route;
-
+import com.nongskuy.nongskuy.model.MessageClass;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class GantiKataSandiActivity extends AppCompatActivity {
@@ -59,11 +48,11 @@ public class GantiKataSandiActivity extends AppCompatActivity {
             config = new Config();
             String token = sharedPreferences.getString("Token", null);
 
-            Call<MessageResponse> call = config.configRetrofit().ubahPassword(token, password);
+            Call<MessageClass> call = config.configRetrofit().ubahPassword(token, password);
             toggleViewProgressBar(true);
-            call.enqueue(new Callback<MessageResponse>() {
+            call.enqueue(new Callback<MessageClass>() {
                 @Override
-                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                public void onResponse(Call<MessageClass> call, Response<MessageClass> response) {
                     String message = null;
                     JSONObject jsonObject = null;
 
@@ -88,7 +77,7 @@ public class GantiKataSandiActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<MessageResponse> call, Throwable t) {
+                public void onFailure(Call<MessageClass> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

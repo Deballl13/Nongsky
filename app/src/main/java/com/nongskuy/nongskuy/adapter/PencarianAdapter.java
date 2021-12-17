@@ -4,16 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.imageview.ShapeableImageView;
-import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
-import com.nongskuy.nongskuy.model.RiwayatNongskuy;
-import com.nongskuy.nongskuy.model.Store;
-
+import com.nongskuy.nongskuy.model.Toko;
 import java.util.ArrayList;
 
 public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.PencarianViewHolder>{
@@ -32,8 +26,8 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
     }
 
     //Array List menampung dan set data yang ditampilkan
-    ArrayList<Store> listPencarian = new ArrayList<>();
-    public void setListPencarian (ArrayList<Store> listPencarian) {
+    ArrayList<Toko> listPencarian = new ArrayList<>();
+    public void setListPencarian (ArrayList<Toko> listPencarian) {
         this.listPencarian = listPencarian;
         notifyDataSetChanged();
     }
@@ -51,11 +45,11 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
     @Override
     public void onBindViewHolder(@NonNull PencarianAdapter.PencarianViewHolder viewHolder, int position) {
 
-        Store store = listPencarian.get(position);
-        viewHolder.textNamaTokoPencarian.setText(store.getNamaToko());
-        viewHolder.textAlamatTokoPencarian.setText(store.getAlamatToko());
-        viewHolder.textJarakToko.setText(store.getJarakToko().toString());
-        viewHolder.satuanJarak.setText(store.getSatuanJarak());
+        Toko toko = listPencarian.get(position);
+        viewHolder.textNamaTokoPencarian.setText(toko.getNamaToko());
+        viewHolder.textAlamatTokoPencarian.setText(toko.getAlamatToko());
+        viewHolder.textJarakToko.setText(toko.getJarakToko().toString());
+        viewHolder.satuanJarak.setText(toko.getSatuanJarak());
     }
 
     @Override

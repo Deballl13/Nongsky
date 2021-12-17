@@ -3,33 +3,20 @@ package com.nongskuy.nongskuy;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.nongskuy.nongskuy.model.AuthClass;
-import com.nongskuy.nongskuy.model.MessageResponse;
-import com.nongskuy.nongskuy.route.Route;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 

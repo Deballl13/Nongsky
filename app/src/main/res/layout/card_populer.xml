@@ -11,134 +11,145 @@
     android:background="@color/white"
     app:cardCornerRadius="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerTokoPopuler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:padding="8dp">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/logoTokoPopuler"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="11dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-            app:srcCompat="@mipmap/ic_launcher" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/ratingPopuler"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="63dp"
-            android:backgroundTint="@color/white"
+            android:paddingHorizontal="16dp"
+            android:padding="10dp">
 
-            android:fontFamily="@font/fredokaone_regular"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="2dp"
-            android:minWidth="0dp"
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageTokoPopuler"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/shimmer_background_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
-            android:minHeight="0dp"
-            android:text="4.2"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ratingPopuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:backgroundTint="@color/white"
+                android:clickable="false"
+                android:fontFamily="@font/fredokaone_regular"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="2dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="4.2"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:cornerRadius="50dp"
+                app:icon="@drawable/ic_star"
+                app:iconGravity="start"
+                app:iconTint="@color/yellow"
+                app:layout_constraintEnd_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintStart_toStartOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toTopOf="@+id/imageTokoPopuler"
+                tools:ignore="TouchTargetSizeCheck" />
 
-            android:clickable="false"
-            app:cornerRadius="50dp"
-            app:icon="@drawable/ic_star"
-            app:iconGravity="start"
-            app:iconTint="@color/yellow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/logoTokoPopuler"
-            tools:ignore="TouchTargetSizeCheck" />
+            <TextView
+                android:id="@+id/textNamaTokoPopuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:ems="3"
+                android:fontFamily="@font/manrope_bold"
+                android:background="@drawable/shimmer_background_text"
+                android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                android:maxLines="1"
+                android:minWidth="250dp"
+                android:maxWidth="250dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textNamaTokoPopuler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Nama toko"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toTopOf="@+id/logoTokoPopuler" />
+            <TextView
+                android:id="@+id/textAlamatTokoPopuler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:maxLines="1"
+                android:ems="3"
+                android:ellipsize="end"
+                android:minWidth="250dp"
+                android:maxWidth="250dp"
+                android:fontFamily="@font/manrope_regular"
+                android:background="@drawable/shimmer_background_text"
+                android:textAlignment="textStart"
+                android:textColor="@color/dark_gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toBottomOf="@+id/textNamaTokoPopuler" />
 
-        <TextView
-            android:id="@+id/textAlamatTokoPopuler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Alamat"
-            android:textAlignment="textStart"
-            android:textColor="@color/dark_gray"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toBottomOf="@+id/textNamaTokoPopuler" />
+            <View
+                android:id="@+id/viewGaris"
+                android:layout_width="250dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toBottomOf="@+id/textAlamatTokoPopuler" />
 
-        <View
-            android:id="@+id/viewGaris"
-            android:layout_width="249dp"
-            android:layout_height="0.5dp"
-            android:layout_marginStart="15dp"
-            android:background="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toBottomOf="@+id/textAlamatTokoPopuler" />
+            <TextView
+                android:id="@+id/textTipeTongkrongan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/manrope_regular"
+                android:background="@drawable/shimmer_background_text"
+                android:minWidth="70dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toBottomOf="@+id/viewGaris"
+                tools:ignore="DuplicateIds" />
 
-        <TextView
-            android:id="@+id/textTipeTongkrongan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Tipe toko"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toBottomOf="@+id/viewGaris"
-            tools:ignore="DuplicateIds" />
+            <TextView
+                android:id="@+id/textJarakTongkrongan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/manrope_regular"
+                android:background="@drawable/shimmer_background_text"
+                android:minWidth="70dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/imageTokoPopuler"
+                app:layout_constraintTop_toBottomOf="@+id/textTipeTongkrongan" />
 
-        <TextView
-            android:id="@+id/textJarakTongkrongan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Jarak toko"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/logoTokoPopuler"
-            app:layout_constraintTop_toBottomOf="@+id/textTipeTongkrongan" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/satuanJarak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Km"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            app:layout_constraintStart_toEndOf="@+id/textJarakTongkrongan"
-            app:layout_constraintTop_toTopOf="@+id/textJarakTongkrongan" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 </androidx.cardview.widget.CardView>

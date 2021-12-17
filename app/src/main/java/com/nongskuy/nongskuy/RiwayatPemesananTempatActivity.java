@@ -54,6 +54,7 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
                         RiwayatNongskuyClass riwayatNongskuyClass = response.body();
                         List<RiwayatNongskuyData> listRiwayatNongskuy = riwayatNongskuyClass.getRiwayat();
                         ArrayList<RiwayatNongskuy>  arrayListRiwayatNongskuy = new ArrayList<>();
+                        RiwayatNongskuyAdapter riwayatNongskuyAdapter = new RiwayatNongskuyAdapter(arrayListRiwayatNongskuy);
 
                         //cek isi arraylist listRiwayatNongskuy
                         if(listRiwayatNongskuy.size() == 0){
@@ -73,8 +74,8 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
                                     riwayatNongskuyData.getTanggal(),
                                     riwayatNongskuyData.getWaktu()
                             );
+
                             arrayListRiwayatNongskuy.add(riwayatNongskuy);
-                            RiwayatNongskuyAdapter riwayatNongskuyAdapter = new RiwayatNongskuyAdapter(arrayListRiwayatNongskuy);
                             rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
                             riwayatNongskuyAdapter.notifyDataSetChanged();
                         }
@@ -88,54 +89,5 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
             }
         });
     }
-
-
-//    public ArrayList<RiwayatNongskuy> dataDummy(){
-//        ArrayList<RiwayatNongskuy> listRiwayatNongskuy = new ArrayList<>();
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
-//                1,
-//                4,
-//                40000,
-//                "OVO",
-//                "30-09-2021",
-//                "09:30"));
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
-//                1,
-//                2,
-//                20000,
-//                "Gopay",
-//                "31-09-2021",
-//                "09:30"));
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
-//                0,
-//                3,
-//                30000,
-//                "ATM",
-//                "30-09-2021",
-//                "10:00"));
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Khatib",
-//                1,
-//                4,
-//                40000,
-//                "OVO",
-//                "30-09-2021",
-//                "09:30"));
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Ahmad Yani",
-//                1,
-//                2,
-//                20000,
-//                "Gopay",
-//                "31-09-2021",
-//                "09:30"));
-//        listRiwayatNongskuy.add(new RiwayatNongskuy("McDonalds Air Tawar",
-//                0,
-//                3,
-//                30000,
-//                "ATM",
-//                "30-09-2021",
-//                "10:00"));
-//
-//        return listRiwayatNongskuy;
-//    }
 
 }

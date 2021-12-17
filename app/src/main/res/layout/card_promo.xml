@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="wrap_content"
             android:padding="10dp">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -26,6 +26,7 @@
                 android:layout_width="82dp"
                 android:layout_height="84dp"
                 android:background="@drawable/shimmer_background_image"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,10 +37,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/shimmer_background_text"
                 android:fontFamily="@font/manrope_bold"
+                android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                android:maxLines="2"
+                android:ems="3"
+                android:ellipsize="end"
                 android:minWidth="250dp"
+                android:maxWidth="250dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +59,12 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5sp"
                 android:background="@drawable/shimmer_background_text"
+                android:maxLines="1"
+                android:ems="3"
+                android:ellipsize="end"
                 android:fontFamily="@font/manrope_regular"
-                android:minWidth="100dp"
+                android:minWidth="250dp"
+                android:maxWidth="25dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +74,7 @@
 
             <View
                 android:id="@+id/viewGaris"
-                android:layout_width="260dp"
+                android:layout_width="250dp"
                 android:layout_height="0.5dp"
                 android:layout_marginHorizontal="10sp"
                 android:layout_marginTop="5sp"
@@ -83,10 +92,9 @@
                 android:layout_marginTop="5sp"
                 android:background="@drawable/shimmer_background_text"
                 android:fontFamily="@font/manrope_regular"
-                android:minWidth="120dp"
+                android:minWidth="80dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/imagePromo"
                 app:layout_constraintTop_toBottomOf="@+id/viewGaris" />
 
@@ -98,9 +106,9 @@
                 android:layout_marginTop="5sp"
                 android:background="@drawable/shimmer_background_text"
                 android:fontFamily="@font/manrope_regular"
-                android:minWidth="120dp"
+                android:minWidth="80dp"
                 android:textColor="@color/dark_gray"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 app:layout_constraintStart_toEndOf="@+id/imagePromo"
                 app:layout_constraintTop_toBottomOf="@+id/textHargaSetelahPromo" />
 

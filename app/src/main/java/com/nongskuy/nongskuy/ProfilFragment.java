@@ -6,31 +6,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.button.MaterialButton;
-import com.nongskuy.nongskuy.model.MessageResponse;
-import com.nongskuy.nongskuy.route.Route;
-
+import com.nongskuy.nongskuy.model.MessageClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfilFragment extends Fragment {
     private MaterialButton btnUbahProfil;
@@ -121,11 +112,11 @@ public class ProfilFragment extends Fragment {
                             config = new Config();
                             String token = sharedPreferences.getString("Token", null);
 
-                            Call<MessageResponse> call = config.configRetrofit().logout(token);
+                            Call<MessageClass> call = config.configRetrofit().logout(token);
                             toggleViewProgressBar();
-                            call.enqueue(new Callback<MessageResponse>() {
+                            call.enqueue(new Callback<MessageClass>() {
                                 @Override
-                                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                                public void onResponse(Call<MessageClass> call, Response<MessageClass> response) {
                                     if (response.code() == 200){
                                         if (response.isSuccessful()){
                                             Intent intent = new Intent(getActivity(), GetStartedActivity.class);
@@ -138,7 +129,7 @@ public class ProfilFragment extends Fragment {
                                 }
 
                                 @Override
-                                public void onFailure(Call<MessageResponse> call, Throwable t) {
+                                public void onFailure(Call<MessageClass> call, Throwable t) {
                                     Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });

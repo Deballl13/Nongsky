@@ -1,7 +1,6 @@
 package com.nongskuy.nongskuy;
 
 import com.nongskuy.nongskuy.route.Route;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

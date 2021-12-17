@@ -4,15 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
-
 import com.nongskuy.nongskuy.adapter.PencarianAdapter;
-import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
-import com.nongskuy.nongskuy.model.RiwayatNongskuy;
-import com.nongskuy.nongskuy.model.Store;
-
+import com.nongskuy.nongskuy.model.Toko;
 import java.util.ArrayList;
 
 public class PencarianActivity extends AppCompatActivity {
@@ -33,7 +28,7 @@ public class PencarianActivity extends AppCompatActivity {
         layoutPencarianTidakDitemukan = findViewById(R.id.layoutPencarianTidakDitemukan);
 
         pencarianAdapter = new PencarianAdapter();
-        pencarianAdapter.setListPencarian(dataDummy());
+//        pencarianAdapter.setListPencarian(dataDummy());
 
         if(pencarianAdapter.getItemCount() > 0){
             rvPencarian = findViewById(R.id.rvPencarian);
@@ -45,58 +40,49 @@ public class PencarianActivity extends AppCompatActivity {
         }
     }
 
-    public ArrayList<Store> dataDummy(){
-        ArrayList<Store> listPencarian = new ArrayList<>();
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-
-        listPencarian.add(new Store(
-                4.2,
-                "McDonald’s Padang",
-                "Jl. Khatib Sulaeman",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        return listPencarian;
-    }
+//    public ArrayList<Toko> dataDummy(){
+//        ArrayList<Toko> listPencarian = new ArrayList<>();
+//        listPencarian.add(new Toko(
+//                "4.2",
+//                "McDonald’s Padang",
+//                "Jl. Khatib Sulaeman",
+//                "Cepat saji",
+//                4.5,
+//                "km"
+//        ));
+//        listPencarian.add(new Toko(
+//                "4.2",
+//                "McDonald’s Padang",
+//                "Jl. Khatib Sulaeman",
+//                "Cepat saji",
+//                4.5,
+//                "km"
+//        ));
+//        listPencarian.add(new Toko(
+//                "4.2",
+//                "McDonald’s Padang",
+//                "Jl. Khatib Sulaeman",
+//                "Cepat saji",
+//                4.5,
+//                "km"
+//        ));listPencarian.add(new Toko(
+//                "4.2",
+//                "McDonald’s Padang",
+//                "Jl. Khatib Sulaeman",
+//                "Cepat saji",
+//                4.5,
+//                "km"
+//        ));
+//        listPencarian.add(new Toko(
+//                "4.2",
+//                "McDonald’s Padang",
+//                "Jl. Khatib Sulaeman",
+//                "Cepat saji",
+//                4.5,
+//                "km"
+//        ));
+//
+//
+//        return listPencarian;
+//    }
 }
