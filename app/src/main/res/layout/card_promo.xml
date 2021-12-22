@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="10dp"
     android:background="@color/white"
+    android:inputType="textNoSuggestions"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp">
     
@@ -38,19 +39,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/shimmer_background_text"
+                android:ellipsize="end"
+                android:ems="3"
                 android:fontFamily="@font/manrope_bold"
                 android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
-                android:maxLines="2"
-                android:ems="3"
-                android:ellipsize="end"
-                android:minWidth="250dp"
                 android:maxWidth="250dp"
+                android:maxLines="2"
+                android:minWidth="250dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imagePromo"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textTokoPromo"

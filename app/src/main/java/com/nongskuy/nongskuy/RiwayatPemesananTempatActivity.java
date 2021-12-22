@@ -22,8 +22,6 @@ import retrofit2.Response;
 public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
     private RecyclerView rvRiwayatNongskuy;
-    private ConstraintLayout layoutRiwayatPesanDitemukan;
-    private ConstraintLayout layoutRiwayatPesanTidakDitemukan;
     private SharedPreferences sharedPreferences;
     private Config config;
 
@@ -31,9 +29,6 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_riwayat_pemesanan_tempat);
-
-        layoutRiwayatPesanDitemukan = findViewById(R.id.layoutRiwayatPesanDitemukan);
-        layoutRiwayatPesanTidakDitemukan = findViewById(R.id.layoutRiwayatPesanTidakDitemukan);
 
         config = new Config();
         sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
@@ -58,8 +53,13 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
 
                         //cek isi arraylist listRiwayatNongskuy
                         if(listRiwayatNongskuy.size() == 0){
-                            layoutRiwayatPesanDitemukan.setVisibility(View.INVISIBLE);
-                            layoutRiwayatPesanTidakDitemukan.setVisibility(View.VISIBLE);
+                            // menghilangkan recyclerview
+                            rvRiwayatNongskuy.setVisibility(View.GONE);
+
+                            // menampilkan riwayat tidak ada
+                            findViewById(R.id.noDataAvail).setVisibility(View.VISIBLE);
+                            findViewById(R.id.textUtamaRiwayatPesan).setVisibility(View.VISIBLE);
+                            findViewById(R.id.textPelengkapRiwayatPesan).setVisibility(View.VISIBLE);
                         }
 
                         //perulangan data item

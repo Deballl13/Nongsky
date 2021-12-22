@@ -45,22 +45,30 @@ public class PromoFragment extends Fragment {
         String token = sharedPreferences.getString("Token", null);
 
         config = new Config();
-        carouselView = view.findViewById(R.id.carouselView);
+        carouselView = view.findViewById(R.id.carouselViewPromo);
         carouselView.setPageCount(sampleImages.length);
         carouselView.setImageListener(imageListener);
+        recyclerView = view.findViewById(R.id.rvPromo);
 
 
 
         // cek login atau tidak
         if(token != null){
-            view.findViewById(R.id.layoutPromoUser).setVisibility(view.VISIBLE);
-            view.findViewById(R.id.layoutPromoGuest).setVisibility(view.GONE);
+            // menampilkan tampilan halaman untuk user
+            view.findViewById(R.id.toolbarPromo).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.textPromo).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.cardViewCarouselPromo).setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+
+            // menghilangkan tampilan halaman untuk guest
+            view.findViewById(R.id.promoGuest).setVisibility(View.GONE);
+            view.findViewById(R.id.textUtamaGuestPromo).setVisibility(View.GONE);
+            view.findViewById(R.id.textPelengkapGuestPromo).setVisibility(View.GONE);
         }
 
 
 
         // recyclerview promo
-        recyclerView = view.findViewById(R.id.rvPromo);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         loadDataPromo(token);
 

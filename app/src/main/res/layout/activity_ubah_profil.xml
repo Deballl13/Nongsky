@@ -2,11 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerUbahProfil"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UbahProfilActivity"
+    android:inputType="textNoSuggestions"
     android:background="@color/background_gray"
-    android:id="@+id/containerUbahProfil">
+    tools:context=".UbahProfilActivity" >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarUbahProfil"

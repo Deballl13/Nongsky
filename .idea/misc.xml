@@ -83,25 +83,29 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_get_started.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_launcher.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_pembayaran.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_pembayaran_gopay.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_pencarian.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_pesan_tempat.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_populer.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_riwayat_pemesanan_tempat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/activity_ubah_profil.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_fasilitas.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_menu_horizontal.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_pencarian.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_populer.xml" value="0.4" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_populer_horizontal.xml" value="0.49447077409162715" />
-        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo.xml" value="0.4" />
-        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo_horizontal.xml" value="0.6" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo.xml" value="0.264" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_promo_horizontal.xml" value="0.2532188841201717" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_riwayat_pemesanan_tempat.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/card_terdekat_horizontal.xml" value="0.8" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_beranda.xml" value="0.2" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_populer.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_profil.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_promo.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_terdekat.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_terdekat.xml" value="0.21851851851851853" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/menu/menu.xml" value="0.16574074074074074" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/drawable/ic_arrow_right.xml" value="0.2703125" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_detail_store.xml" value="0.264" />

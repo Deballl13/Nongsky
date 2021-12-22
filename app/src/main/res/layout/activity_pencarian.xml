@@ -2,8 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutBeranda"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:inputType="textNoSuggestions"
     tools:context=".PencarianActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,19 +22,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
-        android:id="@+id/searchViewBeranda"
+        android:id="@+id/searchViewPencarian"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:background="@drawable/searchview_style"
         android:elevation="1000dp"
         android:queryHint="Cari Tempat Nongkrong"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarPencarian"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbarPencarian"
-        app:layout_constraintVertical_bias="0.673" />
+        app:layout_constraintTop_toTopOf="@+id/toolbarPencarian" />
 
     <!--    Pencarian Ditemukan-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,8 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian"
-        android:visibility="invisible">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian" >
 
         <TextView
             android:id="@+id/textHasilCari"
@@ -80,11 +82,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="100dp"
         android:background="@color/background_gray"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian"
-        android:visibility="visible">
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPencarian" >
 
         <ImageView
             android:id="@+id/noSearchFound"
