@@ -24,10 +24,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfilFragment extends Fragment {
-    private MaterialButton btnUbahProfil;
-    private MaterialButton btnGantiKataSandi;
-    private MaterialButton btnLogout;
-    private TextView namaProfil, emailProfil, noHpProfil;
+    private MaterialButton btnUbahProfil, btnGantiKataSandi, btnLogout;
+    private TextView namaProfil, noHpProfil, emailProfil;
     private SharedPreferences sharedPreferences;
     private Config config;
 
@@ -47,21 +45,34 @@ public class ProfilFragment extends Fragment {
         String email = sharedPreferences.getString("Email", null);
         String no_hp = sharedPreferences.getString("NoHp", null);
 
-        btnUbahProfil = (MaterialButton) view.findViewById(R.id.buttonUbahProfil);
-        btnGantiKataSandi = (MaterialButton) view.findViewById(R.id.buttonGantiKataSandi);
-        btnLogout = (MaterialButton) view.findViewById(R.id.buttonKeluar);
         namaProfil = view.findViewById(R.id.textNameProfile);
         noHpProfil = view.findViewById(R.id.textPhoneProfile);
         emailProfil = view.findViewById(R.id.textEmailProfile);
+        btnUbahProfil = (MaterialButton) view.findViewById(R.id.buttonUbahProfil);
+        btnGantiKataSandi = (MaterialButton) view.findViewById(R.id.buttonGantiKataSandi);
+        btnLogout = (MaterialButton) view.findViewById(R.id.buttonKeluar);
 
         //tampilan profil user dan guest
         if(token != null){
             namaProfil.setText(nama);
-            emailProfil.setText(email);
             noHpProfil.setText(no_hp);
+            emailProfil.setText(email);
 
-            view.findViewById(R.id.layoutProfilUser).setVisibility(view.VISIBLE);
-            view.findViewById(R.id.layoutProfilGuest).setVisibility(view.GONE);
+            // menampilkan tampilan halaman untuk user
+            view.findViewById(R.id.toolbarProfil).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.textProfil).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.shapeableImageViewProfilUser).setVisibility(View.VISIBLE);
+            namaProfil.setVisibility(View.VISIBLE);
+            noHpProfil.setVisibility(View.VISIBLE);
+            emailProfil.setVisibility(View.VISIBLE);
+            btnUbahProfil.setVisibility(View.VISIBLE);
+            btnGantiKataSandi.setVisibility(View.VISIBLE);
+            btnLogout.setVisibility(View.VISIBLE);
+
+            // menghilangkan tampilan halaman untuk guest
+            view.findViewById(R.id.profilGuest).setVisibility(View.GONE);
+            view.findViewById(R.id.textUtamaGuestProfil).setVisibility(View.GONE);
+            view.findViewById(R.id.textPelengkapGuestProfil).setVisibility(View.GONE);
         }
 
 //        //Get response dari ubah profil dan ubah password

@@ -1,203 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfilFragment"
-    android:background="@color/background_gray">
+    android:background="@color/background_gray"
+    android:inputType="textNoSuggestions"
+    tools:context=".ProfilFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutProfilUser"
+    <!--  tampilan user  -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarProfil"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" >
+        android:layout_height="260dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarProfil"
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/fredokaone_regular"
+        android:text="@string/profil"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbarProfil" />
 
-        <TextView
-            android:id="@+id/textProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/fredokaone_regular"
-            android:text="@string/profil"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbarProfil" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeableImageViewProfilUser"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="36dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avatar"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarProfil"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="@+id/toolbarProfil"
+        app:layout_constraintTop_toTopOf="@id/textProfil"
+        app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/shapeableImageView"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="36dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/avatar"
-            app:layout_constraintEnd_toEndOf="@+id/toolbarProfil"
-            app:layout_constraintHorizontal_bias="0.437"
-            app:layout_constraintStart_toStartOf="@+id/toolbarProfil"
-            app:layout_constraintTop_toTopOf="@id/textProfil"
-            app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
+    <TextView
+        android:id="@+id/textNameProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/manrope_bold"
+        android:text="@string/name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shapeableImageViewProfilUser" />
 
-        <TextView
-            android:id="@+id/textNameProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+    <TextView
+        android:id="@+id/textPhoneProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/manrope_regular"
+        android:text="@string/no_telepon"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textNameProfile" />
 
-        <TextView
-            android:id="@+id/textPhoneProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/manrope_regular"
-            android:text="@string/no_telepon"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textNameProfile" />
+    <TextView
+        android:id="@+id/textEmailProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:fontFamily="@font/manrope_regular"
+        android:text="@string/profil_email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPhoneProfile" />
 
-        <TextView
-            android:id="@+id/textEmailProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="@string/profil_email"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPhoneProfile" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonUbahProfil"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/manrope_regular"
-            android:paddingHorizontal="35dp"
-            android:text="@string/ubah_profil"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:icon="@drawable/ic_baseline_navigate_next"
-            app:iconGravity="end"
-            app:iconSize="24sp"
-            app:iconTint="@color/yellow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textEmailProfile"
-            app:strokeColor="@color/gray" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonGantiKataSandi"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/manrope_regular"
-            android:paddingHorizontal="35dp"
-            android:text="@string/ganti_kata_sandi"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginTop="-10dp"
-            app:icon="@drawable/ic_baseline_navigate_next"
-            app:iconGravity="end"
-            app:iconSize="24sp"
-            app:iconTint="@color/yellow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonUbahProfil"
-            app:strokeColor="@color/gray"
-            tools:ignore="DuplicateClickableBoundsCheck" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonKeluar"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/manrope_regular"
-            android:paddingHorizontal="35dp"
-            android:text="@string/keluar"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/red"
-            android:textSize="14sp"
-            android:layout_marginTop="-10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGantiKataSandi"
-            app:strokeColor="@color/gray"
-            tools:ignore="TextContrastCheck" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutProfilGuest"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonUbahProfil"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:paddingHorizontal="35dp"
+        android:text="@string/ubah_profil"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_navigate_next"
+        app:iconGravity="end"
+        app:iconSize="24sp"
+        app:iconTint="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmailProfile"
+        app:strokeColor="@color/gray" />
 
-        <ImageView
-            android:id="@+id/profilGuest"
-            android:layout_width="220dp"
-            android:layout_height="236dp"
-            android:layout_marginTop="190dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_undraw_people_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGantiKataSandi"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="-10dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:paddingHorizontal="35dp"
+        android:text="@string/ganti_kata_sandi"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_navigate_next"
+        app:iconGravity="end"
+        app:iconSize="24sp"
+        app:iconTint="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUbahProfil"
+        app:strokeColor="@color/gray"
+        tools:ignore="DuplicateClickableBoundsCheck" />
 
-        <TextView
-            android:id="@+id/textUtama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Oops! Kamu belum login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profilGuest" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonKeluar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/manrope_regular"
+        android:paddingHorizontal="35dp"
+        android:text="@string/keluar"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/red"
+        android:textSize="14sp"
+        android:layout_marginTop="-10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGantiKataSandi"
+        app:strokeColor="@color/gray"
+        tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/textPelengkapProfil"
-            android:layout_width="300dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Silahkan login ke akun kamu untuk melihat profil"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUtama" />
+    <!--  tampilan user  -->
+    <ImageView
+        android:id="@+id/profilGuest"
+        android:layout_width="220dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="190dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_undraw_people_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textUtamaGuestProfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/manrope_bold"
+        android:text="Oops! Kamu belum login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilGuest" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textPelengkapGuestProfil"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Silahkan login ke akun kamu untuk melihat profil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUtamaGuestProfil" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

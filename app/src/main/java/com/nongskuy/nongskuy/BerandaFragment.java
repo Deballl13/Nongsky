@@ -18,6 +18,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,6 +33,10 @@ import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Toko;
 import com.nongskuy.nongskuy.model.TokoPopulerClass;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -43,11 +49,12 @@ public class BerandaFragment extends Fragment {
     private MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
             btnLihatSemuaPromo, btnLihatSemuaTerdekat;
     private RecyclerView recyclerViewPopuler, recyclerViewPromo, recyclerViewTerdekat;
-    private ConstraintLayout contentBeranda;
+    private ScrollView scrollViewBeranda;
     private BottomNavigationView bottomNavigationView;
     private SharedPreferences sharedPreferences;
     private SwipeRefreshLayout refreshLayout;
     private Config config;
+    private SearchView searchViewBeranda;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -71,9 +78,10 @@ public class BerandaFragment extends Fragment {
         btnLihatSemuaPopuler = view.findViewById(R.id.buttonLihatSemuaPopuler);
         btnLihatSemuaPromo = view.findViewById(R.id.buttonLihatSemuaPromo);
         btnLihatSemuaTerdekat = view.findViewById(R.id.buttonLihatSemuaTerdekat);
-        contentBeranda = view.findViewById(R.id.contentBeranda);
+        scrollViewBeranda = view.findViewById(R.id.scrollViewBeranda);
         bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.BottomNavigationMenu);
         namaUser = view.findViewById(R.id.textName);
+        searchViewBeranda = view.findViewById(R.id.searchViewBeranda);
 
 
 
@@ -92,9 +100,17 @@ public class BerandaFragment extends Fragment {
         if (token != null) {
             namaUser.setText(nama.toString());
             btnRiwayatPemesananTempat.setVisibility(View.VISIBLE);
-            ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) contentBeranda.getLayoutParams();
-            layoutParams.topMargin = 0;
-            contentBeranda.setLayoutParams(layoutParams);
+
+            // atur margin text populer beranda
+            TextView textBerandaPopuler = view.findViewById(R.id.textBerandaPopuler);
+            ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) textBerandaPopuler.getLayoutParams();
+            layoutParams.setMargins(24,30,0,0);
+            textBerandaPopuler.setLayoutParams(layoutParams);
+
+            // atur margin button lihat semua populer
+            ConstraintLayout.LayoutParams layoutParams1 = (ConstraintLayout.LayoutParams) btnLihatSemuaPopuler.getLayoutParams();
+            layoutParams1.setMargins(0,15,12,0);
+            btnLihatSemuaPopuler.setLayoutParams(layoutParams1);
         }
 
 
@@ -106,10 +122,17 @@ public class BerandaFragment extends Fragment {
         loadDataTokoPopuler();
 
         // recyclerview promo
-        LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewPromo = view.findViewById(R.id.recyclerViewBerandaPromo);
-        recyclerViewPromo.setLayoutManager(linearLayoutManagerPromo);
-        loadDataPromo(token);
+        if (token != null) {
+            recyclerViewPromo = view.findViewById(R.id.recyclerViewBerandaPromo);
+
+            view.findViewById(R.id.textBerandaPromo).setVisibility(View.VISIBLE);
+            btnLihatSemuaPromo.setVisibility(View.VISIBLE);
+            recyclerViewPromo.setVisibility(View.VISIBLE);
+
+            LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+            recyclerViewPromo.setLayoutManager(linearLayoutManagerPromo);
+            loadDataPromo(token);
+        }
 
         // recyclerview terdekat
         LinearLayoutManager linearLayoutManagerTerdekat = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -157,6 +180,41 @@ public class BerandaFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // menghilangkan keyword pencarian yang ada
+        searchViewBeranda.setQuery("", false);
+        searchViewBeranda.clearFocus();
+
+        // jika keyword di enter/submit akan diarahkan ke halaman pencarian
+        searchViewBeranda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Intent intent = new Intent(getActivity(), PencarianActivity.class);
+                intent.putExtra("Keyword", s);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        // jika menyentuh layoout diluar search view
+//        scrollViewBeranda.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                Toast.makeText(getActivity(), "ontouch", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        });
+
     }
 
     public boolean loadFragment(Fragment fragment) {

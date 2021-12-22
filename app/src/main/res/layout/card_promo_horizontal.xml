@@ -14,7 +14,7 @@
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmerPromoBeranda"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="148dp"
@@ -24,23 +24,24 @@
                 android:id="@+id/imagePromoBeranda"
                 android:layout_width="148dp"
                 android:layout_height="92dp"
-                android:scaleType="fitXY"
                 android:background="@color/gray"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textMenuPromoBeranda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/shimmer_background_text"
                 android:ellipsize="end"
                 android:ems="3"
                 android:fontFamily="@font/manrope_bold"
                 android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
-                android:layout_marginTop="3dp"
                 android:maxWidth="132dp"
                 android:maxLines="2"
                 android:minWidth="132dp"
@@ -50,7 +51,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imagePromoBeranda"
-                tools:ignore="TouchTargetSizeCheck" />
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/textTokoPromoBeranda"

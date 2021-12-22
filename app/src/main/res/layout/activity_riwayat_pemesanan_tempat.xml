@@ -33,66 +33,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutRiwayatPesanDitemukan"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRiwayatNongskuy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp"
         android:layout_marginTop="90dp"
-        android:background="@color/background_gray"
-        android:visibility="visible">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRiwayatPemesananTempat" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRiwayatNongskuy"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="10dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/card_riwayat_pemesanan_tempat" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/noDataAvail"
+        android:layout_width="210dp"
+        android:layout_height="226dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_no_data_available"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRiwayatPemesananTempat" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutRiwayatPesanTidakDitemukan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
-        android:visibility="gone">
+    <TextView
+        android:id="@+id/textUtamaRiwayatPesan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/manrope_bold"
+        android:text="Riwayat pemesanan tidak ditemukan!"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noDataAvail" />
 
-        <ImageView
-            android:id="@+id/noDataAvail"
-            android:layout_width="210dp"
-            android:layout_height="226dp"
-            android:layout_marginTop="150dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/ic_no_data_available"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textUtama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Riwayat pemesanan tidak ditemukan!"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/noDataAvail" />
-
-        <TextView
-            android:id="@+id/textPelengkap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="Kamu belum pernah pesan tempat nongkrong nih"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textUtama" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textPelengkapRiwayatPesan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Kamu belum pernah pesan tempat nongkrong nih"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUtamaRiwayatPesan" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
