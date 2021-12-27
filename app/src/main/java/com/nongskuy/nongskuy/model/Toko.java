@@ -16,7 +16,7 @@ public class Toko {
     private Double jarakToko;
     private String satuanJarak;
 
-    // recyclerview populer lihat semua
+    // recyclerview populer
     public Toko(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
                 Double jarakToko, String ratingToko) {
         this.idToko = idToko;
