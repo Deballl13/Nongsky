@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.nongskuy.nongskuy.adapter.PromoAdapter;
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
 import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;
@@ -40,6 +42,7 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
     }
 
     public void loadDataRiwayatNongskuy(String token) {
+        rvRiwayatNongskuy.setAdapter(new RiwayatNongskuyAdapter(null));
         Call<RiwayatNongskuyClass> call = config.configRetrofit().riwayat(token);
         call.enqueue(new Callback<RiwayatNongskuyClass>() {
             @Override
