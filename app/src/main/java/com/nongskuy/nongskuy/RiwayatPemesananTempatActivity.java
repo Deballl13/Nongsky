@@ -76,6 +76,7 @@ public class RiwayatPemesananTempatActivity extends AppCompatActivity {
                             );
 
                             arrayListRiwayatNongskuy.add(riwayatNongskuy);
+                            riwayatNongskuyAdapter.setShimmer(false);
                             rvRiwayatNongskuy.setAdapter(riwayatNongskuyAdapter);
                             riwayatNongskuyAdapter.notifyDataSetChanged();
                         }

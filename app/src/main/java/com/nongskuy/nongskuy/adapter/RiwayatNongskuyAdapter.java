@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
@@ -21,6 +22,11 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
 
     private Context context;
     private ArrayList<RiwayatNongskuy> listRiwayatNongskuy;
+    private boolean isShimmer = true;
+
+    public void setShimmer(boolean shimmer) {
+        isShimmer = shimmer;
+    }
 
     //Constructor
     public RiwayatNongskuyAdapter (ArrayList<RiwayatNongskuy> listRiwayatNongskuy) {
@@ -30,10 +36,14 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
     //View Holder
     public class RiwayatNongskuyViewHolder extends RecyclerView.ViewHolder {
         TextView textNamaToko, textStatusPesan, textTotalKursi, textTotalDeposit, textCaraBayar, textTglPesan, textWaktuPesan;
+        TextView totalKursi, totalDeposit, caraBayar, tanggalPesan, waktuPesan;
         ShapeableImageView imgTokoRiwayatNongskuy;
+        ShimmerFrameLayout shimmerFrameLayout;
 
         public RiwayatNongskuyViewHolder(@NonNull View itemView) {
             super(itemView);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmerRiwayat);
+
             textNamaToko = itemView.findViewById(R.id.textNamaToko);
             imgTokoRiwayatNongskuy = itemView.findViewById(R.id.imgTokoRiwayatNongskuy);
             textStatusPesan = itemView.findViewById(R.id.textStatusPesan);
@@ -42,9 +52,14 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
             textCaraBayar= itemView.findViewById(R.id.textCaraBayar);
             textTglPesan = itemView.findViewById(R.id.textTglPesan);
             textWaktuPesan = itemView.findViewById(R.id.textWaktuPesan);
+
+            totalKursi = itemView.findViewById(R.id.TotalKursi);
+            totalDeposit = itemView.findViewById(R.id.TotalDeposit);
+            caraBayar = itemView.findViewById(R.id.CaraBayar);
+            tanggalPesan = itemView.findViewById(R.id.TanggalPesan);
+            waktuPesan = itemView.findViewById(R.id.WaktuPesan);
         }
     }
-
 
 
     //Method adapter
@@ -53,45 +68,85 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
     public RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.card_riwayat_pemesanan_tempat, parent,false);
-        RiwayatNongskuyViewHolder viewHolder = new RiwayatNongskuyViewHolder(view);
         context = view.getContext();
-        return viewHolder;
+        return new RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RiwayatNongskuyAdapter.RiwayatNongskuyViewHolder viewHolder, int position) {
-        // format mata uang rupiah
-        Helper helper = new Helper();
-
-        RiwayatNongskuy riwayatNongskuy = listRiwayatNongskuy.get(position);
-        viewHolder.textNamaToko.setText(riwayatNongskuy.getNamaToko());
-        Glide.with(context)
-                .load(Uri.parse(riwayatNongskuy.getGambarToko()))
-                .apply(new RequestOptions()
-                        .override(80, 80))
-                .into(viewHolder.imgTokoRiwayatNongskuy);
-        viewHolder.textTotalKursi.setText(riwayatNongskuy.getTotalKursi().toString());
-        viewHolder.textTotalDeposit.setText(helper.mataUangRupiah(riwayatNongskuy.getTotalDeposit()));
-        viewHolder.textCaraBayar.setText(riwayatNongskuy.getCaraBayar());
-        viewHolder.textTglPesan.setText(riwayatNongskuy.getTglPesan());
-        viewHolder.textWaktuPesan.setText(riwayatNongskuy.getWaktuPesan());
-
-        if(riwayatNongskuy.getStatusPesan().equals(1)){
-            viewHolder.textStatusPesan.setText("Dipesan");
-            viewHolder.textStatusPesan.setTextColor(Color.GREEN);
+        if (isShimmer){
+            viewHolder.shimmerFrameLayout.startShimmer();
         }
-        else if(riwayatNongskuy.getStatusPesan().equals(0)){
-            viewHolder.textStatusPesan.setText("Dibatalkan");
-            viewHolder.textStatusPesan.setTextColor(Color.RED);
-        }
-        else if(riwayatNongskuy.getStatusPesan().equals(2)){
-            viewHolder.textStatusPesan.setText("Proses Bayar");
-            viewHolder.textStatusPesan.setTextColor(Color.BLUE);
+        else{
+            viewHolder.shimmerFrameLayout.stopShimmer();
+            viewHolder.shimmerFrameLayout.setShimmer(null);
+
+            Helper helper = new Helper();
+
+            RiwayatNongskuy riwayatNongskuy = listRiwayatNongskuy.get(position);
+
+            //set data
+            viewHolder.imgTokoRiwayatNongskuy.setBackground(null);
+            Glide.with(context)
+                    .load(Uri.parse(riwayatNongskuy.getGambarToko()))
+                    .apply(new RequestOptions()
+                            .override(80, 80))
+                    .into(viewHolder.imgTokoRiwayatNongskuy);
+
+            viewHolder.textNamaToko.setBackground(null);
+            viewHolder.textNamaToko.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_store, 0, 0, 0);
+            viewHolder.textNamaToko.setCompoundDrawablePadding(10);
+            viewHolder.textNamaToko.setText(riwayatNongskuy.getNamaToko());
+
+            viewHolder.textTotalKursi.setBackground(null);
+            viewHolder.textTotalKursi.setText(riwayatNongskuy.getTotalKursi().toString() + " Kursi");
+
+            viewHolder.textTotalDeposit.setBackground(null);
+            viewHolder.textTotalDeposit.setText(helper.mataUangRupiah(riwayatNongskuy.getTotalDeposit()));
+
+            viewHolder.textCaraBayar.setBackground(null);
+            viewHolder.textCaraBayar.setText(riwayatNongskuy.getCaraBayar());
+
+            viewHolder.textTglPesan.setBackground(null);
+            viewHolder.textTglPesan.setText(riwayatNongskuy.getTglPesan());
+
+            viewHolder.textWaktuPesan.setBackground(null);
+            viewHolder.textWaktuPesan.setText(riwayatNongskuy.getWaktuPesan());
+
+            viewHolder.textStatusPesan.setBackground(null);
+            if(riwayatNongskuy.getStatusPesan().equals(1)){
+                viewHolder.textStatusPesan.setText("Dipesan");
+                viewHolder.textStatusPesan.setTextColor(Color.GREEN);
+            }
+            else if(riwayatNongskuy.getStatusPesan().equals(0)){
+                viewHolder.textStatusPesan.setText("Dibatalkan");
+                viewHolder.textStatusPesan.setTextColor(Color.RED);
+            }
+            else if(riwayatNongskuy.getStatusPesan().equals(2)){
+                viewHolder.textStatusPesan.setText("Proses Bayar");
+                viewHolder.textStatusPesan.setTextColor(Color.BLUE);
+            }
+
+            //set judul data
+            viewHolder.totalKursi.setBackground(null);
+            viewHolder.totalKursi.setText("Total Kursi");
+
+            viewHolder.totalDeposit.setBackground(null);
+            viewHolder.totalDeposit.setText("Total Deposit");
+
+            viewHolder.caraBayar.setBackground(null);
+            viewHolder.caraBayar.setText("Metode Bayar");
+
+            viewHolder.tanggalPesan.setBackground(null);
+            viewHolder.tanggalPesan.setText("Tanggal Pesan");
+
+            viewHolder.waktuPesan.setBackground(null);
+            viewHolder.waktuPesan.setText("Waktu Pesan");
         }
     }
 
     @Override
     public int getItemCount() {
-        return listRiwayatNongskuy.size();
+        return isShimmer ? 10 : listRiwayatNongskuy.size();
     }
 }
