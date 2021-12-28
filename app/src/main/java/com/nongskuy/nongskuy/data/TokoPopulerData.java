@@ -3,15 +3,8 @@ package com.nongskuy.nongskuy.data;
 import com.google.gson.annotations.SerializedName;
 
 public class TokoPopulerData {
-
-	@SerializedName("rating")
-	private String rating;
-
 	@SerializedName("id")
 	private int id;
-
-	@SerializedName("tipe")
-	private String tipe;
 
 	@SerializedName("gambar")
 	private String gambar;
@@ -22,51 +15,79 @@ public class TokoPopulerData {
 	@SerializedName("alamat")
 	private String alamat;
 
-	public void setRating(String rating){
-		this.rating = rating;
-	}
+	@SerializedName("tipe")
+	private String tipe;
 
-	public String getRating(){
-		return rating;
-	}
+	@SerializedName("rating")
+	private String rating;
 
-	public void setId(int id){
-		this.id = id;
-	}
+	@SerializedName("latitude")
+	private String latitude;
 
-	public int getId(){
+	@SerializedName("longitude")
+	private String longitude;
+
+	public int getId() {
 		return id;
 	}
 
-	public void setTipe(String tipe){
-		this.tipe = tipe;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getTipe(){
-		return tipe;
-	}
-
-	public void setGambar(String gambar){
-		this.gambar = gambar;
-	}
-
-	public String getGambar(){
+	public String getGambar() {
 		return gambar;
 	}
 
-	public void setNamaToko(String namaToko){
-		this.namaToko = namaToko;
+	public void setGambar(String gambar) {
+		this.gambar = gambar;
 	}
 
-	public String getNamaToko(){
+	public String getNamaToko() {
 		return namaToko;
 	}
 
-	public void setAlamat(String alamat){
+	public void setNamaToko(String namaToko) {
+		this.namaToko = namaToko;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
 		this.alamat = alamat;
 	}
 
-	public String getAlamat(){
-		return alamat;
+	public String getTipe() {
+		return tipe;
+	}
+
+	public void setTipe(String tipe) {
+		this.tipe = tipe;
+	}
+
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 }
