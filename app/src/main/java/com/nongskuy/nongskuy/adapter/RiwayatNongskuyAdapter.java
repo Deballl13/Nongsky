@@ -99,19 +99,19 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
             viewHolder.textNamaToko.setText(riwayatNongskuy.getNamaToko());
 
             viewHolder.textTotalKursi.setBackground(null);
-            viewHolder.textTotalKursi.setText(riwayatNongskuy.getTotalKursi().toString() + " Kursi");
+            viewHolder.textTotalKursi.setText(":  " + riwayatNongskuy.getTotalKursi().toString() + " Kursi");
 
             viewHolder.textTotalDeposit.setBackground(null);
-            viewHolder.textTotalDeposit.setText(helper.mataUangRupiah(riwayatNongskuy.getTotalDeposit()));
+            viewHolder.textTotalDeposit.setText(":  " + helper.mataUangRupiah(riwayatNongskuy.getTotalDeposit()));
 
             viewHolder.textCaraBayar.setBackground(null);
-            viewHolder.textCaraBayar.setText(riwayatNongskuy.getCaraBayar());
+            viewHolder.textCaraBayar.setText(":  " + riwayatNongskuy.getCaraBayar());
 
             viewHolder.textTglPesan.setBackground(null);
-            viewHolder.textTglPesan.setText(riwayatNongskuy.getTglPesan());
+            viewHolder.textTglPesan.setText(":  " + riwayatNongskuy.getTglPesan());
 
             viewHolder.textWaktuPesan.setBackground(null);
-            viewHolder.textWaktuPesan.setText(riwayatNongskuy.getWaktuPesan());
+            viewHolder.textWaktuPesan.setText(":  " + riwayatNongskuy.getWaktuPesan());
 
             viewHolder.textStatusPesan.setBackground(null);
             if(riwayatNongskuy.getStatusPesan().equals(1)){
