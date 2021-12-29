@@ -34,7 +34,7 @@
         <activity
             android:name=".PencarianActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RiwayatPemesananTempatActivity"
             android:exported="true"

@@ -1,35 +1,56 @@
 package com.nongskuy.nongskuy.adapter;
 
+import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.R;
 import com.nongskuy.nongskuy.model.Toko;
 import java.util.ArrayList;
 
 public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.PencarianViewHolder>{
 
+    private ArrayList<Toko> listPencarian;
+    private Context context;
+    private boolean isShimmer = true;
+
+    //set shimmer
+    public void setShimmer(boolean shimmer) {
+        isShimmer = shimmer;
+    }
+
+    //constructor
+    public PencarianAdapter(ArrayList<Toko> listPencarian) {
+        this.listPencarian = listPencarian;
+    }
+
     //View Holder
     public class PencarianViewHolder extends RecyclerView.ViewHolder {
-        TextView textNamaTokoPencarian, textAlamatTokoPencarian, textJarakToko, satuanJarak;
+        TextView textNamaTokoPencarian, textAlamatTokoPencarian, textJarakToko;
+        ShapeableImageView imgTokoPencarian;
+        ImageButton btnNext;
+        ShimmerFrameLayout shimmerFrameLayout;
 
         public PencarianViewHolder(@NonNull View itemView) {
             super(itemView);
+            shimmerFrameLayout = itemView.findViewById(R.id.shimmerPencarian);
+            btnNext = itemView.findViewById(R.id.nextButton);
+
+            imgTokoPencarian = itemView.findViewById(R.id.logoTokoPencarian);
             textNamaTokoPencarian = itemView.findViewById(R.id.textNamaTokoPencarian);
             textAlamatTokoPencarian = itemView.findViewById(R.id.textAlamatTokoPencarian);
             textJarakToko = itemView.findViewById(R.id.textJarakToko);
-            satuanJarak = itemView.findViewById(R.id.satuanJarak);
         }
-    }
-
-    //Array List menampung dan set data yang ditampilkan
-    ArrayList<Toko> listPencarian = new ArrayList<>();
-    public void setListPencarian (ArrayList<Toko> listPencarian) {
-        this.listPencarian = listPencarian;
-        notifyDataSetChanged();
     }
 
     //Method adapter
@@ -38,23 +59,45 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
     public PencarianAdapter.PencarianViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.card_pencarian, parent,false);
-        PencarianAdapter.PencarianViewHolder viewHolder = new PencarianAdapter.PencarianViewHolder(view);
-        return viewHolder;
+        context = view.getContext();
+        return new PencarianAdapter.PencarianViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PencarianAdapter.PencarianViewHolder viewHolder, int position) {
+        if (isShimmer){
+            viewHolder.shimmerFrameLayout.startShimmer();
+        }
+        else{
+            viewHolder.shimmerFrameLayout.stopShimmer();
+            viewHolder.shimmerFrameLayout.setShimmer(null);
 
-        Toko toko = listPencarian.get(position);
-        viewHolder.textNamaTokoPencarian.setText(toko.getNamaToko());
-        viewHolder.textAlamatTokoPencarian.setText(toko.getAlamatToko());
-        viewHolder.textJarakToko.setText(toko.getJarakToko().toString());
-        viewHolder.satuanJarak.setText(toko.getSatuanJarak());
+            Toko toko = listPencarian.get(position);
+
+            viewHolder.imgTokoPencarian.setBackground(null);
+            Glide.with(context)
+                    .load(Uri.parse(toko.getGambarToko()))
+                    .apply(new RequestOptions()
+                            .override(80, 80))
+                    .into(viewHolder.imgTokoPencarian);
+
+            viewHolder.textNamaTokoPencarian.setBackground(null);
+            viewHolder.textNamaTokoPencarian.setText(toko.getNamaToko());
+
+            viewHolder.textAlamatTokoPencarian.setBackground(null);
+            viewHolder.textAlamatTokoPencarian.setText(toko.getAlamatToko());
+
+            viewHolder.textJarakToko.setBackground(null);
+            viewHolder.textJarakToko.setText(toko.getJarakToko().toString() + " Km");
+
+            viewHolder.btnNext.setBackground(null);
+            viewHolder.btnNext.setImageResource(R.drawable.ic_baseline_navigate_next);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return listPencarian.size();
+        return isShimmer ? 10 : listPencarian.size();
     }
 
 }

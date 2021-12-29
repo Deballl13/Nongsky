@@ -24,6 +24,7 @@ public class RiwayatNongskuyAdapter extends RecyclerView.Adapter<RiwayatNongskuy
     private ArrayList<RiwayatNongskuy> listRiwayatNongskuy;
     private boolean isShimmer = true;
 
+    //set shimmer
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
     }

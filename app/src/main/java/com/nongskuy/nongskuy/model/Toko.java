@@ -28,9 +28,19 @@ public class Toko {
         this.ratingToko = ratingToko;
     }
 
-    public Toko(String namaToko, String alamatToko, Double jarakToko, String satuanJarak) {
+    //recyclerview pencarian
+    public Toko(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko) {
+        this.idToko = idToko;
+        this.gambarToko = gambarToko;
         this.namaToko = namaToko;
         this.alamatToko = alamatToko;
+        this.jarakToko = jarakToko;
+    }
+
+    //recyclerview beranda terdekat
+    public Toko(String namaToko, String tipeToko, Double jarakToko, String satuanJarak) {
+        this.namaToko = namaToko;
+        this.tipeToko = tipeToko;
         this.jarakToko = jarakToko;
         this.satuanJarak = satuanJarak;
     }

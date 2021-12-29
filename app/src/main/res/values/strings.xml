@@ -3,7 +3,6 @@
     <string name="getstarted_title">Tempat Nongkrong Ideal Buat Kamu</string>
     <string name="getstarted_capt">Gabung dan temukan tempat nongkrong favoritmu!</string>
     <string name="get_started_guest">Lewati ></string>
-    <string name="todo">TODO</string>
     <string name="btn_daftar">Daftar</string>
     <string name="btn_masuk">Masuk</string>
     <string name="email">Email</string>
@@ -46,4 +45,5 @@
     <string name="nongskuy_terdekat">Nongskuy Terdekat</string>
     <string name="gps_alamat">Jl.Ahmad Yani</string>
     <string name="bar_riwayat_pemesanan_tempat">Riwayat Nongskuy Kamu</string>
+    <string name="todo">TODO</string>
 </resources>

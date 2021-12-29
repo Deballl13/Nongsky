@@ -1,7 +1,6 @@
 package com.nongskuy.nongskuy;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.nongskuy.nongskuy.adapter.PromoAdapter;
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
 import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.RiwayatNongskuy;

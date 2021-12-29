@@ -4,6 +4,7 @@ import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MessageClass;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
+import com.nongskuy.nongskuy.model.PencarianClass;
 import com.nongskuy.nongskuy.model.TokoPopulerClass;
 
 import retrofit2.Call;
@@ -46,4 +47,8 @@ public interface Route {
 
     @GET("toko/populer")
     Call<TokoPopulerClass> tokoPopuler();
+
+    @FormUrlEncoded
+    @POST("toko/search")
+    Call<PencarianClass> search(@Field("keyword") String keyword);
 }
