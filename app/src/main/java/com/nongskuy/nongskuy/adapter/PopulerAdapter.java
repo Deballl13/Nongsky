@@ -14,12 +14,12 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.R;
-import com.nongskuy.nongskuy.model.Toko;
+import com.nongskuy.nongskuy.model.Nongskuy;
 import java.util.ArrayList;
 
 public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerViewHolder> {
 
-    private ArrayList<Toko> listPopuler;
+    private ArrayList<Nongskuy> listPopuler;
     private Context context;
     private boolean isShimmer = true;
 
@@ -27,7 +27,7 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
         isShimmer = shimmer;
     }
 
-    public PopulerAdapter(ArrayList<Toko> listPopuler) {
+    public PopulerAdapter(ArrayList<Nongskuy> listPopuler) {
         this.listPopuler = listPopuler;
     }
 
@@ -49,29 +49,29 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
             holder.shimmerFrameLayout.stopShimmer();
             holder.shimmerFrameLayout.setShimmer(null);
 
-            Toko toko = listPopuler.get(position);
+            Nongskuy nongskuy = listPopuler.get(position);
 
             holder.imageTokoPopuler.setBackground(null);
             Glide.with(context)
-                    .load(Uri.parse(toko.getGambarToko()))
+                    .load(Uri.parse(nongskuy.getGambarToko()))
                     .apply(new RequestOptions()
                             .override(80, 80))
                     .into(holder.imageTokoPopuler);
 
             holder.textNamaTokoPopuler.setBackground(null);
-            holder.textNamaTokoPopuler.setText(toko.getNamaToko());
+            holder.textNamaTokoPopuler.setText(nongskuy.getNamaToko());
 
             holder.textAlamatTokoPopuler.setBackground(null);
-            holder.textAlamatTokoPopuler.setText(toko.getAlamatToko());
+            holder.textAlamatTokoPopuler.setText(nongskuy.getAlamatToko());
 
             holder.textTipeTongkrongan.setBackground(null);
-            holder.textTipeTongkrongan.setText(toko.getTipeToko());
+            holder.textTipeTongkrongan.setText(nongskuy.getTipeToko());
 
             holder.textJarakTongkrongan.setBackground(null);
-            holder.textJarakTongkrongan.setText(toko.getJarakToko().toString() + " " + "Km");
+            holder.textJarakTongkrongan.setText(nongskuy.getJarakToko().toString() + " " + "Km");
 
             holder.ratingPopuler.setVisibility(View.VISIBLE);
-            holder.ratingPopuler.setText(toko.getRatingToko());
+            holder.ratingPopuler.setText(nongskuy.getRatingToko());
         }
     }
 

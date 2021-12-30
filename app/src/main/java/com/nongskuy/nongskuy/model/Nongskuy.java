@@ -1,6 +1,6 @@
 package com.nongskuy.nongskuy.model;
 
-public class Toko {
+public class Nongskuy {
 
     private Integer idToko;
     private String gambarToko;
@@ -17,8 +17,8 @@ public class Toko {
     private String satuanJarak;
 
     // recyclerview populer
-    public Toko(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
-                Double jarakToko, String ratingToko) {
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
+                    Double jarakToko, String ratingToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
@@ -29,7 +29,7 @@ public class Toko {
     }
 
     //recyclerview pencarian
-    public Toko(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko) {
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
@@ -38,7 +38,7 @@ public class Toko {
     }
 
     //recyclerview beranda terdekat
-    public Toko(String namaToko, String tipeToko, Double jarakToko, String satuanJarak) {
+    public Nongskuy(String namaToko, String tipeToko, Double jarakToko, String satuanJarak) {
         this.namaToko = namaToko;
         this.tipeToko = tipeToko;
         this.jarakToko = jarakToko;

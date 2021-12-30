@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nongskuy.nongskuy.adapter.PopulerAdapter;
 import com.nongskuy.nongskuy.adapter.PromoAdapter;
-import com.nongskuy.nongskuy.data.TokoPopulerData;
-import com.nongskuy.nongskuy.model.Toko;
-import com.nongskuy.nongskuy.model.TokoPopulerClass;
+import com.nongskuy.nongskuy.data.NongskuyPopulerData;
+import com.nongskuy.nongskuy.model.Nongskuy;
+import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -52,29 +52,29 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
 
     public void loadDataTokoPopuler(){
         recyclerView.setAdapter(new PromoAdapter(null));
-        Call<TokoPopulerClass> call = config.configRetrofit().tokoPopuler();
-        call.enqueue(new Callback<TokoPopulerClass>() {
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
+        call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
-            public void onResponse(Call<TokoPopulerClass> call, Response<TokoPopulerClass> response) {
+            public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {
                 if(response.code() == 200){
                     if(response.isSuccessful()){
-                        TokoPopulerClass tokoPopulerClass = response.body();
-                        List<TokoPopulerData> listTokoPopuler = tokoPopulerClass.getTokoPopuler();
-                        ArrayList<Toko> arrayListTokoPopuler = new ArrayList<>();
+                        NongskuyPopulerClass nongskuyPopulerClass = response.body();
+                        List<NongskuyPopulerData> listTokoPopuler = nongskuyPopulerClass.getTokoPopuler();
+                        ArrayList<Nongskuy> arrayListTokoPopuler = new ArrayList<>();
                         PopulerAdapter populerAdapter = new PopulerAdapter(arrayListTokoPopuler);
 
-                        for(TokoPopulerData tokoPopulerData : listTokoPopuler){
-                            Toko toko = new Toko(
-                                    tokoPopulerData.getId(),
-                                    tokoPopulerData.getGambar(),
-                                    tokoPopulerData.getNamaToko(),
-                                    tokoPopulerData.getAlamat(),
-                                    tokoPopulerData.getTipe(),
+                        for(NongskuyPopulerData nongskuyPopulerData : listTokoPopuler){
+                            Nongskuy nongskuy = new Nongskuy(
+                                    nongskuyPopulerData.getId(),
+                                    nongskuyPopulerData.getGambar(),
+                                    nongskuyPopulerData.getNamaToko(),
+                                    nongskuyPopulerData.getAlamat(),
+                                    nongskuyPopulerData.getTipe(),
                                     4.5,
-                                    tokoPopulerData.getRating()
+                                    nongskuyPopulerData.getRating()
                             );
 
-                            arrayListTokoPopuler.add(toko);
+                            arrayListTokoPopuler.add(nongskuy);
                             populerAdapter.setShimmer(false);
                             recyclerView.setAdapter(populerAdapter);
                             populerAdapter.notifyDataSetChanged();
@@ -84,7 +84,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
             }
 
             @Override
-            public void onFailure(Call<TokoPopulerClass> call, Throwable t) {
+            public void onFailure(Call<NongskuyPopulerClass> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

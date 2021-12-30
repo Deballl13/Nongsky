@@ -28,14 +28,11 @@ import com.nongskuy.nongskuy.adapter.BerandaPopulerAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaPromoAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaTerdekatAdapter;
 import com.nongskuy.nongskuy.data.PromoData;
-import com.nongskuy.nongskuy.data.TokoPopulerData;
+import com.nongskuy.nongskuy.data.NongskuyPopulerData;
 import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
-import com.nongskuy.nongskuy.model.Toko;
-import com.nongskuy.nongskuy.model.TokoPopulerClass;
-
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+import com.nongskuy.nongskuy.model.Nongskuy;
+import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -257,29 +254,29 @@ public class BerandaFragment extends Fragment {
 
     public void loadDataTokoPopuler(){
         recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
-        Call<TokoPopulerClass> call = config.configRetrofit().tokoPopuler();
-        call.enqueue(new Callback<TokoPopulerClass>() {
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
+        call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
-            public void onResponse(Call<TokoPopulerClass> call, Response<TokoPopulerClass> response) {
+            public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {
                 if(response.code() == 200){
                     if(response.isSuccessful()){
-                        TokoPopulerClass tokoPopulerClass = response.body();
-                        List<TokoPopulerData> listTokoPopuler = tokoPopulerClass.getTokoPopuler();
-                        ArrayList<Toko> arrayListTokoPopuler = new ArrayList<>();
+                        NongskuyPopulerClass nongskuyPopulerClass = response.body();
+                        List<NongskuyPopulerData> listTokoPopuler = nongskuyPopulerClass.getTokoPopuler();
+                        ArrayList<Nongskuy> arrayListTokoPopuler = new ArrayList<>();
                         BerandaPopulerAdapter berandaPopulerAdapter = new BerandaPopulerAdapter(arrayListTokoPopuler);
 
-                        for(TokoPopulerData tokoPopulerData : listTokoPopuler){
-                            Toko toko = new Toko(
-                              tokoPopulerData.getId(),
-                              tokoPopulerData.getGambar(),
-                              tokoPopulerData.getNamaToko(),
-                              tokoPopulerData.getAlamat(),
-                              tokoPopulerData.getTipe(),
+                        for(NongskuyPopulerData nongskuyPopulerData : listTokoPopuler){
+                            Nongskuy nongskuy = new Nongskuy(
+                              nongskuyPopulerData.getId(),
+                              nongskuyPopulerData.getGambar(),
+                              nongskuyPopulerData.getNamaToko(),
+                              nongskuyPopulerData.getAlamat(),
+                              nongskuyPopulerData.getTipe(),
                               4.5,
-                                    tokoPopulerData.getRating()
+                                    nongskuyPopulerData.getRating()
                             );
 
-                            arrayListTokoPopuler.add(toko);
+                            arrayListTokoPopuler.add(nongskuy);
                             berandaPopulerAdapter.setShimmer(false);
                             recyclerViewPopuler.setAdapter(berandaPopulerAdapter);
                             berandaPopulerAdapter.notifyDataSetChanged();
@@ -289,7 +286,7 @@ public class BerandaFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<TokoPopulerClass> call, Throwable t) {
+            public void onFailure(Call<NongskuyPopulerClass> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -336,69 +333,69 @@ public class BerandaFragment extends Fragment {
         });
     }
 
-    public ArrayList<Toko> getDataTerdekat() {
-        ArrayList<Toko> listTerdekatBeranda = new ArrayList<>();
-        listTerdekatBeranda.add(new Toko(
+    public ArrayList<Nongskuy> getDataTerdekat() {
+        ArrayList<Nongskuy> listTerdekatBeranda = new ArrayList<>();
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,
                 "km"
         ));
-        listTerdekatBeranda.add(new Toko(
+        listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",
                 "Cepat saji",
                 4.5,

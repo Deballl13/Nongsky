@@ -75,7 +75,7 @@ public class ProfilFragment extends Fragment {
             view.findViewById(R.id.textPelengkapGuestProfil).setVisibility(View.GONE);
         }
 
-//        //Get response dari ubah profil dan ubah password
+        //Get response dari ubah profil dan ubah password
         ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {

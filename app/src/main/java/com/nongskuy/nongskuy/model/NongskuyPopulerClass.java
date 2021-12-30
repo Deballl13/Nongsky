@@ -2,9 +2,9 @@ package com.nongskuy.nongskuy.model;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
-import com.nongskuy.nongskuy.data.TokoPopulerData;
+import com.nongskuy.nongskuy.data.NongskuyPopulerData;
 
-public class TokoPopulerClass {
+public class NongskuyPopulerClass {
 	@SerializedName("tanggal")
 	private String tanggal;
 
@@ -12,7 +12,7 @@ public class TokoPopulerClass {
 	private int jumlah;
 
 	@SerializedName("toko_populer")
-	private List<TokoPopulerData> tokoPopuler;
+	private List<NongskuyPopulerData> tokoPopuler;
 
 	public void setTanggal(String tanggal){
 		this.tanggal = tanggal;
@@ -30,11 +30,11 @@ public class TokoPopulerClass {
 		return jumlah;
 	}
 
-	public void setTokoPopuler(List<TokoPopulerData> tokoPopuler){
+	public void setTokoPopuler(List<NongskuyPopulerData> tokoPopuler){
 		this.tokoPopuler = tokoPopuler;
 	}
 
-	public List<TokoPopulerData> getTokoPopuler(){
+	public List<NongskuyPopulerData> getTokoPopuler(){
 		return tokoPopuler;
 	}
 }

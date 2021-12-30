@@ -10,7 +10,7 @@ import android.widget.SearchView;
 import com.nongskuy.nongskuy.adapter.PencarianAdapter;
 import com.nongskuy.nongskuy.data.PencarianData;
 import com.nongskuy.nongskuy.model.PencarianClass;
-import com.nongskuy.nongskuy.model.Toko;
+import com.nongskuy.nongskuy.model.Nongskuy;
 
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
@@ -106,7 +106,7 @@ public class PencarianActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         PencarianClass pencarianClass = response.body();
                         List<PencarianData> listPencarian = pencarianClass.getSearchResult();
-                        ArrayList<Toko> arrayListPencarianToko = new ArrayList<>();
+                        ArrayList<Nongskuy> arrayListPencarianToko = new ArrayList<>();
                         PencarianAdapter pencarianAdapter = new PencarianAdapter(arrayListPencarianToko);
 
                         //cek isi arraylist listPencarian
@@ -123,7 +123,7 @@ public class PencarianActivity extends AppCompatActivity {
                         else{
                             //perulangan item data
                             for (PencarianData pencarianData : listPencarian) {
-                                Toko toko = new Toko(
+                                Nongskuy nongskuy = new Nongskuy(
                                         pencarianData.getId(),
                                         pencarianData.getGambar(),
                                         pencarianData.getNamaToko(),
@@ -131,7 +131,7 @@ public class PencarianActivity extends AppCompatActivity {
                                         4.5
                                 );
 
-                                arrayListPencarianToko.add(toko);
+                                arrayListPencarianToko.add(nongskuy);
                                 pencarianAdapter.setShimmer(false);
                                 rvPencarian.setAdapter(pencarianAdapter);
                                 pencarianAdapter.notifyDataSetChanged();
@@ -159,50 +159,4 @@ public class PencarianActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    //    public ArrayList<Toko> dataDummy(){
-//        ArrayList<Toko> listPencarian = new ArrayList<>();
-//        listPencarian.add(new Toko(
-//                "4.2",
-//                "McDonald’s Padang",
-//                "Jl. Khatib Sulaeman",
-//                "Cepat saji",
-//                4.5,
-//                "km"
-//        ));
-//        listPencarian.add(new Toko(
-//                "4.2",
-//                "McDonald’s Padang",
-//                "Jl. Khatib Sulaeman",
-//                "Cepat saji",
-//                4.5,
-//                "km"
-//        ));
-//        listPencarian.add(new Toko(
-//                "4.2",
-//                "McDonald’s Padang",
-//                "Jl. Khatib Sulaeman",
-//                "Cepat saji",
-//                4.5,
-//                "km"
-//        ));listPencarian.add(new Toko(
-//                "4.2",
-//                "McDonald’s Padang",
-//                "Jl. Khatib Sulaeman",
-//                "Cepat saji",
-//                4.5,
-//                "km"
-//        ));
-//        listPencarian.add(new Toko(
-//                "4.2",
-//                "McDonald’s Padang",
-//                "Jl. Khatib Sulaeman",
-//                "Cepat saji",
-//                4.5,
-//                "km"
-//        ));
-//
-//
-//        return listPencarian;
-//    }
 }

@@ -20,9 +20,12 @@
             android:screenOrientation="portrait"
             android:value="AIzaSyC1XF99g6TPp_nmsQRQs_jDGLhDqci4R2s" />
 
+        <service android:name=".services.FetchAddressIntentService" />
+
         <activity
             android:name=".pembayaran_gopay"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PesanTempatActivity"
             android:exported="true"

@@ -5,7 +5,7 @@ import com.nongskuy.nongskuy.model.MessageClass;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 import com.nongskuy.nongskuy.model.PencarianClass;
-import com.nongskuy.nongskuy.model.TokoPopulerClass;
+import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -46,7 +46,7 @@ public interface Route {
     Call<RiwayatNongskuyClass> riwayat(@Header("Authorization") String token);
 
     @GET("toko/populer")
-    Call<TokoPopulerClass> tokoPopuler();
+    Call<NongskuyPopulerClass> tokoPopuler();
 
     @FormUrlEncoded
     @POST("toko/search")

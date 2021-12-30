@@ -20,6 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <TextView
         android:id="@+id/textTerdekat"
         android:layout_width="wrap_content"
@@ -34,34 +36,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbarTerdekat" />
 
-    <ImageView
-        android:id="@+id/logoImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="24dp"
-        android:src="@drawable/ic_outline_place"
-        app:layout_constraintEnd_toStartOf="@+id/textAlamatGPS"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textTerdekat"
-        android:contentDescription="@string/todo" />
-
     <TextView
         android:id="@+id/textAlamatGPS"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="240dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="15dp"
         android:fontFamily="@font/manrope_bold"
-        android:text="@string/gps_alamat"
+        android:drawableLeft="@drawable/ic_outline_place"
+        android:drawablePadding="5sp"
+        android:text="Tidak diketahui"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:maxLines="1"
+        android:ems="3"
+        android:ellipsize="end"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textTerdekat"
-        app:layout_constraintStart_toStartOf="@id/logoImage"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <fragment
         android:id="@+id/google_map"
@@ -73,20 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarTerdekat" />
-
-    <SearchView
-        android:id="@+id/searchViewMap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/searchview_style"
-        android:queryHint="Cari Tempat Nongkrong"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlamatGPS" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

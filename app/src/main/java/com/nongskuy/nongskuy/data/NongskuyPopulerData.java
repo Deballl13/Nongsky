@@ -2,7 +2,7 @@ package com.nongskuy.nongskuy.data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TokoPopulerData {
+public class NongskuyPopulerData {
 	@SerializedName("id")
 	private int id;
 

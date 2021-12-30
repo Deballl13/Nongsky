@@ -7,14 +7,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nongskuy.nongskuy.R;
-import com.nongskuy.nongskuy.model.Toko;
+import com.nongskuy.nongskuy.model.Nongskuy;
 import java.util.ArrayList;
 
 public class BerandaTerdekatAdapter extends RecyclerView.Adapter<BerandaTerdekatAdapter.BerandaTerdekatViewHolder>{
 
-    ArrayList<Toko> listTerdekatBeranda;
+    ArrayList<Nongskuy> listTerdekatBeranda;
 
-    public BerandaTerdekatAdapter(ArrayList<Toko> listTerdekatBeranda) {
+    public BerandaTerdekatAdapter(ArrayList<Nongskuy> listTerdekatBeranda) {
         this.listTerdekatBeranda = listTerdekatBeranda;
     }
 
