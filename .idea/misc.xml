@@ -67,11 +67,13 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/checkbox.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/custom_carousel.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/garis_bawah.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/green_progress_bar.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/ic_outline_home.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/ic_outline_person.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/ic_outline_place.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/ic_outline_promo.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/ic_undraw_people_search.xml" value="0.2703125" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/marker_current_location.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/option_selected.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/option_unselected.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/drawable/radio.xml" value="0.2703125" />
@@ -108,6 +110,7 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_profil.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_promo.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/fragment_terdekat.xml" value="0.21851851851851853" />
+        <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/layout/progress_dialog.xml" value="0.264" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/menu/menu.xml" value="0.16574074074074074" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/drawable/ic_arrow_right.xml" value="0.2703125" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_detail_store.xml" value="0.264" />

@@ -53,26 +53,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPencarian"
         android:layout_width="match_parent"
-        android:layout_height="585dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
         android:clipToPadding="false"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textHasilCari" />
-
-    <LinearLayout
-        android:id="@+id/keyboardContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/keyboardContainer"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintTop_toBottomOf="@+id/textHasilCari"
+        tools:listitem="@layout/card_pencarian"/>
 
     <!--    Layout Pencarian Tidak Ditemukan-->
     <ImageView

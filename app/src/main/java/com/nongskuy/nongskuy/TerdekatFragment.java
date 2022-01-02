@@ -3,9 +3,11 @@ package com.nongskuy.nongskuy;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
@@ -13,10 +15,12 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import android.os.Handler;
 import android.os.ResultReceiver;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +38,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.CancellationTokenSource;
@@ -77,7 +82,6 @@ public class TerdekatFragment extends Fragment {
             });
         } else {
             checkGpsStatus();
-            getCurrentLocation();
         }
 
         return view;
@@ -96,29 +100,22 @@ public class TerdekatFragment extends Fragment {
                                     Manifest.permission.ACCESS_COARSE_LOCATION, false);
                         }
 
-                        if (fineLocationGranted && fineLocationGranted) {
+                        if (fineLocationGranted && coarseLocationGranted) {
                             checkGpsStatus();
                         }
                     }
             );
 
-    // on activity result
-    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    Toast.makeText(getActivity(), String.valueOf(result), Toast.LENGTH_SHORT).show();
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Toast.makeText(getActivity(), "gps on", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(result.getResultCode() == Activity.RESULT_CANCELED){
-                        Toast.makeText(getActivity(), "gps not allow", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
     public void getCurrentLocation() {
+        // setup progress dialog mencari lokasi
+        textAlamatGps.setText("Mencari lokasi...");
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.show();
+        progressDialog.setContentView(R.layout.progress_dialog);
+        progressDialog.setCancelable(false);
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        // get current location
         CancellationTokenSource cts = new CancellationTokenSource();
         @SuppressLint("MissingPermission") Task<Location> task = fusedLocationProviderClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cts.getToken());
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -129,12 +126,18 @@ public class TerdekatFragment extends Fragment {
                         @SuppressLint("MissingPermission")
                         @Override
                         public void onMapReady(@NonNull GoogleMap googleMap) {
+                            // hide progress dialog
+                            progressDialog.dismiss();
+
+                            // setup location on google maps
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+                            MarkerOptions markerOptions = new MarkerOptions().position(latLng)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
                             googleMap.addMarker(markerOptions);
                             googleMap.getUiSettings().setZoomControlsEnabled(true);
 
+                            // get location name
                             Location location1 = new Location("providerNA");
                             location1.setLatitude(location.getLatitude());
                             location1.setLongitude(location.getLongitude());
@@ -164,6 +167,7 @@ public class TerdekatFragment extends Fragment {
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
+                    getCurrentLocation();
                 } catch (ApiException e) {
                     switch (e.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
@@ -181,6 +185,16 @@ public class TerdekatFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == Activity.RESULT_OK) {
+                getCurrentLocation();
+            }
+        }
     }
 
     public void fetchAddressFromLatLong(Location location){
