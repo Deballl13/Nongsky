@@ -45,6 +45,11 @@ public class Nongskuy {
         this.satuanJarak = satuanJarak;
     }
 
+    //recyclerview fasilitas store
+    public Nongskuy(String fasilitasToko){
+        this.fasilitasToko = fasilitasToko;
+    }
+
     public Integer getIdToko() {
         return idToko;
     }

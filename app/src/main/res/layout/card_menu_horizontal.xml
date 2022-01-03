@@ -2,21 +2,22 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="148dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp"
+    android:layout_marginHorizontal="5dp"
     android:elevation="2dp"
+    android:background="@color/white"
     app:cardCornerRadius="10dp"
     android:layout_centerInParent="true" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:paddingBottom="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageMenuBeranda"
+            android:id="@+id/imageMenu"
+            android:scaleType="fitXY"
             android:layout_width="148dp"
             android:layout_height="92dp"
             android:src="@drawable/paket_panas"
@@ -25,28 +26,39 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textMakananMenuBeranda"
+            android:id="@+id/textMenuStore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:ems="3"
             android:fontFamily="@font/manrope_bold"
-            android:text="Nama Makanan"
+            android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+            android:text="Panas Ayam 1"
+            android:maxWidth="132dp"
+            android:maxLines="1"
+            android:minWidth="132dp"
             android:textColor="@color/black"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageMenuBeranda" />
+            app:layout_constraintTop_toBottomOf="@+id/imageMenu"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textHargaMenuBeranda"
+            android:id="@+id/textHargaMenuStore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/manrope_regular"
             android:text="Harga"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textMakananMenuBeranda" />
+            app:layout_constraintTop_toBottomOf="@+id/textMenuStore" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,8 @@
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/colorcollection.xml" value="0.19583333333333333" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/custom_edit_text.xml" value="0.20052083333333334" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/rounded_btn.xml" value="0.19583333333333333" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_nongskuy.xml" value="0.16721776098252245" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_review.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_store.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_get_started.xml" value="0.3333333333333333" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_getstarted_acitivity.xml" value="0.1" />
@@ -17,12 +19,15 @@
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_riwayat_pemesanan_tempat.xml" value="0.215633423180593" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_tidak_ditemukan.xml" value="0.2" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_ubah_profil.xml" value="0.1638888888888889" />
-        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_fasilitas.xml" value="0.1" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_fasilitas.xml" value="0.5" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_fasilitas_horizontal.xml" value="0.184375" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_menu_horizontal.xml" value="0.16666666666666666" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_pencarian.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_populer.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_populer_horizontal.xml" value="0.184375" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_promo.xml" value="0.5386904761904762" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_promo_horizontal.xml" value="0.184375" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_review_horizontal.xml" value="0.152" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/card_riwayat_pemesanan_tempat.xml" value="0.4466666666666667" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/fragment_beranda.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/fragment_profil.xml" value="0.1" />
