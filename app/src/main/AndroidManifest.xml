@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/LightTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".DetailReview"
-            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -26,15 +23,13 @@
         <service android:name=".services.FetchAddressIntentService" />
 
         <activity
+            android:name=".DetailReview"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".DetailNongskuy"
             android:exported="true"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".pembayaran_gopay"
             android:exported="true"
@@ -58,7 +53,13 @@
         <activity
             android:name=".LauncherActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".GetStartedActivity"
             android:exported="true"

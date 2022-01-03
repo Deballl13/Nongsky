@@ -1,9 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshDetailStore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailReview">
+    android:background="@color/background_gray"
+    android:inputType="textNoSuggestions"
+    tools:context=".DetailNongskuy">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:id="@+id/scrollViewDetailReview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/InputReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="15dp">
+
+            <ImageView
+                android:id="@+id/imageDetailReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/store_display_img"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textNamaReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/fredokaone_regular"
+                android:text="McDonalds Ahmad Yani"
+                android:maxLines="2"
+                android:maxWidth="250dp"
+                android:minWidth="250dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                app:flow_verticalAlign="center"
+                app:layout_constraintBottom_toBottomOf="@+id/imageDetailReview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.008"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textTambahkanReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/imageDetailReview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Tambahkan Reviewmu!"
+                android:fontFamily="@font/manrope_bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textAlignment="textStart"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="14dp"/>
+
+            <RatingBar
+                android:id="@+id/ratingBarReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="20dp"
+                android:progressTint="@color/yellow"
+                android:progressBackgroundTint="@color/gray"
+                android:numStars="5"
+                android:stepSize="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTambahkanReview"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/Komentar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBarReview"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Komentar"
+                android:textAlignment="textStart"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/manrope_regular"
+                />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textFieldKomentar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/manrope_regular"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:scrollHorizontally="false"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Komentar" />
+
+            <Button
+                android:id="@+id/btnTambahFotoReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/manrope_regular"
+                android:drawableLeft="@drawable/ic_baseline_add"
+                android:text="Tambah Foto"
+                android:layout_marginTop="10dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textFieldKomentar" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="24dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Simpan"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnTambahFotoReview" />
+
+            <TextView
+                android:id="@+id/Review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="Cerita Mereka Tentang Tongkrongan Ini"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReviewDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Review"
+                android:paddingHorizontal="14dp"
+                android:clipToPadding="false"
+                android:layout_marginTop="15dp"
+                android:paddingBottom="10dp"
+                tools:listitem="@layout/card_detail_review"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
