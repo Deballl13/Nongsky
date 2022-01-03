@@ -1,6 +1,5 @@
 package com.nongskuy.nongskuy;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +32,6 @@ import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
-
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -57,7 +55,6 @@ public class BerandaFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -116,7 +113,7 @@ public class BerandaFragment extends Fragment {
         LinearLayoutManager linearLayoutManagerPopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopuler = view.findViewById(R.id.recyclerViewBerandaPopuler);
         recyclerViewPopuler.setLayoutManager(linearLayoutManagerPopuler);
-        loadDataTokoPopuler();
+        loadDataNongskuyPopuler();
 
         // recyclerview promo
         if (token != null) {
@@ -136,8 +133,6 @@ public class BerandaFragment extends Fragment {
         recyclerViewTerdekat = view.findViewById(R.id.recyclerViewBerandaTerdekat);
         recyclerViewTerdekat.setLayoutManager(linearLayoutManagerTerdekat);
         recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(getDataTerdekat()));
-
-
 
         // getFragment
         ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
@@ -202,16 +197,6 @@ public class BerandaFragment extends Fragment {
                 return false;
             }
         });
-
-        // jika menyentuh layoout diluar search view
-//        scrollViewBeranda.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View view, MotionEvent motionEvent) {
-//                Toast.makeText(getActivity(), "ontouch", Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        });
-
     }
 
     public boolean loadFragment(Fragment fragment) {
@@ -242,17 +227,16 @@ public class BerandaFragment extends Fragment {
                 loadFragment(new ProfilFragment());
                 bottomNavigationView.setSelectedItemId(R.id.menu_profil);
                 break;
-
         }
     }
 
     public void refreshPage(String token){
-        loadDataTokoPopuler();
+        loadDataNongskuyPopuler();
         loadDataPromo(token);
         refreshLayout.setRefreshing(false);
     }
 
-    public void loadDataTokoPopuler(){
+    public void loadDataNongskuyPopuler(){
         recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
         Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
         call.enqueue(new Callback<NongskuyPopulerClass>() {

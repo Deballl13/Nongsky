@@ -34,7 +34,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
         config = new Config();
         recyclerView = findViewById(R.id.rvPopulerNongskuy);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        loadDataTokoPopuler();
+        loadDataNongskuyPopuler();
 
         bottomNavigationViewPopuler = findViewById(R.id.BottomNavigationMenuPopuler);
         bottomNavigationViewPopuler.setOnNavigationItemSelectedListener(this);
@@ -50,7 +50,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
         return true;
     }
 
-    public void loadDataTokoPopuler(){
+    public void loadDataNongskuyPopuler(){
         recyclerView.setAdapter(new PromoAdapter(null));
         Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
         call.enqueue(new Callback<NongskuyPopulerClass>() {
