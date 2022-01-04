@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PencarianActivity extends AppCompatActivity {
+public class PencarianActivity extends AppCompatActivity implements PencarianAdapter.OnPencarianViewHolderClick {
 
     private RecyclerView rvPencarian;
     private SearchView searchViewPencarian;
@@ -120,7 +120,9 @@ public class PencarianActivity extends AppCompatActivity {
                                         pencarianData.getGambar(),
                                         pencarianData.getNamaToko(),
                                         pencarianData.getAlamat(),
-                                        4.5
+                                        4.5,
+                                        Double.parseDouble(pencarianData.getLatitude()),
+                                        Double.parseDouble(pencarianData.getLongitude())
                                 );
 
                                 arrayListPencarianToko.add(nongskuy);
@@ -128,6 +130,7 @@ public class PencarianActivity extends AppCompatActivity {
                                 rvPencarian.setAdapter(pencarianAdapter);
                                 pencarianAdapter.notifyDataSetChanged();
                             }
+                            pencarianAdapter.setPencarianClickObject(PencarianActivity.this);
                         }
                     }
                 }
@@ -150,5 +153,17 @@ public class PencarianActivity extends AppCompatActivity {
             super.onBackPressed();
             finish();
         }
+    }
+
+    @Override
+    public void onPencarianClick(Nongskuy nongskuy) {
+        Intent detailnongskuy = new Intent(this, DetailNongskuy.class);
+        detailnongskuy.putExtra("IdToko", nongskuy.getIdToko());
+        detailnongskuy.putExtra("NamaToko", nongskuy.getNamaToko());
+        detailnongskuy.putExtra("GambarToko", nongskuy.getGambarToko());
+        detailnongskuy.putExtra("AlamatToko", nongskuy.getAlamatToko());
+        detailnongskuy.putExtra("LatToko", nongskuy.getLatToko());
+        detailnongskuy.putExtra("LongToko", nongskuy.getLongToko());
+        startActivity(detailnongskuy);
     }
 }

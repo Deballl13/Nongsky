@@ -1,13 +1,29 @@
 package com.nongskuy.nongskuy;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.adapter.FasilitasAdapter;
 import com.nongskuy.nongskuy.adapter.MenuAdapter;
@@ -18,22 +34,40 @@ import com.nongskuy.nongskuy.model.Review;
 
 import java.util.ArrayList;
 
-public class DetailNongskuy extends AppCompatActivity {
+public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallback {
 
     private RecyclerView rvMenu, rvReview, rvFasilitas;
     private MenuAdapter menuAdapter;
     private ReviewAdapter reviewAdapter;
     private FasilitasAdapter fasilitasAdapter;
-
     private MaterialButton btnLihatSemuaReview, btnTambahReview;
+    private ImageView imageDetailNongskuy;
+    private TextView textNamaNongskuy, textAlamatNongskuy;
+    private SupportMapFragment supportMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_nongskuy);
 
+        //get id
         btnLihatSemuaReview = findViewById(R.id.btnLihatSemuaReview);
         btnTambahReview = findViewById(R.id.btnTambahReview);
+        imageDetailNongskuy = findViewById(R.id.imageDetailStore);
+        textNamaNongskuy = findViewById(R.id.textNamaToko);
+        textAlamatNongskuy = findViewById(R.id.textAlamatToko);
+
+        //Get Data Intent
+        Intent intent = getIntent();
+        String idToko = intent.getStringExtra("IdToko");
+        textNamaNongskuy.setText(intent.getStringExtra("NamaToko"));
+        textAlamatNongskuy.setText(intent.getStringExtra("AlamatToko"));
+        Glide.with(getApplicationContext())
+                .load(Uri.parse(intent.getStringExtra("GambarToko")))
+                .into(imageDetailNongskuy);
+
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps_store);
+        supportMapFragment.getMapAsync(this);
 
         //Menu Recycler View
         menuAdapter = new MenuAdapter();
@@ -65,6 +99,7 @@ public class DetailNongskuy extends AppCompatActivity {
 
     public void toPesanTempat(View view){
         Intent intent = new Intent(DetailNongskuy.this, PesanTempatActivity.class);
+
         startActivity(intent);
     }
 
@@ -131,5 +166,15 @@ public class DetailNongskuy extends AppCompatActivity {
         ));
 
         return listFasilitas;
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        Intent intent = getIntent();
+        LatLng latLng = new LatLng(intent.getDoubleExtra("LatToko", 0.0),
+                intent.getDoubleExtra("LongToko", 0.0));
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng);
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+        googleMap.addMarker(markerOptions);
     }
 }

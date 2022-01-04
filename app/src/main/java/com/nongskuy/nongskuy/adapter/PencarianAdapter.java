@@ -22,6 +22,7 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
     private ArrayList<Nongskuy> listPencarian;
     private Context context;
     private boolean isShimmer = true;
+    private OnPencarianViewHolderClick pencarianClickObject;
 
     //set shimmer
     public void setShimmer(boolean shimmer) {
@@ -31,6 +32,15 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
     //constructor
     public PencarianAdapter(ArrayList<Nongskuy> listPencarian) {
         this.listPencarian = listPencarian;
+    }
+
+    //Click Listener Item RV
+    public interface OnPencarianViewHolderClick{
+        void onPencarianClick(Nongskuy nongskuy);
+    }
+
+    public void setPencarianClickObject(OnPencarianViewHolderClick pencarianClickObject){
+        this.pencarianClickObject = pencarianClickObject;
     }
 
     //View Holder
@@ -49,6 +59,14 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
             textNamaTokoPencarian = itemView.findViewById(R.id.textNamaTokoPencarian);
             textAlamatTokoPencarian = itemView.findViewById(R.id.textAlamatTokoPencarian);
             textJarakToko = itemView.findViewById(R.id.textJarakToko);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Nongskuy nongskuy = listPencarian.get(getAdapterPosition());
+                    pencarianClickObject.onPencarianClick(nongskuy);
+                }
+            });
         }
     }
 

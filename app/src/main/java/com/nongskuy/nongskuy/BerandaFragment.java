@@ -164,8 +164,7 @@ public class BerandaFragment extends Fragment {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent intent = result.getData();
                             // Handle the Intent
-                            String data = intent.getStringExtra("Fragment");
-                            menuNavigation(data);
+                            menuNavigation(intent.getStringExtra("Fragment"));
                         }
                     }
                 });
@@ -336,7 +335,9 @@ public class BerandaFragment extends Fragment {
                                     nongskuyPopulerData.getAlamat(),
                                     nongskuyPopulerData.getTipe(),
                                     4.5,
-                                    nongskuyPopulerData.getRating()
+                                    nongskuyPopulerData.getRating(),
+                                    Double.parseDouble(nongskuyPopulerData.getLatitude()),
+                                    Double.parseDouble(nongskuyPopulerData.getLongitude())
                             );
 
                             arrayListTokoPopuler.add(nongskuy);

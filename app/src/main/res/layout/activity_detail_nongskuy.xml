@@ -1,214 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refreshDetailStore"
+    android:id="@+id/scrollViewDetailStore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_gray"
     android:inputType="textNoSuggestions"
     tools:context=".DetailNongskuy">
 
-    <ScrollView
-        android:id="@+id/scrollViewDetailStore"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/imageDetailStore"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/store_display_img"
+            android:contentDescription="@string/todo"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageDetailStore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/store_display_img"
-                android:contentDescription="@string/todo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textNamaToko"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:ems="3"
+            android:fontFamily="@font/fredokaone_regular"
+            android:maxWidth="250dp"
+            android:maxLines="2"
+            android:minWidth="250dp"
+            android:text="McDonalds Ahmad Yani"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toBottomOf="@+id/imageDetailStore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.008"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/textNamaToko"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/fredokaone_regular"
-                android:maxWidth="250dp"
-                android:maxLines="2"
-                android:minWidth="250dp"
-                android:text="McDonalds Ahmad Yani"
-                android:textAlignment="textStart"
-                android:textColor="@color/white"
-                android:textSize="28sp"
-                app:flow_verticalAlign="center"
-                app:layout_constraintBottom_toBottomOf="@+id/imageDetailStore"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:layout_constraintHorizontal_bias="0.008"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPesanTempat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="toPesanTempat"
+            android:text="Pesan Tempat"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageDetailStore" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPesanTempat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/manrope_bold"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="Pesan Tempat"
-                android:onClick="toPesanTempat"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageDetailStore" />
+        <fragment
+            android:id="@+id/maps_store"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPesanTempat" />
 
-            <fragment
-                android:id="@+id/maps_store"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="115dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPesanTempat" />
+        <TextView
+            android:id="@+id/textAlamatToko"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="14dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/manrope_bold"
+            android:maxWidth="250dp"
+            android:maxLines="3"
+            android:minWidth="250dp"
+            android:text="Jl. Bandar Damar No.18A Olo,Kec. Padang Bar.,Kota Padang, Sumatera Barat"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/maps_store"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginBottom="14dp"
-                android:maxWidth="250dp"
-                android:minWidth="250dp"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:fontFamily="@font/manrope_regular"
-                android:text="Jl. Bandar Damar No.18A Olo,Kec. Padang Bar.,Kota Padang, Sumatera Barat"
-                android:textAlignment="textStart"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/maps_store"
-                app:layout_constraintStart_toStartOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFasilitas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maps_store"
+            tools:listitem="@layout/card_fasilitas_horizontal" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvFasilitas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:clipToPadding="false"
-                app:layout_constraintTop_toBottomOf="@+id/maps_store"
-                tools:listitem="@layout/card_fasilitas_horizontal"/>
+        <TextView
+            android:id="@+id/textMenuUnggulan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Menu Unggulan"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvFasilitas" />
 
-            <TextView
-                android:id="@+id/textMenuUnggulan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/manrope_bold"
-                android:text="Menu Unggulan"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvFasilitas" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textMenuUnggulan"
+            tools:listitem="@layout/card_menu_horizontal" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rvMenu"
-                android:layout_marginTop="15dp"
-                android:paddingHorizontal="14dp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textMenuUnggulan"
-                tools:listitem="@layout/card_menu_horizontal"
-                />
+        <TextView
+            android:id="@+id/textReviewStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Review"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvMenu" />
 
-            <TextView
-                android:id="@+id/textReviewStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/manrope_bold"
-                android:textColor="@color/black"
-                android:text="Review"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvMenu"
-                />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTambahReview"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/white_gray"
+            android:fontFamily="@font/manrope_regular"
+            android:gravity="center_horizontal"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:onClick="toReview"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_baseline_add"
+            app:layout_constraintBottom_toBottomOf="@+id/rvReviewStore"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textReviewStore" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnTambahReview"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="@color/white_gray"
-                android:fontFamily="@font/manrope_regular"
-                android:textAllCaps="false"
-                android:textSize="12sp"
-                app:icon="@drawable/ic_baseline_add"
-                android:insetTop="0dp"
-                android:onClick="toReview"
-                android:insetBottom="0dp"
-                android:gravity="center_horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/rvReviewStore"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textReviewStore" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLihatSemuaReview"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/manrope_extrabold"
+            android:gravity="end"
+            android:onClick="toReview"
+            android:text="lihat semua"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textReviewStore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.924"
+            app:layout_constraintStart_toEndOf="@id/textReviewStore"
+            app:layout_constraintTop_toTopOf="@+id/textReviewStore"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLihatSemuaReview"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/manrope_extrabold"
-                android:gravity="end"
-                android:text="lihat semua"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:onClick="toReview"
-                app:cornerRadius="50dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textReviewStore"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.924"
-                app:layout_constraintStart_toEndOf="@id/textReviewStore"
-                app:layout_constraintTop_toTopOf="@+id/textReviewStore"
-                tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvReviewStore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/btnTambahReview"
+            app:layout_constraintTop_toBottomOf="@+id/textReviewStore"
+            tools:listitem="@layout/card_review_horizontal" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvReviewStore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/btnTambahReview"
-                app:layout_constraintTop_toBottomOf="@+id/textReviewStore"
-                tools:listitem="@layout/card_review_horizontal"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvReviewStore" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
-                android:paddingHorizontal="14dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvReviewStore"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</ScrollView>

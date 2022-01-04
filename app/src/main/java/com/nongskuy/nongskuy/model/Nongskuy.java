@@ -15,10 +15,12 @@ public class Nongskuy {
     private String ratingToko;
     private Double jarakToko;
     private String satuanJarak;
+    private Double latToko;
+    private Double longToko;
 
     // recyclerview populer
     public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
-                    Double jarakToko, String ratingToko) {
+                    Double jarakToko, String ratingToko, Double latToko, Double longToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
@@ -26,15 +28,19 @@ public class Nongskuy {
         this.tipeToko = tipeToko;
         this.jarakToko = jarakToko;
         this.ratingToko = ratingToko;
+        this.longToko = longToko;
+        this.latToko = latToko;
     }
 
     //recyclerview pencarian
-    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko) {
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko, Double latToko, Double longToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
         this.alamatToko = alamatToko;
         this.jarakToko = jarakToko;
+        this.longToko = longToko;
+        this.latToko = latToko;
     }
 
     //recyclerview beranda terdekat
@@ -130,14 +136,6 @@ public class Nongskuy {
         this.fasilitasToko = fasilitasToko;
     }
 
-    public String getRatingToko() {
-        return ratingToko;
-    }
-
-    public void setRating(String ratingToko) {
-        this.ratingToko = ratingToko;
-    }
-
     public Double getJarakToko() {
         return jarakToko;
     }
@@ -152,5 +150,29 @@ public class Nongskuy {
 
     public void setSatuanJarak(String satuanJarak) {
         this.satuanJarak = satuanJarak;
+    }
+
+    public String getRatingToko() {
+        return ratingToko;
+    }
+
+    public void setRatingToko(String ratingToko) {
+        this.ratingToko = ratingToko;
+    }
+
+    public Double getLatToko() {
+        return latToko;
+    }
+
+    public void setLatToko(Double latToko) {
+        this.latToko = latToko;
+    }
+
+    public Double getLongToko() {
+        return longToko;
+    }
+
+    public void setLongToko(Double longToko) {
+        this.longToko = longToko;
     }
 }

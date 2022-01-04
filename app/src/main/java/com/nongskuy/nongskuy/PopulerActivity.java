@@ -78,7 +78,9 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
                                     nongskuyPopulerData.getAlamat(),
                                     nongskuyPopulerData.getTipe(),
                                     4.5,
-                                    nongskuyPopulerData.getRating()
+                                    nongskuyPopulerData.getRating(),
+                                    Double.parseDouble(nongskuyPopulerData.getLatitude()),
+                                    Double.parseDouble(nongskuyPopulerData.getLongitude())
                             );
 
                             arrayListTokoPopuler.add(nongskuy);
