@@ -5,9 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class AuthData {
 
-    @SerializedName("id")
-    @Expose
-    private Integer id;
     @SerializedName("nama")
     @Expose
     private String nama;
@@ -17,20 +14,9 @@ public class AuthData {
     @SerializedName("no_hp")
     @Expose
     private String noHp;
-    @SerializedName("password")
-    @Expose
-    private String password;
     @SerializedName("token")
     @Expose
     private String token;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNama() {
         return nama;
@@ -54,14 +40,6 @@ public class AuthData {
 
     public void setNoHp(String noHp) {
         this.noHp = noHp;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getToken() {

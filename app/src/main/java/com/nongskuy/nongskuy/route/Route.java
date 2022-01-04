@@ -6,7 +6,6 @@ import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 import com.nongskuy.nongskuy.model.PencarianClass;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
-
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -14,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 
 public interface Route {
 
@@ -46,9 +46,9 @@ public interface Route {
     Call<RiwayatNongskuyClass> riwayat(@Header("Authorization") String token);
 
     @GET("toko/populer")
-    Call<NongskuyPopulerClass> tokoPopuler();
+    Call<NongskuyPopulerClass> tokoPopuler(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
 
     @FormUrlEncoded
     @POST("toko/search")
-    Call<PencarianClass> search(@Field("keyword") String keyword);
+    Call<PencarianClass> search(@Field("keyword") String keyword, @Query("latitude") Double latitude, @Query("longitude") Double longitude);
 }

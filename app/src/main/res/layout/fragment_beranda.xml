@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refreshBeranda"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/background_gray"
     android:inputType="textNoSuggestions"
-    tools:context=".BerandaFragment">
+    tools:context=".BerandaFragment" >
 
     <ScrollView
         android:id="@+id/scrollViewBeranda"
@@ -174,7 +173,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textBerandaPopuler" />
 
-                <!--Promo-->
+            <!--Promo-->
             <TextView
                 android:id="@+id/textBerandaPromo"
                 android:layout_width="wrap_content"
@@ -209,67 +208,67 @@
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPopuler"
                 tools:ignore="TouchTargetSizeCheck" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewBerandaPromo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="19dp"
-                    android:visibility="gone"
-                    android:paddingBottom="3dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBerandaPromo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="19dp"
+                android:visibility="gone"
+                android:paddingBottom="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBerandaPromo" />
 
-                <!--Terdekat-->
-                <TextView
-                    android:id="@+id/textBerandaTerdekat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/manrope_bold"
-                    android:text="@string/nongskuy_terdekat"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPromo" />
+            <!--Terdekat-->
+            <TextView
+                android:id="@+id/textBerandaTerdekat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/manrope_bold"
+                android:text="@string/nongskuy_terdekat"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPromo" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonLihatSemuaTerdekat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginEnd="12dp"
-                    android:fontFamily="@font/manrope_extrabold"
-                    android:text="lihat semua"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    app:cornerRadius="50dp"
-                    android:gravity="end"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/textBerandaTerdekat"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPromo"
-                    tools:ignore="TouchTargetSizeCheck" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonLihatSemuaTerdekat"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/manrope_extrabold"
+                android:text="lihat semua"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:cornerRadius="50dp"
+                android:gravity="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/textBerandaTerdekat"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewBerandaPromo"
+                tools:ignore="TouchTargetSizeCheck" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewBerandaTerdekat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="19dp"
-                    android:paddingBottom="3dp"
-                    android:layout_marginBottom="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textBerandaTerdekat" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBerandaTerdekat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="19dp"
+                android:paddingBottom="3dp"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textBerandaTerdekat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

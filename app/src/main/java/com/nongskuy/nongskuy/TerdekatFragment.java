@@ -36,6 +36,8 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
     private TextView textAlamatGps;
     private ResultReceiver resultReceiver;
     private SharedPreferences sharedPreferences;
+    private LocationManager locationManager;
+    private Boolean isGpsEnabled;
 
 
     public TerdekatFragment() {
@@ -51,6 +53,8 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
         textAlamatGps = view.findViewById(R.id.textAlamatGPS);
         resultReceiver = new AddressResultReceiver(new Handler());
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
         // cek permission android
         if (ActivityCompat.checkSelfPermission(getActivity(),
@@ -61,15 +65,12 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
             });
-        } else {
-            ((MainActivity) getActivity()).checkGpsStatus();
         }
-
-        // check gps sudah hidup atau belum
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        Boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if(gps_enabled) {
+        else if(isGpsEnabled){
             getCurrentLocation();
+        }
+        else {
+            ((MainActivity) getActivity()).requestGpsActive();
         }
 
         return view;
@@ -89,7 +90,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
                         }
 
                         if (fineLocationGranted && coarseLocationGranted) {
-                            ((MainActivity) getActivity()).checkGpsStatus();
+                            ((MainActivity) getActivity()).requestGpsActive();
                         }
                     }
             );
@@ -111,6 +112,11 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
             if (resultCode == Activity.RESULT_OK) {
                 getCurrentLocation();
             }
+            else if(resultCode == Activity.RESULT_CANCELED){
+                Intent intent = new Intent(getActivity(), GpsTerputus.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
         }
     }
 
@@ -127,7 +133,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
         LatLng latLng = new LatLng(Double.parseDouble(sharedPreferences.getString("Latitude", null)),
                 Double.parseDouble(sharedPreferences.getString("Longitude", null)));
         MarkerOptions markerOptions = new MarkerOptions().position(latLng)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
         googleMap.addMarker(markerOptions);
         googleMap.getUiSettings().setZoomControlsEnabled(true);

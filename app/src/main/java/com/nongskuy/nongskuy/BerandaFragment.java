@@ -1,23 +1,28 @@
 package com.nongskuy.nongskuy;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,12 +49,14 @@ public class BerandaFragment extends Fragment {
     private MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
             btnLihatSemuaPromo, btnLihatSemuaTerdekat;
     private RecyclerView recyclerViewPopuler, recyclerViewPromo, recyclerViewTerdekat;
-    private ScrollView scrollViewBeranda;
     private BottomNavigationView bottomNavigationView;
     private SharedPreferences sharedPreferences;
-    private SwipeRefreshLayout refreshLayout;
     private Config config;
     private SearchView searchViewBeranda;
+    private String token;
+    private SwipeRefreshLayout refreshLayout;
+    private LocationManager locationManager;
+    private Boolean isGpsEnabled;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -64,30 +71,36 @@ public class BerandaFragment extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
         String nama = sharedPreferences.getString("Nama", null);
-        String token = sharedPreferences.getString("Token", null);
+        token = sharedPreferences.getString("Token", null);
 
 
         config = new Config();
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         btnRiwayatPemesananTempat = view.findViewById(R.id.buttonPesanTempat);
         btnLihatSemuaPopuler = view.findViewById(R.id.buttonLihatSemuaPopuler);
         btnLihatSemuaPromo = view.findViewById(R.id.buttonLihatSemuaPromo);
         btnLihatSemuaTerdekat = view.findViewById(R.id.buttonLihatSemuaTerdekat);
-        scrollViewBeranda = view.findViewById(R.id.scrollViewBeranda);
         bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.BottomNavigationMenu);
         namaUser = view.findViewById(R.id.textName);
         searchViewBeranda = view.findViewById(R.id.searchViewBeranda);
+        refreshLayout = view.findViewById(R.id.refreshBeranda);
 
 
-
-        // refresh halaman
-        refreshLayout  = view.findViewById(R.id.refreshBeranda);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refreshPage(token);
-            }
-        });
-
+        // cek permission android
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            locationPermissionRequest.launch(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
+        } else if (isGpsEnabled) {
+            getCurrentLocation();
+        } else {
+            ((MainActivity) getActivity()).requestGpsActive();
+        }
 
 
         //cek ketersediaan token
@@ -98,22 +111,21 @@ public class BerandaFragment extends Fragment {
             // atur margin text populer beranda
             TextView textBerandaPopuler = view.findViewById(R.id.textBerandaPopuler);
             ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) textBerandaPopuler.getLayoutParams();
-            layoutParams.setMargins(24,30,0,0);
+            layoutParams.setMargins(24, 30, 0, 0);
             textBerandaPopuler.setLayoutParams(layoutParams);
 
             // atur margin button lihat semua populer
             ConstraintLayout.LayoutParams layoutParams1 = (ConstraintLayout.LayoutParams) btnLihatSemuaPopuler.getLayoutParams();
-            layoutParams1.setMargins(0,15,12,0);
+            layoutParams1.setMargins(0, 15, 12, 0);
             btnLihatSemuaPopuler.setLayoutParams(layoutParams1);
         }
-
 
 
         // recycler view populer
         LinearLayoutManager linearLayoutManagerPopuler = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPopuler = view.findViewById(R.id.recyclerViewBerandaPopuler);
         recyclerViewPopuler.setLayoutManager(linearLayoutManagerPopuler);
-        loadDataNongskuyPopuler();
+        recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
 
         // recyclerview promo
         if (token != null) {
@@ -125,7 +137,7 @@ public class BerandaFragment extends Fragment {
 
             LinearLayoutManager linearLayoutManagerPromo = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
             recyclerViewPromo.setLayoutManager(linearLayoutManagerPromo);
-            loadDataPromo(token);
+            recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
         }
 
         // recyclerview terdekat
@@ -133,6 +145,15 @@ public class BerandaFragment extends Fragment {
         recyclerViewTerdekat = view.findViewById(R.id.recyclerViewBerandaTerdekat);
         recyclerViewTerdekat.setLayoutManager(linearLayoutManagerTerdekat);
         recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(getDataTerdekat()));
+
+        // refresh halaman
+        refreshLayout = view.findViewById(R.id.refreshBeranda);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshLayout();
+            }
+        });
 
         // getFragment
         ActivityResultLauncher<Intent> intentResult = registerForActivityResult(
@@ -199,6 +220,25 @@ public class BerandaFragment extends Fragment {
         });
     }
 
+    // request permission location
+    ActivityResultLauncher<String[]> locationPermissionRequest =
+            registerForActivityResult(new ActivityResultContracts
+                            .RequestMultiplePermissions(), result -> {
+                        Boolean fineLocationGranted = null;
+                        Boolean coarseLocationGranted = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            fineLocationGranted = result.getOrDefault(
+                                    Manifest.permission.ACCESS_FINE_LOCATION, false);
+                            coarseLocationGranted = result.getOrDefault(
+                                    Manifest.permission.ACCESS_COARSE_LOCATION, false);
+                        }
+
+                        if (fineLocationGranted && coarseLocationGranted) {
+                            ((MainActivity) getActivity()).requestGpsActive();
+                        }
+                    }
+            );
+
     public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getParentFragmentManager().beginTransaction()
@@ -209,8 +249,8 @@ public class BerandaFragment extends Fragment {
         return true;
     }
 
-    public void menuNavigation(String data){
-        switch (data){
+    public void menuNavigation(String data) {
+        switch (data) {
             case "Beranda":
                 loadFragment(new BerandaFragment());
                 bottomNavigationView.setSelectedItemId(R.id.menu_beranda);
@@ -230,33 +270,72 @@ public class BerandaFragment extends Fragment {
         }
     }
 
-    public void refreshPage(String token){
-        loadDataNongskuyPopuler();
-        loadDataPromo(token);
-        refreshLayout.setRefreshing(false);
+    public void refreshLayout() {
+        // cek gps hidup atau tidak
+        isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
+        recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
+
+        if (isGpsEnabled) {
+            getCurrentLocation();
+        } else {
+            ((MainActivity) getActivity()).requestGpsActive();
+        }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
-    public void loadDataNongskuyPopuler(){
-        recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
-        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
+    public void getCurrentLocation() {
+        // get latitude and longitude
+        ((MainActivity) getActivity()).getCurrentLocation();
+        Double latitude = Double.parseDouble(sharedPreferences.getString("Latitude", null));
+        Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
+
+        // load data
+        loadDataNongskuyPopuler(latitude, longitude);
+        loadDataPromo(token);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == Activity.RESULT_OK) {
+                getCurrentLocation();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Intent intent = new Intent(getActivity(), GpsTerputus.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        }
+    }
+
+    public void loadDataNongskuyPopuler(Double latitude, Double longitude) {
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude, longitude);
         call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
             public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {
-                if(response.code() == 200){
-                    if(response.isSuccessful()){
+                if (response.code() == 200) {
+                    if (response.isSuccessful()) {
                         NongskuyPopulerClass nongskuyPopulerClass = response.body();
                         List<NongskuyPopulerData> listTokoPopuler = nongskuyPopulerClass.getTokoPopuler();
                         ArrayList<Nongskuy> arrayListTokoPopuler = new ArrayList<>();
                         BerandaPopulerAdapter berandaPopulerAdapter = new BerandaPopulerAdapter(arrayListTokoPopuler);
 
-                        for(NongskuyPopulerData nongskuyPopulerData : listTokoPopuler){
+                        for (NongskuyPopulerData nongskuyPopulerData : listTokoPopuler) {
                             Nongskuy nongskuy = new Nongskuy(
-                              nongskuyPopulerData.getId(),
-                              nongskuyPopulerData.getGambar(),
-                              nongskuyPopulerData.getNamaToko(),
-                              nongskuyPopulerData.getAlamat(),
-                              nongskuyPopulerData.getTipe(),
-                              4.5,
+                                    nongskuyPopulerData.getId(),
+                                    nongskuyPopulerData.getGambar(),
+                                    nongskuyPopulerData.getNamaToko(),
+                                    nongskuyPopulerData.getAlamat(),
+                                    nongskuyPopulerData.getTipe(),
+                                    4.5,
                                     nongskuyPopulerData.getRating()
                             );
 
@@ -276,20 +355,19 @@ public class BerandaFragment extends Fragment {
         });
     }
 
-    public void loadDataPromo(String token){
-        recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
+    public void loadDataPromo(String token) {
         Call<PromoClass> call = config.configRetrofit().promo(token);
         call.enqueue(new Callback<PromoClass>() {
             @Override
             public void onResponse(Call<PromoClass> call, Response<PromoClass> response) {
-                if(response.code() == 200){
-                    if (response.isSuccessful()){
+                if (response.code() == 200) {
+                    if (response.isSuccessful()) {
                         PromoClass promoClass = response.body();
                         List<PromoData> listPromo = promoClass.getPromo();
                         ArrayList<Promo> arrayListPromo = new ArrayList<>();
                         BerandaPromoAdapter berandaPromoAdapter = new BerandaPromoAdapter(arrayListPromo);
 
-                        for (PromoData promoData: listPromo) {
+                        for (PromoData promoData : listPromo) {
                             Promo promo = new Promo(
                                     promoData.getIdToko(),
                                     promoData.getNamaToko(),

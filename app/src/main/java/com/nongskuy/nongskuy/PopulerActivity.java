@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -51,8 +53,13 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
     }
 
     public void loadDataNongskuyPopuler(){
+        // get latitude and longitude
+        SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+        Double latitude = Double.parseDouble(sharedPreferences.getString("Latitude", null));
+        Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
+
         recyclerView.setAdapter(new PromoAdapter(null));
-        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler();
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude,longitude);
         call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
             public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {
