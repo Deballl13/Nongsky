@@ -1,6 +1,7 @@
 package com.nongskuy.nongskuy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PromoFragment extends Fragment {
+public class PromoFragment extends Fragment implements PromoAdapter.OnPromoViewHolderClick {
 
     private CarouselView carouselView;
     private Integer[] sampleImages = {R.drawable.gado, R.drawable.nuget, R.drawable.pempek, R.drawable.rempah, R.drawable.sushi};
@@ -50,8 +51,6 @@ public class PromoFragment extends Fragment {
         carouselView.setImageListener(imageListener);
         recyclerView = view.findViewById(R.id.rvPromo);
 
-
-
         // cek login atau tidak
         if(token != null){
             // menampilkan tampilan halaman untuk user
@@ -65,8 +64,6 @@ public class PromoFragment extends Fragment {
             view.findViewById(R.id.textUtamaGuestPromo).setVisibility(View.GONE);
             view.findViewById(R.id.textPelengkapGuestPromo).setVisibility(View.GONE);
         }
-
-
 
         // recyclerview promo
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -111,7 +108,7 @@ public class PromoFragment extends Fragment {
                             recyclerView.setAdapter(recyclerViewPromoAdaper);
                             recyclerViewPromoAdaper.notifyDataSetChanged();
                         }
-
+                        recyclerViewPromoAdaper.setPromoClickObject(PromoFragment.this);
                     }
                 }
             }
@@ -123,4 +120,15 @@ public class PromoFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onPromoClick(Promo promo) {
+        Intent intent = new Intent(getActivity(), DetailNongskuy.class);
+//        intent.putExtra("IdToko", promo.getIdToko());
+//        intent.putExtra("NamaToko", promo.getNamaToko());
+//        intent.putExtra("GambarToko", nongskuy.getGambarToko());
+//        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
+//        intent.putExtra("LatToko", nongskuy.getLatToko());
+//        intent.putExtra("LongToko", nongskuy.getLongToko());
+        startActivity(intent);
+    }
 }

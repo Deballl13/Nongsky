@@ -51,4 +51,5 @@ public interface Route {
     @FormUrlEncoded
     @POST("toko/search")
     Call<PencarianClass> search(@Field("keyword") String keyword, @Query("latitude") Double latitude, @Query("longitude") Double longitude);
+
 }

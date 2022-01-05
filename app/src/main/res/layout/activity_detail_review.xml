@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/store_display_img"
                 android:contentDescription="@string/todo"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

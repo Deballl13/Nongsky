@@ -22,6 +22,7 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
     private ArrayList<Nongskuy> listPopuler;
     private Context context;
     private boolean isShimmer = true;
+    private PopulerAdapter.OnPopulerViewHolderClick populerClickObject;
 
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
@@ -29,6 +30,15 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
 
     public PopulerAdapter(ArrayList<Nongskuy> listPopuler) {
         this.listPopuler = listPopuler;
+    }
+
+    //Click Listener Item RV
+    public interface OnPopulerViewHolderClick{
+        void onPopulerClick(Nongskuy nongskuy);
+    }
+
+    public void setPopulerClickObject(PopulerAdapter.OnPopulerViewHolderClick populerClickObject){
+        this.populerClickObject = populerClickObject;
     }
 
     @NonNull
@@ -95,6 +105,14 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
             textAlamatTokoPopuler = itemView.findViewById(R.id.textAlamatTokoPopuler);
             textTipeTongkrongan = itemView.findViewById(R.id.textTipeTongkrongan);
             textJarakTongkrongan = itemView.findViewById(R.id.textJarakTongkrongan);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Nongskuy nongskuy = listPopuler.get(getAdapterPosition());
+                    populerClickObject.onPopulerClick(nongskuy);
+                }
+            });
         }
     }
 }

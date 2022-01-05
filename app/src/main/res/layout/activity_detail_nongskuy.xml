@@ -38,7 +38,6 @@
             android:maxWidth="250dp"
             android:maxLines="2"
             android:minWidth="250dp"
-            android:text="McDonalds Ahmad Yani"
             android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textSize="28sp"

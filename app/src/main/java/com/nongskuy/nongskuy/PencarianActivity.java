@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
+
 import com.nongskuy.nongskuy.adapter.PencarianAdapter;
 import com.nongskuy.nongskuy.data.PencarianData;
 import com.nongskuy.nongskuy.model.PencarianClass;
@@ -157,13 +158,13 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
 
     @Override
     public void onPencarianClick(Nongskuy nongskuy) {
-        Intent detailnongskuy = new Intent(this, DetailNongskuy.class);
-        detailnongskuy.putExtra("IdToko", nongskuy.getIdToko());
-        detailnongskuy.putExtra("NamaToko", nongskuy.getNamaToko());
-        detailnongskuy.putExtra("GambarToko", nongskuy.getGambarToko());
-        detailnongskuy.putExtra("AlamatToko", nongskuy.getAlamatToko());
-        detailnongskuy.putExtra("LatToko", nongskuy.getLatToko());
-        detailnongskuy.putExtra("LongToko", nongskuy.getLongToko());
-        startActivity(detailnongskuy);
+        Intent intent = new Intent(this, DetailNongskuy.class);
+        intent.putExtra("IdToko", nongskuy.getIdToko());
+        intent.putExtra("NamaToko", nongskuy.getNamaToko());
+        intent.putExtra("GambarToko", nongskuy.getGambarToko());
+        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
+        intent.putExtra("LatToko", nongskuy.getLatToko());
+        intent.putExtra("LongToko", nongskuy.getLongToko());
+        startActivity(intent);
     }
 }

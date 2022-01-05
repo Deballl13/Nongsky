@@ -12,64 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarPesanTempat"
-            android:layout_width="414dp"
-            android:layout_height="203dp"
-            android:background="@drawable/mcdonald"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+        <ImageView
+            android:id="@+id/imageNongskuyPesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/store_display_img"
+            android:contentDescription="@string/todo"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textJudul"
+            android:id="@+id/textNamaTokoPesan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:ems="3"
             android:fontFamily="@font/fredokaone_regular"
-            android:text="McDonald's"
-            android:textAlignment="center"
+            android:maxWidth="250dp"
+            android:maxLines="2"
+            android:minWidth="250dp"
+            android:text="McDonalds Ahmad Yani"
+            android:textAlignment="textStart"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="28sp"
+            app:flow_verticalAlign="center"
+            app:layout_constraintBottom_toBottomOf="@+id/imageNongskuyPesan"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.089"
+            app:layout_constraintHorizontal_bias="0.008"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textJudul2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/fredokaone_regular"
-            android:text="Ahmad Yani"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.091"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textJudul" />
-
-        <TextView
-            android:id="@+id/textIsi2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Nongkrong rame-rame gak takut kecolongan tempat"
-            android:textAlignment="center"
-            android:textColor="@color/dark_gray"
-            android:textSize="14sp"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintStart_toStartOf="@+id/textIsi"
-            app:layout_constraintTop_toBottomOf="@+id/textIsi" />
-
-        <TextView
-            android:id="@+id/textIsi"
+            android:id="@+id/textJudulPesan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -81,26 +61,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.117"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
-
+            app:layout_constraintTop_toBottomOf="@+id/imageNongskuyPesan" />
 
         <TextView
-            android:id="@+id/textIsi4"
-            android:layout_width="323dp"
-            android:layout_height="62dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Keterlambatan kehadiran maksimal 30 menit dari waktu pemesanan. JIka tidak, pemesanan tempat dibatalkan, uang tidak kembali."
-            android:textAlignment="viewStart"
+            android:id="@+id/textJudulPesan2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Nongkrong rame-rame gak takut kecolongan tempat"
+            android:textAlignment="center"
             android:textColor="@color/dark_gray"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.465"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="14sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="@+id/textJudulPesan"
+            app:layout_constraintTop_toBottomOf="@+id/textJudulPesan" />
 
         <TextView
-            android:id="@+id/textJdlIsi"
+            android:id="@+id/textJdlTanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -110,38 +88,33 @@
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/Tanggal"
-            app:layout_constraintTop_toBottomOf="@+id/textIsi2" />
+            app:layout_constraintTop_toBottomOf="@+id/textJudulPesan2" />
 
-        <TextView
-            android:id="@+id/textJdlIsi2"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/Tanggal"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_edit_text"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:fontFamily="@font/manrope_regular"
-            android:text="Waktu"
-            android:textAlignment="textStart"
+            android:gravity="start"
+            android:hint="Pilih tanggal pesan"
+            android:inputType="date"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textJdlIsi"
-            app:layout_constraintStart_toStartOf="@+id/Waktu"
-            app:layout_constraintTop_toTopOf="@+id/textJdlIsi" />
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlTanggal" />
 
         <TextView
-            android:id="@+id/textJdlIsi4"
-            android:layout_width="95dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Jumlah Kursi"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textJdlIsi5"
-            app:layout_constraintStart_toStartOf="@+id/btnKurangKursi"
-            app:layout_constraintTop_toTopOf="@+id/textJdlIsi5"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/textJdlIsi5"
+            android:id="@+id/textJdlPembayaran"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -153,67 +126,6 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Tanggal" />
-
-        <TextView
-            android:id="@+id/totalDP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Rp0"
-            android:textAlignment="center"
-            android:textColor="@color/yellow"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/textJdl"
-            app:layout_constraintTop_toTopOf="@+id/textJdl" />
-
-        <TextView
-            android:id="@+id/textJdl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="282dp"
-            android:fontFamily="@font/manrope_bold"
-            android:text="Total DP"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarPesanTempat" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonPesanTempat2"
-            android:layout_width="319dp"
-            android:layout_height="51dp"
-            android:layout_marginBottom="8dp"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/manrope_extrabold"
-            android:text="Pesan Tempat"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:cornerRadius="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/textIsi3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.445"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdl"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/textIsi3"
-            android:layout_width="324dp"
-            android:layout_height="34dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="Setiap pemesanan kursi dikenakan biaya jaminan sebesar Rp.10000/kursi."
-            android:textAlignment="viewStart"
-            android:textColor="@color/dark_gray"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/textIsi4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.471"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/bayar"
@@ -235,49 +147,21 @@
             android:textColor="@color/black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi5"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlPembayaran"
             tools:ignore="TouchTargetSizeCheck" />
 
-        <Button
-            android:id="@+id/btnKurangKursi"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="12dp"
-            android:onClick="decrement"
-            android:padding="0dp"
-            android:text="-"
-            app:layout_constraintStart_toEndOf="@+id/bayar"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4"></Button>
-
-        <Button
-            android:id="@+id/btnTambahKursi"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="56dp"
-            android:onClick="increment"
-            android:padding="0dp"
-            android:text="+"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4"></Button>
-
         <TextView
-            android:id="@+id/jumlahKursi"
+            android:id="@+id/textJdlWaktu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/manrope_regular"
-            android:text="0"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/btnTambahKursi"
-            app:layout_constraintStart_toEndOf="@+id/btnKurangKursi"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi4" />
+            android:text="Waktu"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textJdlTanggal"
+            app:layout_constraintStart_toStartOf="@+id/Waktu"
+            app:layout_constraintTop_toTopOf="@+id/textJdlTanggal" />
 
         <EditText
             android:id="@+id/Waktu"
@@ -299,33 +183,143 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.903"
             app:layout_constraintStart_toEndOf="@+id/Tanggal"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi2"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlWaktu"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="TouchTargetSizeCheck" />
 
-        <EditText
-            android:id="@+id/Tanggal"
-            android:layout_width="140dp"
+        <TextView
+            android:id="@+id/textJdlKursi"
+            android:layout_width="95dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="Jumlah Kursi"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textJdlPembayaran"
+            app:layout_constraintStart_toStartOf="@+id/btnKurangKursi"
+            app:layout_constraintTop_toTopOf="@+id/textJdlPembayaran"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/jumlahKursi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="0"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnTambahKursi"
+            app:layout_constraintStart_toEndOf="@+id/btnKurangKursi"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi" />
+
+        <Button
+            android:id="@+id/btnKurangKursi"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="12dp"
+            android:onClick="decrement"
+            android:padding="0dp"
+            android:text="-"
+            app:layout_constraintStart_toEndOf="@+id/bayar"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"/>
+
+        <Button
+            android:id="@+id/btnTambahKursi"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="56dp"
+            android:onClick="increment"
+            android:padding="0dp"
+            android:text="+"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"/>
+
+        <TextView
+            android:id="@+id/textJdlDP"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_edit_text"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:ems="10"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:fontFamily="@font/manrope_regular"
-            android:gravity="start"
-            android:hint="Pilih tanggal pesan"
-            android:inputType="date"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
-
+            android:layout_marginTop="282dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Total DP"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="14dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlIsi" />
+            app:layout_constraintTop_toBottomOf="@+id/imageNongskuyPesan" />
+
+        <TextView
+            android:id="@+id/totalDP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Rp0"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textJdlDP"
+            app:layout_constraintTop_toTopOf="@+id/textJdlDP" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPesanTempat"
+            android:layout_width="319dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="5dp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/manrope_extrabold"
+            android:text="Pesan Tempat"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="16sp"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/textNotif1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.445"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textJdlDP"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textNotif2"
+            android:layout_width="323dp"
+            android:layout_height="62dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="Keterlambatan kehadiran maksimal 30 menit dari waktu pemesanan. JIka tidak, pemesanan tempat dibatalkan, uang tidak kembali."
+            android:textAlignment="viewStart"
+            android:textColor="@color/dark_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.465"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textNotif1"
+            android:layout_width="324dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/manrope_regular"
+            android:text="Setiap pemesanan kursi dikenakan biaya jaminan sebesar Rp.10000/kursi."
+            android:textAlignment="viewStart"
+            android:textColor="@color/dark_gray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/textNotif2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.471"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

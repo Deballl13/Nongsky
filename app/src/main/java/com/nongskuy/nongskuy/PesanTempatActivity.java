@@ -3,13 +3,19 @@ package com.nongskuy.nongskuy;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.bumptech.glide.Glide;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -18,8 +24,9 @@ public class PesanTempatActivity extends AppCompatActivity {
 
     EditText Tanggal, Waktu;
     Calendar calendar;
-    TextView jumlahKursi, totalDp;
+    TextView jumlahKursi, totalDp, textNamaTokoPesan;
     Button btnTambahKursi, btnKurangKursi;
+    ImageView imageNongskuyPesan;
     int Hour, Minute;
     int count = 0, dp = 10000;
     Helper helper = new Helper();
@@ -29,12 +36,22 @@ public class PesanTempatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pesan_tempat);
 
+        //Id
         Tanggal = findViewById(R.id.Tanggal);
         Waktu = findViewById(R.id.Waktu);
         jumlahKursi = findViewById(R.id.jumlahKursi);
         totalDp = findViewById(R.id.totalDP);
         btnTambahKursi = findViewById(R.id.btnTambahKursi);
         btnKurangKursi = findViewById(R.id.btnKurangKursi);
+        imageNongskuyPesan = findViewById(R.id.imageNongskuyPesan);
+        textNamaTokoPesan = findViewById(R.id.textNamaTokoPesan);
+
+        //Get data intent
+        Intent intent = getIntent();
+        textNamaTokoPesan.setText(intent.getStringExtra("NamaToko"));
+        Glide.with(getApplicationContext())
+                .load(Uri.parse(intent.getStringExtra("GambarToko")))
+                .into(imageNongskuyPesan);
 
         calendar = Calendar.getInstance();
 

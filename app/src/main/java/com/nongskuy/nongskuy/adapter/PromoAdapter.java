@@ -25,6 +25,7 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
     private ArrayList<Promo> listPromo;
     private Context context;
     private boolean isShimmer = true;
+    private PromoAdapter.OnPromoViewHolderClick promoClickObject;
 
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
@@ -32,6 +33,15 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
 
     public PromoAdapter(ArrayList<Promo> listPromo) {
         this.listPromo = listPromo;
+    }
+
+    //Click Listener Item RV
+    public interface OnPromoViewHolderClick{
+        void onPromoClick(Promo promo);
+    }
+
+    public void setPromoClickObject(PromoAdapter.OnPromoViewHolderClick promoClickObject){
+        this.promoClickObject = promoClickObject;
     }
 
     @NonNull
@@ -114,6 +124,14 @@ public class PromoAdapter extends RecyclerView.Adapter<PromoAdapter.PromoViewHol
             textHargaSetelahPromo = view.findViewById(R.id.textHargaSetelahPromo);
             textHargaSebelumPromo = view.findViewById(R.id.textHargaSebelumPromo);
             keterangan = view.findViewById(R.id.keteranganPromo);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Promo promo = listPromo.get(getAdapterPosition());
+                    promoClickObject.onPromoClick(promo);
+                }
+            });
         }
 
     }

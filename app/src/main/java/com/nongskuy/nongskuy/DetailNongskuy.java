@@ -44,6 +44,7 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
     private ImageView imageDetailNongskuy;
     private TextView textNamaNongskuy, textAlamatNongskuy;
     private SupportMapFragment supportMapFragment;
+    private String idToko, namaToko, gambarToko;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +60,15 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
 
         //Get Data Intent
         Intent intent = getIntent();
-        String idToko = intent.getStringExtra("IdToko");
-        textNamaNongskuy.setText(intent.getStringExtra("NamaToko"));
+        idToko = intent.getStringExtra("IdToko");
+        namaToko = intent.getStringExtra("NamaToko");
+        gambarToko = intent.getStringExtra("GambarToko");
+
+        //Set Detail Data Nongskuy
+        textNamaNongskuy.setText(namaToko);
         textAlamatNongskuy.setText(intent.getStringExtra("AlamatToko"));
         Glide.with(getApplicationContext())
-                .load(Uri.parse(intent.getStringExtra("GambarToko")))
+                .load(Uri.parse(gambarToko))
                 .into(imageDetailNongskuy);
 
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps_store);
@@ -97,14 +102,21 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         rvFasilitas.setLayoutManager(linearLayoutManagerFasilitas);
     }
 
+    //Intent ke halaman pesan tempat
     public void toPesanTempat(View view){
         Intent intent = new Intent(DetailNongskuy.this, PesanTempatActivity.class);
-
+        intent.putExtra("IdToko", idToko);
+        intent.putExtra("NamaToko", namaToko);
+        intent.putExtra("GambarToko", gambarToko);
         startActivity(intent);
     }
 
+    //Intent ke halaman detail review
     public void toReview(View view){
         Intent intent = new Intent(DetailNongskuy.this, DetailReview.class);
+        intent.putExtra("IdToko", idToko);
+        intent.putExtra("NamaToko", namaToko);
+        intent.putExtra("GambarToko", gambarToko);
         startActivity(intent);
     }
 

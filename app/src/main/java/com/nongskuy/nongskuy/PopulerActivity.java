@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PopulerActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class PopulerActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, PopulerAdapter.OnPopulerViewHolderClick {
 
     private RecyclerView recyclerView;
     private BottomNavigationView bottomNavigationViewPopuler;
@@ -59,7 +59,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
         Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
 
         recyclerView.setAdapter(new PromoAdapter(null));
-        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude,longitude);
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude, longitude);
         call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
             public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {
@@ -88,6 +88,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
                             recyclerView.setAdapter(populerAdapter);
                             populerAdapter.notifyDataSetChanged();
                         }
+                        populerAdapter.setPopulerClickObject(PopulerActivity.this);
                     }
                 }
             }
@@ -97,5 +98,17 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onPopulerClick(Nongskuy nongskuy) {
+        Intent intent = new Intent(this, DetailNongskuy.class);
+        intent.putExtra("IdToko", nongskuy.getIdToko());
+        intent.putExtra("NamaToko", nongskuy.getNamaToko());
+        intent.putExtra("GambarToko", nongskuy.getGambarToko());
+        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
+        intent.putExtra("LatToko", nongskuy.getLatToko());
+        intent.putExtra("LongToko", nongskuy.getLongToko());
+        startActivity(intent);
     }
 }
