@@ -94,32 +94,40 @@
                 android:text="Komentar"
                 android:textAlignment="textStart"
                 android:layout_marginStart="14dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:fontFamily="@font/manrope_regular"
                 />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textFieldKomentar"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLayoutKomentar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/manrope_regular"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:lines="4"
-                android:overScrollMode="always"
-                android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"
-                android:scrollHorizontally="false"
-                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Komentar" />
+                app:layout_constraintTop_toBottomOf="@+id/Komentar"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <Button
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textFieldKomentar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/manrope_regular"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:textSize="14sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnTambahFotoReview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,17 +143,19 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textFieldKomentar" />
+                app:layout_constraintTop_toBottomOf="@+id/textLayoutKomentar" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="24dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="Simpan"
+                app:cornerRadius="50dp"
+                android:textSize="14sp"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +184,7 @@
                 app:layout_constraintTop_toBottomOf="@id/Review"
                 android:paddingHorizontal="14dp"
                 android:clipToPadding="false"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:paddingBottom="10dp"
                 tools:listitem="@layout/card_detail_review"
                 />
