@@ -86,12 +86,12 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
         findViewById(R.id.textPelengkapPencarian).setVisibility(View.GONE);
 
         // get latitude and longitude
-        SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        Double latitude = Double.parseDouble(sharedPreferences.getString("Latitude", null));
-        Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
+        Intent intent = getIntent();
 
         rvPencarian.setAdapter(new PencarianAdapter(null));
-        Call<PencarianClass> call = config.configRetrofit().search(keyword, latitude, longitude);
+        Call<PencarianClass> call = config.configRetrofit().search(keyword,
+                intent.getDoubleExtra("Latitude", 0.0),
+                intent.getDoubleExtra("Longitude", 0.0));
         call.enqueue(new Callback<PencarianClass>() {
             @Override
             public void onResponse(Call<PencarianClass> call, Response<PencarianClass> response) {

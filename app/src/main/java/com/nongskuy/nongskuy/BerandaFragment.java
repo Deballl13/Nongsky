@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
@@ -37,6 +38,8 @@ import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
+import org.riversun.promise.Func;
+import org.riversun.promise.Promise;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -57,6 +60,8 @@ public class BerandaFragment extends Fragment {
     private SwipeRefreshLayout refreshLayout;
     private LocationManager locationManager;
     private Boolean isGpsEnabled;
+    private Double latitude;
+    private Double longitude;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -83,9 +88,8 @@ public class BerandaFragment extends Fragment {
         btnLihatSemuaTerdekat = view.findViewById(R.id.buttonLihatSemuaTerdekat);
         bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.BottomNavigationMenu);
         namaUser = view.findViewById(R.id.textName);
-        searchViewBeranda = view.findViewById(R.id.searchViewBeranda);
         refreshLayout = view.findViewById(R.id.refreshBeranda);
-
+        searchViewBeranda = view.findViewById(R.id.searchViewBeranda);
 
         // cek permission android
         if (ActivityCompat.checkSelfPermission(getActivity(),
@@ -96,10 +100,13 @@ public class BerandaFragment extends Fragment {
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
             });
-        } else if (isGpsEnabled) {
-            getCurrentLocation();
         } else {
             ((MainActivity) getActivity()).requestGpsActive();
+        }
+
+        // cek status gps
+        if (isGpsEnabled) {
+            getCurrentLocation();
         }
 
 
@@ -178,6 +185,8 @@ public class BerandaFragment extends Fragment {
         //Intent ke Activity Populer
         btnLihatSemuaPopuler.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), PopulerActivity.class);
+            intent.putExtra("Latitude", latitude);
+            intent.putExtra("Longitude", longitude);
             intentResult.launch(intent);
         });
 
@@ -208,6 +217,8 @@ public class BerandaFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 Intent intent = new Intent(getActivity(), PencarianActivity.class);
                 intent.putExtra("Keyword", s);
+                intent.putExtra("Latitude", latitude);
+                intent.putExtra("Longitude", longitude);
                 startActivity(intent);
                 return false;
             }
@@ -290,32 +301,8 @@ public class BerandaFragment extends Fragment {
         }, 1000);
     }
 
-    public void getCurrentLocation() {
-        // get latitude and longitude
-        ((MainActivity) getActivity()).getCurrentLocation();
-        Double latitude = Double.parseDouble(sharedPreferences.getString("Latitude", null));
-        Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
-
+    Func loadDataNongskuyPopuler = (action, data) -> {
         // load data
-        loadDataNongskuyPopuler(latitude, longitude);
-        loadDataPromo(token);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101) {
-            if (resultCode == Activity.RESULT_OK) {
-                getCurrentLocation();
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Intent intent = new Intent(getActivity(), GpsTerputus.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        }
-    }
-
-    public void loadDataNongskuyPopuler(Double latitude, Double longitude) {
         Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude, longitude);
         call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
@@ -345,6 +332,10 @@ public class BerandaFragment extends Fragment {
                             recyclerViewPopuler.setAdapter(berandaPopulerAdapter);
                             berandaPopulerAdapter.notifyDataSetChanged();
                         }
+
+                        // enabled click button
+                        btnLihatSemuaPopuler.setEnabled(true);
+                        action.resolve();
                     }
                 }
             }
@@ -354,10 +345,11 @@ public class BerandaFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    };
 
-    public void loadDataPromo(String token) {
-        Call<PromoClass> call = config.configRetrofit().promo(token);
+    Func loadDataPromo = (action, data) -> {
+        // load data
+        Call<PromoClass> call = config.configRetrofit().promo(sharedPreferences.getString("Token", null));
         call.enqueue(new Callback<PromoClass>() {
             @Override
             public void onResponse(Call<PromoClass> call, Response<PromoClass> response) {
@@ -385,6 +377,9 @@ public class BerandaFragment extends Fragment {
                             berandaPromoAdapter.notifyDataSetChanged();
                         }
 
+                        // enabled click button
+                        btnLihatSemuaPromo.setEnabled(true);
+                        action.resolve();
                     }
                 }
             }
@@ -394,9 +389,42 @@ public class BerandaFragment extends Fragment {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    };
+
+    Func loadData = (action, data) -> {
+        latitude = ((Location) data).getLatitude();
+        longitude = ((Location) data).getLongitude();
+
+        // load data
+        Promise.all(loadDataNongskuyPopuler, loadDataPromo).start();
+
+        action.resolve();
+    };
+
+    public void getCurrentLocation() {
+        Promise.resolve()
+                .then(new Promise(((MainActivity) getActivity()).getCurrentLocation))
+                .then(new Promise(loadData))
+                .start();// start Promise operation
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101) {
+            if (resultCode == Activity.RESULT_OK) {
+                getCurrentLocation();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Intent intent = new Intent(getActivity(), GpsTerputus.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        }
     }
 
     public ArrayList<Nongskuy> getDataTerdekat() {
+        // enabled click button
+        btnLihatSemuaTerdekat.setEnabled(true);
         ArrayList<Nongskuy> listTerdekatBeranda = new ArrayList<>();
         listTerdekatBeranda.add(new Nongskuy(
                 "McDonald’s Padang",

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -29,15 +28,18 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nongskuy.nongskuy.services.FetchAddressIntentService;
+import org.riversun.promise.Func;
+import org.riversun.promise.Promise;
 
 public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
 
     private SupportMapFragment supportMapFragment;
     private TextView textAlamatGps;
     private ResultReceiver resultReceiver;
-    private SharedPreferences sharedPreferences;
     private LocationManager locationManager;
     private Boolean isGpsEnabled;
+    private Double latitude;
+    private Double longitude;
 
 
     public TerdekatFragment() {
@@ -95,14 +97,22 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
                     }
             );
 
+    Func mapAsync = (action, data) -> {
+        latitude = ((Location) data).getLatitude();
+        longitude = ((Location) data).getLongitude();
+
+        supportMapFragment.getMapAsync(this);
+        action.resolve();
+    };
+
     public void getCurrentLocation() {
         // setup progress dialog mencari lokasi
         textAlamatGps.setText("Mencari lokasi...");
 
-        // menampilkan location di maps
-        ((MainActivity) getActivity()).getCurrentLocation();
-        sharedPreferences = getActivity().getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        supportMapFragment.getMapAsync(this);
+        Promise.resolve()
+                .then(new Promise(((MainActivity) getActivity()).getCurrentLocation))
+                .then(new Promise(mapAsync))
+                .start();// start Promise operation
     }
 
     @Override
@@ -130,8 +140,8 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         // setup location on google maps
-        LatLng latLng = new LatLng(Double.parseDouble(sharedPreferences.getString("Latitude", null)),
-                Double.parseDouble(sharedPreferences.getString("Longitude", null)));
+        LatLng latLng = new LatLng(latitude,
+                longitude);
         MarkerOptions markerOptions = new MarkerOptions().position(latLng)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
@@ -140,8 +150,8 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
 
         // get location name
         Location location1 = new Location("providerNA");
-        location1.setLatitude(Double.parseDouble(sharedPreferences.getString("Latitude", null)));
-        location1.setLongitude(Double.parseDouble(sharedPreferences.getString("Longitude", null)));
+        location1.setLatitude(latitude);
+        location1.setLongitude(longitude);
         fetchAddressFromLatLong(location1);
     }
 

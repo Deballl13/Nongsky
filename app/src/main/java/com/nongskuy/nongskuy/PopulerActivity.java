@@ -54,12 +54,11 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
 
     public void loadDataNongskuyPopuler(){
         // get latitude and longitude
-        SharedPreferences sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
-        Double latitude = Double.parseDouble(sharedPreferences.getString("Latitude", null));
-        Double longitude = Double.parseDouble(sharedPreferences.getString("Longitude", null));
+        Intent intent = getIntent();
 
         recyclerView.setAdapter(new PromoAdapter(null));
-        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(latitude, longitude);
+        Call<NongskuyPopulerClass> call = config.configRetrofit().tokoPopuler(intent.getDoubleExtra("Latitude",
+                0.0), intent.getDoubleExtra("Longitude", 0.0));
         call.enqueue(new Callback<NongskuyPopulerClass>() {
             @Override
             public void onResponse(Call<NongskuyPopulerClass> call, Response<NongskuyPopulerClass> response) {

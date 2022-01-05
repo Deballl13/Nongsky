@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
+
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -24,6 +27,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.riversun.promise.Func;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });
     }
 
-    public void getCurrentLocation() {
+    Func getCurrentLocation = (action, data) -> {
         // get current location
         CancellationTokenSource cts = new CancellationTokenSource();
         @SuppressLint("MissingPermission") Task<Location> task = fusedLocationProviderClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cts.getToken());
@@ -153,12 +158,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public void onSuccess(@NonNull Location location) {
                 if (location != null) {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Latitude", String.valueOf(location.getLatitude()));
-                    editor.putString("Longitude", String.valueOf(location.getLongitude()));
-                    editor.apply();
+                    action.resolve(location);
                 }
             }
         });
-    }
+    };
+
 }
