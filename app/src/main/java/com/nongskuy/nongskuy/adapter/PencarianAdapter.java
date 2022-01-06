@@ -63,8 +63,10 @@ public class PencarianAdapter extends RecyclerView.Adapter<PencarianAdapter.Penc
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Nongskuy nongskuy = listPencarian.get(getAdapterPosition());
-                    pencarianClickObject.onPencarianClick(nongskuy);
+                    if(!isShimmer){
+                        Nongskuy nongskuy = listPencarian.get(getAdapterPosition());
+                        pencarianClickObject.onPencarianClick(nongskuy);
+                    }
                 }
             });
         }

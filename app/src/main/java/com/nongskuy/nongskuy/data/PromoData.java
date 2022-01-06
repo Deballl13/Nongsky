@@ -4,6 +4,24 @@ import com.google.gson.annotations.SerializedName;
 
 public class PromoData {
 
+	@SerializedName("id_toko")
+	private int idToko;
+
+	@SerializedName("nama_toko")
+	private String namaToko;
+
+	@SerializedName("gambar_toko")
+	private String gambarToko;
+
+	@SerializedName("alamat_toko")
+	private String alamatToko;
+
+	@SerializedName("latitude")
+	private String latitude;
+
+	@SerializedName("longitude")
+	private String longitude;
+
 	@SerializedName("id_menu")
 	private int idMenu;
 
@@ -13,82 +31,108 @@ public class PromoData {
 	@SerializedName("harga")
 	private int harga;
 
-	@SerializedName("id_toko")
-	private int idToko;
+	@SerializedName("gambar_menu")
+	private String gambarMenu;
 
 	@SerializedName("jenis_promo")
 	private String jenisPromo;
 
-	@SerializedName("gambar")
-	private String gambar;
-
-	@SerializedName("nama_toko")
-	private String namaToko;
-
 	@SerializedName("persentase")
 	private int persentase;
 
-	public void setIdMenu(int idMenu){
-		this.idMenu = idMenu;
-	}
-
-	public int getIdMenu(){
-		return idMenu;
-	}
-
-	public void setNamaMenu(String namaMenu){
-		this.namaMenu = namaMenu;
-	}
-
-	public String getNamaMenu(){
-		return namaMenu;
-	}
-
-	public void setHarga(int harga){
-		this.harga = harga;
-	}
-
-	public int getHarga(){
-		return harga;
-	}
-
-	public void setIdToko(int idToko){
-		this.idToko = idToko;
-	}
-
-	public int getIdToko(){
+	public int getIdToko() {
 		return idToko;
 	}
 
-	public void setJenisPromo(String jenisPromo){
-		this.jenisPromo = jenisPromo;
+	public void setIdToko(int idToko) {
+		this.idToko = idToko;
 	}
 
-	public String getJenisPromo(){
-		return jenisPromo;
-	}
-
-	public void setGambar(String gambar){
-		this.gambar = gambar;
-	}
-
-	public String getGambar(){
-		return gambar;
-	}
-
-	public void setNamaToko(String namaToko){
-		this.namaToko = namaToko;
-	}
-
-	public String getNamaToko(){
+	public String getNamaToko() {
 		return namaToko;
 	}
 
-	public void setPersentase(int persentase){
-		this.persentase = persentase;
+	public void setNamaToko(String namaToko) {
+		this.namaToko = namaToko;
 	}
 
-	public int getPersentase(){
+	public String getGambarToko() {
+		return gambarToko;
+	}
+
+	public void setGambarToko(String gambarToko) {
+		this.gambarToko = gambarToko;
+	}
+
+	public String getAlamatToko() {
+		return alamatToko;
+	}
+
+	public void setAlamatToko(String alamatToko) {
+		this.alamatToko = alamatToko;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getIdMenu() {
+		return idMenu;
+	}
+
+	public void setIdMenu(int idMenu) {
+		this.idMenu = idMenu;
+	}
+
+	public String getNamaMenu() {
+		return namaMenu;
+	}
+
+	public void setNamaMenu(String namaMenu) {
+		this.namaMenu = namaMenu;
+	}
+
+	public int getHarga() {
+		return harga;
+	}
+
+	public void setHarga(int harga) {
+		this.harga = harga;
+	}
+
+	public String getGambarMenu() {
+		return gambarMenu;
+	}
+
+	public void setGambarMenu(String gambarMenu) {
+		this.gambarMenu = gambarMenu;
+	}
+
+	public String getJenisPromo() {
+		return jenisPromo;
+	}
+
+	public void setJenisPromo(String jenisPromo) {
+		this.jenisPromo = jenisPromo;
+	}
+
+	public int getPersentase() {
 		return persentase;
+	}
+
+	public void setPersentase(int persentase) {
+		this.persentase = persentase;
 	}
 }

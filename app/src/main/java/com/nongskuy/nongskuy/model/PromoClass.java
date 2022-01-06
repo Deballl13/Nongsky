@@ -1,41 +1,42 @@
 package com.nongskuy.nongskuy.model;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 import com.nongskuy.nongskuy.data.PromoData;
 
 public class PromoClass {
 
-	@SerializedName("promo")
-	private List<PromoData> promo;
+    @SerializedName("tanggal")
+    private String tanggal;
 
-	@SerializedName("jumlah")
-	private int jumlah;
+    @SerializedName("jumlah")
+    private int jumlah;
 
-	@SerializedName("tanggal")
-	private String tanggal;
+    @SerializedName("promo")
+    private List<PromoData> promo;
 
-	public void setPromo(List<PromoData> promo){
-		this.promo = promo;
-	}
+    public String getTanggal() {
+        return tanggal;
+    }
 
-	public List<PromoData> getPromo(){
-		return promo;
-	}
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
 
-	public void setJumlah(int jumlah){
-		this.jumlah = jumlah;
-	}
+    public int getJumlah() {
+        return jumlah;
+    }
 
-	public int getJumlah(){
-		return jumlah;
-	}
+    public void setJumlah(int jumlah) {
+        this.jumlah = jumlah;
+    }
 
-	public void setTanggal(String tanggal){
-		this.tanggal = tanggal;
-	}
+    public List<PromoData> getPromo() {
+        return promo;
+    }
 
-	public String getTanggal(){
-		return tanggal;
-	}
+    public void setPromo(List<PromoData> promo) {
+        this.promo = promo;
+    }
 }

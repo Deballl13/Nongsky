@@ -109,8 +109,10 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Nongskuy nongskuy = listPopuler.get(getAdapterPosition());
-                    populerClickObject.onPopulerClick(nongskuy);
+                    if(!isShimmer){
+                        Nongskuy nongskuy = listPopuler.get(getAdapterPosition());
+                        populerClickObject.onPopulerClick(nongskuy);
+                    }
                 }
             });
         }

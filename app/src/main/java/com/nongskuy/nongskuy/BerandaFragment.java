@@ -46,7 +46,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BerandaFragment extends Fragment {
+public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.OnPopulerViewHolderClick, BerandaPromoAdapter.OnPromoViewHolderClick {
 
     private TextView namaUser;
     private MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
@@ -333,6 +333,9 @@ public class BerandaFragment extends Fragment {
                             berandaPopulerAdapter.notifyDataSetChanged();
                         }
 
+                        //set populer on click
+                        berandaPopulerAdapter.setPopulerClickObject(BerandaFragment.this);
+
                         // enabled click button
                         btnLihatSemuaPopuler.setEnabled(true);
                         action.resolve();
@@ -342,7 +345,7 @@ public class BerandaFragment extends Fragment {
 
             @Override
             public void onFailure(Call<NongskuyPopulerClass> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     };
@@ -364,11 +367,15 @@ public class BerandaFragment extends Fragment {
                             Promo promo = new Promo(
                                     promoData.getIdToko(),
                                     promoData.getNamaToko(),
+                                    promoData.getGambarToko(),
+                                    promoData.getAlamatToko(),
+                                    Double.parseDouble(promoData.getLatitude()),
+                                    Double.parseDouble(promoData.getLongitude()),
                                     promoData.getNamaMenu(),
                                     promoData.getHarga(),
-                                    promoData.getGambar(),
-                                    promoData.getPersentase(),
-                                    promoData.getJenisPromo()
+                                    promoData.getGambarMenu(),
+                                    promoData.getJenisPromo(),
+                                    promoData.getPersentase()
                             );
 
                             arrayListPromo.add(promo);
@@ -376,6 +383,9 @@ public class BerandaFragment extends Fragment {
                             recyclerViewPromo.setAdapter(berandaPromoAdapter);
                             berandaPromoAdapter.notifyDataSetChanged();
                         }
+
+                        //set promo on click
+                        berandaPromoAdapter.setPromoClickObject(BerandaFragment.this);
 
                         // enabled click button
                         btnLihatSemuaPromo.setEnabled(true);
@@ -494,5 +504,29 @@ public class BerandaFragment extends Fragment {
         ));
 
         return listTerdekatBeranda;
+    }
+
+    @Override
+    public void onPopulerBerandaClick(Nongskuy nongskuy) {
+        Intent intent = new Intent(requireActivity(), DetailNongskuy.class);
+        intent.putExtra("IdToko", nongskuy.getIdToko());
+        intent.putExtra("NamaToko", nongskuy.getNamaToko());
+        intent.putExtra("GambarToko", nongskuy.getGambarToko());
+        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
+        intent.putExtra("LatToko", nongskuy.getLatToko());
+        intent.putExtra("LongToko", nongskuy.getLongToko());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPromoBerandaClick(Promo promo) {
+        Intent intent = new Intent(requireActivity(), DetailNongskuy.class);
+        intent.putExtra("IdToko", promo.getIdToko());
+        intent.putExtra("NamaToko", promo.getNamaToko());
+        intent.putExtra("GambarToko", promo.getGambarToko());
+        intent.putExtra("AlamatToko", promo.getAlamatToko());
+        intent.putExtra("LatToko", promo.getLatToko());
+        intent.putExtra("LongToko", promo.getLongToko());
+        startActivity(intent);
     }
 }

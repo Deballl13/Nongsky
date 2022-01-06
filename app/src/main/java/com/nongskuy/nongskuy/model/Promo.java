@@ -4,20 +4,31 @@ public class Promo {
 
     private Integer idToko;
     private String namaToko;
+    private String gambarToko;
+    private String alamatToko;
+    private Double latToko;
+    private Double longToko;
     private String namaMenu;
     private Integer hargaAwal;
-    private String gambar;
+    private String gambarMenu;
+    private String jenisPromo;
     private Integer persentase;
-    private String jenis_promo;
 
-    public Promo(Integer idToko, String namaToko, String namaMenu, Integer hargaAwal, String gambar, Integer persentase, String jenis_promo) {
+    // recyclerview promo
+    public Promo(Integer idToko, String namaToko, String gambarToko, String alamatToko, Double latToko,
+                 Double longToko, String namaMenu, Integer hargaAwal, String gambarMenu,
+                 String jenisPromo, Integer persentase) {
         this.idToko = idToko;
         this.namaToko = namaToko;
+        this.gambarToko = gambarToko;
+        this.alamatToko = alamatToko;
+        this.latToko = latToko;
+        this.longToko = longToko;
         this.namaMenu = namaMenu;
         this.hargaAwal = hargaAwal;
-        this.gambar = gambar;
+        this.gambarMenu = gambarMenu;
         this.persentase = persentase;
-        this.jenis_promo = jenis_promo;
+        this.jenisPromo = jenisPromo;
     }
 
     public Integer getIdToko() {
@@ -36,6 +47,38 @@ public class Promo {
         this.namaToko = namaToko;
     }
 
+    public String getGambarToko() {
+        return gambarToko;
+    }
+
+    public void setGambarToko(String gambarToko) {
+        this.gambarToko = gambarToko;
+    }
+
+    public String getAlamatToko() {
+        return alamatToko;
+    }
+
+    public void setAlamatToko(String alamatToko) {
+        this.alamatToko = alamatToko;
+    }
+
+    public Double getLatToko() {
+        return latToko;
+    }
+
+    public void setLatToko(Double latToko) {
+        this.latToko = latToko;
+    }
+
+    public Double getLongToko() {
+        return longToko;
+    }
+
+    public void setLongToko(Double longToko) {
+        this.longToko = longToko;
+    }
+
     public String getNamaMenu() {
         return namaMenu;
     }
@@ -52,10 +95,20 @@ public class Promo {
         this.hargaAwal = hargaAwal;
     }
 
-    public String getGambar() { return gambar; }
+    public String getGambarMenu() {
+        return gambarMenu;
+    }
 
-    public void setGambar(String gambar) {
-        this.gambar = gambar;
+    public void setGambarMenu(String gambarMenu) {
+        this.gambarMenu = gambarMenu;
+    }
+
+    public String getJenisPromo() {
+        return jenisPromo;
+    }
+
+    public void setJenisPromo(String jenisPromo) {
+        this.jenisPromo = jenisPromo;
     }
 
     public Integer getPersentase() {
@@ -64,13 +117,5 @@ public class Promo {
 
     public void setPersentase(Integer persentase) {
         this.persentase = persentase;
-    }
-
-    public String getJenis_promo() {
-        return jenis_promo;
-    }
-
-    public void setJenis_promo(String jenis_promo) {
-        this.jenis_promo = jenis_promo;
     }
 }

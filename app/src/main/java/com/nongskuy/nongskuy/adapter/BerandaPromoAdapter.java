@@ -17,15 +17,17 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.Helper;
 import com.nongskuy.nongskuy.R;
+import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.Promo;
 import java.util.ArrayList;
 
 public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapter.BerandaPromoViewHolder>{
 
-    ArrayList<Promo> listPromoBeranda;
+    private ArrayList<Promo> listPromoBeranda;
     private Context context;
     private boolean isShimmer = true;
-    Integer numberShimmer = 10;
+    private Integer numberShimmer = 10;
+    private OnPromoViewHolderClick promoClickObject;
 
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
@@ -60,7 +62,7 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
 
             holder.imagePromo.setBackground(null);
             Glide.with(context)
-                    .load(Uri.parse(promo.getGambar()))
+                    .load(Uri.parse(promo.getGambarMenu()))
                     .apply(new RequestOptions()
                             .override(148, 92))
                     .into(holder.imagePromo);
@@ -80,14 +82,14 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
                     helper.mataUangRupiah((100 - promo.getPersentase()) * (promo.getHargaAwal()/100))
             );
 
-            holder.keterangan.setText(promo.getJenis_promo() + " " + promo.getPersentase().toString() + "%");
+            holder.keterangan.setText(promo.getJenisPromo() + " " + promo.getPersentase().toString() + "%");
 
-            if(promo.getJenis_promo().equals("diskon")){
+            if(promo.getJenisPromo().equals("diskon")){
                 holder.keterangan.setTextColor(ContextCompat.getColor(context, R.color.dark_gray));
                 holder.keterangan.setBackgroundResource(R.drawable.background_ket_diskon);
 
             }
-            else if(promo.getJenis_promo().equals("cashback")){
+            else if(promo.getJenisPromo().equals("cashback")){
                 holder.keterangan.setTextColor(Color.WHITE);
                 holder.keterangan.setBackgroundResource(R.drawable.background_ket_cashback);
             }
@@ -97,6 +99,16 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
     @Override
     public int getItemCount() {
         return isShimmer || listPromoBeranda.size() > 10 ? 10 : listPromoBeranda.size();
+    }
+
+    // onClick item recyclerview
+    public interface OnPromoViewHolderClick{
+        void onPromoBerandaClick(Promo promo);
+    }
+
+    // set objek onClick item recyclerview
+    public void setPromoClickObject(OnPromoViewHolderClick promoClickObject){
+        this.promoClickObject = promoClickObject;
     }
 
     public class BerandaPromoViewHolder extends RecyclerView.ViewHolder{
@@ -114,6 +126,16 @@ public class BerandaPromoAdapter extends RecyclerView.Adapter<BerandaPromoAdapte
             textHargaSebelumPromo = itemView.findViewById(R.id.textHargaAwalPromoBeranda);
             textHargaSetelahPromo = itemView.findViewById(R.id.textHargaSetelahPromoBeranda);
             keterangan = itemView.findViewById(R.id.keteranganPromoBeranda);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!isShimmer){
+                        Promo promo = listPromoBeranda.get(getAdapterPosition());
+                        promoClickObject.onPromoBerandaClick(promo);
+                    }
+                }
+            });
         }
     }
 }

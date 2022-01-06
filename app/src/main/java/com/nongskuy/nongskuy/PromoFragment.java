@@ -96,11 +96,15 @@ public class PromoFragment extends Fragment implements PromoAdapter.OnPromoViewH
                             Promo promo = new Promo(
                                     promoData.getIdToko(),
                                     promoData.getNamaToko(),
+                                    promoData.getGambarToko(),
+                                    promoData.getAlamatToko(),
+                                    Double.parseDouble(promoData.getLatitude()),
+                                    Double.parseDouble(promoData.getLongitude()),
                                     promoData.getNamaMenu(),
                                     promoData.getHarga(),
-                                    promoData.getGambar(),
-                                    promoData.getPersentase(),
-                                    promoData.getJenisPromo()
+                                    promoData.getGambarMenu(),
+                                    promoData.getJenisPromo(),
+                                    promoData.getPersentase()
                             );
 
                             arrayListPromo.add(promo);
@@ -108,6 +112,8 @@ public class PromoFragment extends Fragment implements PromoAdapter.OnPromoViewH
                             recyclerView.setAdapter(recyclerViewPromoAdaper);
                             recyclerViewPromoAdaper.notifyDataSetChanged();
                         }
+
+                        //set promo on click
                         recyclerViewPromoAdaper.setPromoClickObject(PromoFragment.this);
                     }
                 }
@@ -123,12 +129,12 @@ public class PromoFragment extends Fragment implements PromoAdapter.OnPromoViewH
     @Override
     public void onPromoClick(Promo promo) {
         Intent intent = new Intent(getActivity(), DetailNongskuy.class);
-//        intent.putExtra("IdToko", promo.getIdToko());
-//        intent.putExtra("NamaToko", promo.getNamaToko());
-//        intent.putExtra("GambarToko", nongskuy.getGambarToko());
-//        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
-//        intent.putExtra("LatToko", nongskuy.getLatToko());
-//        intent.putExtra("LongToko", nongskuy.getLongToko());
+        intent.putExtra("IdToko", promo.getIdToko());
+        intent.putExtra("NamaToko", promo.getNamaToko());
+        intent.putExtra("GambarToko", promo.getGambarToko());
+        intent.putExtra("AlamatToko", promo.getAlamatToko());
+        intent.putExtra("LatToko", promo.getLatToko());
+        intent.putExtra("LongToko", promo.getLongToko());
         startActivity(intent);
     }
 }

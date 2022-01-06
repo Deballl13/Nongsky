@@ -21,11 +21,14 @@ public class BerandaPopulerAdapter extends RecyclerView.Adapter<BerandaPopulerAd
     private ArrayList<Nongskuy> listPopulerBeranda;
     private Context context;
     private boolean isShimmer = true;
+    private OnPopulerViewHolderClick populerClickObject;
 
+    // set shimmer
     public void setShimmer(boolean shimmer) {
         isShimmer = shimmer;
     }
 
+    // constructor
     public BerandaPopulerAdapter(ArrayList<Nongskuy> listPopulerBeranda) {
         this.listPopulerBeranda = listPopulerBeranda;
     }
@@ -81,6 +84,17 @@ public class BerandaPopulerAdapter extends RecyclerView.Adapter<BerandaPopulerAd
         return isShimmer || listPopulerBeranda.size() > 10 ? 10 : listPopulerBeranda.size();
     }
 
+    // onClick item recyclerview
+    public interface OnPopulerViewHolderClick{
+        void onPopulerBerandaClick(Nongskuy nongskuy);
+    }
+
+    // set objek onClick item recyclerview
+    public void setPopulerClickObject(OnPopulerViewHolderClick populerClickObject){
+        this.populerClickObject = populerClickObject;
+    }
+
+    // view holder
     public class BerandaPopulerViewHolder extends RecyclerView.ViewHolder {
         TextView textNamaTokoPopuler, textAlamatTokoPopuler, textTipeTongkrongan, textJarakTongkrongan, ratingPopuler;
         ShapeableImageView imageTokoPopuler;
@@ -95,6 +109,16 @@ public class BerandaPopulerAdapter extends RecyclerView.Adapter<BerandaPopulerAd
             textTipeTongkrongan = itemView.findViewById(R.id.textTipeTokoPopulerBeranda);
             textJarakTongkrongan = itemView.findViewById(R.id.textJarakPopulerBeranda);
             ratingPopuler = itemView.findViewById(R.id.ratingPopulerBeranda);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!isShimmer){
+                        Nongskuy nongskuy = listPopulerBeranda.get(getAdapterPosition());
+                        populerClickObject.onPopulerBerandaClick(nongskuy);
+                    }
+                }
+            });
         }
     }
 }
