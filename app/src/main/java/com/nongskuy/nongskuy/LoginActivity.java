@@ -78,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-
                     }
                     else if(response.code() == 403){
                         if(!response.isSuccessful()){
@@ -90,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     }
+
+                    // menampilkan pesan
                     Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     toggleViewProgressBar(false);
                 }

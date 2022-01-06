@@ -13,6 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.model.MessageClass;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,15 +70,29 @@ public class RegisterActivity extends AppCompatActivity {
             call.enqueue(new Callback<MessageClass>() {
                 @Override
                 public void onResponse(Call<MessageClass> call, Response<MessageClass> response) {
+                    String message = null;
                     if (response.code() == 200){
                         if (response.isSuccessful()){
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            toggleViewProgressBar(false);
+                            message = response.body().getMessage();
                             startActivity(intent);
                             finish();
                         }
                     }
+                    else if(response.code() == 400){
+                        if(!response.isSuccessful()) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.errorBody().string());
+                                message = jsonObject.getString("message");
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    // menampilkan pesan
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                 }
 
                 @Override
