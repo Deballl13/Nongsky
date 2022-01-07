@@ -98,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<MessageClass> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                 }
             });
         }

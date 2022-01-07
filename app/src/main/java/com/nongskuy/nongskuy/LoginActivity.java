@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<AuthClass> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    toggleViewProgressBar(false);
                 }
             });
         }
@@ -120,7 +121,6 @@ public class LoginActivity extends AppCompatActivity {
             inputPassword.getText().clear();
             inputEmail.setEnabled(false);
             inputPassword.setEnabled(false);
-            buttonLogin.setEnabled(false);
             buttonLogin.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
         }

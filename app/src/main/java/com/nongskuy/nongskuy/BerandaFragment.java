@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,10 @@ import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.adapter.BerandaPopulerAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaPromoAdapter;
 import com.nongskuy.nongskuy.adapter.BerandaTerdekatAdapter;
+import com.nongskuy.nongskuy.data.NongskuyTerdekatData;
 import com.nongskuy.nongskuy.data.PromoData;
 import com.nongskuy.nongskuy.data.NongskuyPopulerData;
+import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
@@ -46,7 +49,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.OnPopulerViewHolderClick, BerandaPromoAdapter.OnPromoViewHolderClick {
+public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.OnPopulerViewHolderClick,
+        BerandaPromoAdapter.OnPromoViewHolderClick, BerandaTerdekatAdapter.OnTerdekatViewHolderClick {
 
     private TextView namaUser;
     private MaterialButton btnRiwayatPemesananTempat, btnLihatSemuaPopuler,
@@ -151,7 +155,7 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         LinearLayoutManager linearLayoutManagerTerdekat = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewTerdekat = view.findViewById(R.id.recyclerViewBerandaTerdekat);
         recyclerViewTerdekat.setLayoutManager(linearLayoutManagerTerdekat);
-        recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(getDataTerdekat()));
+        recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(null));
 
         // refresh halaman
         refreshLayout = view.findViewById(R.id.refreshBeranda);
@@ -215,11 +219,17 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         searchViewBeranda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent = new Intent(getActivity(), PencarianActivity.class);
-                intent.putExtra("Keyword", s);
-                intent.putExtra("Latitude", latitude);
-                intent.putExtra("Longitude", longitude);
-                startActivity(intent);
+                if(latitude != null && longitude != null){
+                    Intent intent = new Intent(getActivity(), PencarianActivity.class);
+                    intent.putExtra("Keyword", s);
+                    intent.putExtra("Latitude", latitude);
+                    intent.putExtra("Longitude", longitude);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getActivity(), "data sedang diunduh", Toast.LENGTH_SHORT).show();
+                }
+
                 return false;
             }
 
@@ -284,8 +294,15 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         // cek gps hidup atau tidak
         isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
+        // disabled button
+        btnLihatSemuaPopuler.setEnabled(false);
+        btnLihatSemuaPromo.setEnabled(false);
+        btnLihatSemuaTerdekat.setEnabled(false);
+
+        // active shimmer
         recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
         recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
+        recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(null));
 
         if (isGpsEnabled) {
             getCurrentLocation();
@@ -321,7 +338,7 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
                                     nongskuyPopulerData.getNamaToko(),
                                     nongskuyPopulerData.getAlamat(),
                                     nongskuyPopulerData.getTipe(),
-                                    4.5,
+                                    nongskuyPopulerData.getJarak(),
                                     nongskuyPopulerData.getRating(),
                                     Double.parseDouble(nongskuyPopulerData.getLatitude()),
                                     Double.parseDouble(nongskuyPopulerData.getLongitude())
@@ -401,12 +418,60 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         });
     };
 
+    Func loadDataNongskuyTerdekat = (action, data) -> {
+        // load data
+        Call<NongskuyTerdekatClass> call = config.configRetrofit().terdekat(latitude, longitude);
+        call.enqueue(new Callback<NongskuyTerdekatClass>() {
+            @Override
+            public void onResponse(Call<NongskuyTerdekatClass> call, Response<NongskuyTerdekatClass> response) {
+                if (response.code() == 200) {
+                    if (response.isSuccessful()) {
+                        NongskuyTerdekatClass nongskuyTerdekatClass = response.body();
+                        List<NongskuyTerdekatData> listTokoTerdekat = nongskuyTerdekatClass.getToko();
+                        ArrayList<Nongskuy> arrayListTokoTerdekat = new ArrayList<>();
+                        BerandaTerdekatAdapter berandaTerdekatAdapter = new BerandaTerdekatAdapter(arrayListTokoTerdekat);
+
+                        for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
+                            Nongskuy nongskuy = new Nongskuy(
+                                    nongskuyTerdekatData.getId(),
+                                    nongskuyTerdekatData.getGambar(),
+                                    nongskuyTerdekatData.getNamaToko(),
+                                    nongskuyTerdekatData.getAlamat(),
+                                    nongskuyTerdekatData.getTipe(),
+                                    nongskuyTerdekatData.getJarak(),
+                                    Double.parseDouble(nongskuyTerdekatData.getLatitude()),
+                                    Double.parseDouble(nongskuyTerdekatData.getLongitude())
+                            );
+
+                            arrayListTokoTerdekat.add(nongskuy);
+                            berandaTerdekatAdapter.setShimmer(false);
+                            recyclerViewTerdekat.setAdapter(berandaTerdekatAdapter);
+                            berandaTerdekatAdapter.notifyDataSetChanged();
+                        }
+
+//                        set populer on click
+                        berandaTerdekatAdapter.setTerdekatClickObject(BerandaFragment.this);
+
+                        // enabled click button
+                        btnLihatSemuaTerdekat.setEnabled(true);
+                        action.resolve();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NongskuyTerdekatClass> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    };
+
     Func loadData = (action, data) -> {
         latitude = ((Location) data).getLatitude();
         longitude = ((Location) data).getLongitude();
 
         // load data
-        Promise.all(loadDataNongskuyPopuler, loadDataPromo).start();
+        Promise.all(loadDataNongskuyPopuler, loadDataPromo, loadDataNongskuyTerdekat).start();
 
         action.resolve();
     };
@@ -432,80 +497,6 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         }
     }
 
-    public ArrayList<Nongskuy> getDataTerdekat() {
-        // enabled click button
-        btnLihatSemuaTerdekat.setEnabled(true);
-        ArrayList<Nongskuy> listTerdekatBeranda = new ArrayList<>();
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-        listTerdekatBeranda.add(new Nongskuy(
-                "McDonald’s Padang",
-                "Cepat saji",
-                4.5,
-                "km"
-        ));
-
-        return listTerdekatBeranda;
-    }
-
     @Override
     public void onPopulerBerandaClick(Nongskuy nongskuy) {
         Intent intent = new Intent(requireActivity(), DetailNongskuy.class);
@@ -527,6 +518,18 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         intent.putExtra("AlamatToko", promo.getAlamatToko());
         intent.putExtra("LatToko", promo.getLatToko());
         intent.putExtra("LongToko", promo.getLongToko());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onTerdekatBerandaClick(Nongskuy nongskuy) {
+        Intent intent = new Intent(requireActivity(), DetailNongskuy.class);
+        intent.putExtra("IdToko", nongskuy.getIdToko());
+        intent.putExtra("NamaToko", nongskuy.getNamaToko());
+        intent.putExtra("GambarToko", nongskuy.getGambarToko());
+        intent.putExtra("AlamatToko", nongskuy.getAlamatToko());
+        intent.putExtra("LatToko", nongskuy.getLatToko());
+        intent.putExtra("LongToko", nongskuy.getLongToko());
         startActivity(intent);
     }
 }

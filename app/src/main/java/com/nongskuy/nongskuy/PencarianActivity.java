@@ -121,7 +121,7 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
                                         pencarianData.getGambar(),
                                         pencarianData.getNamaToko(),
                                         pencarianData.getAlamat(),
-                                        4.5,
+                                        pencarianData.getJarak(),
                                         Double.parseDouble(pencarianData.getLatitude()),
                                         Double.parseDouble(pencarianData.getLongitude())
                                 );

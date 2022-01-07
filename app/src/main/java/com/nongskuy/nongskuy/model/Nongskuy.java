@@ -13,14 +13,13 @@ public class Nongskuy {
     private String hariOpsToko;
     private String fasilitasToko;
     private String ratingToko;
-    private Double jarakToko;
-    private String satuanJarak;
+    private String jarakToko;
     private Double latToko;
     private Double longToko;
 
     // recyclerview populer
     public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
-                    Double jarakToko, String ratingToko, Double latToko, Double longToko) {
+                    String jarakToko, String ratingToko, Double latToko, Double longToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
@@ -33,7 +32,8 @@ public class Nongskuy {
     }
 
     //recyclerview pencarian
-    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, Double jarakToko, Double latToko, Double longToko) {
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko,
+                    String jarakToko, Double latToko, Double longToko) {
         this.idToko = idToko;
         this.gambarToko = gambarToko;
         this.namaToko = namaToko;
@@ -44,11 +44,16 @@ public class Nongskuy {
     }
 
     //recyclerview beranda terdekat
-    public Nongskuy(String namaToko, String tipeToko, Double jarakToko, String satuanJarak) {
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko, String jarakToko,
+                    Double latToko, Double longToko) {
+        this.idToko = idToko;
+        this.gambarToko = gambarToko;
         this.namaToko = namaToko;
+        this.alamatToko = alamatToko;
         this.tipeToko = tipeToko;
         this.jarakToko = jarakToko;
-        this.satuanJarak = satuanJarak;
+        this.latToko = latToko;
+        this.longToko = longToko;
     }
 
     //recyclerview fasilitas store
@@ -136,20 +141,12 @@ public class Nongskuy {
         this.fasilitasToko = fasilitasToko;
     }
 
-    public Double getJarakToko() {
+    public String getJarakToko() {
         return jarakToko;
     }
 
-    public void setJarakToko(Double jarakToko) {
+    public void setJarakToko(String jarakToko) {
         this.jarakToko = jarakToko;
-    }
-
-    public String getSatuanJarak() {
-        return satuanJarak;
-    }
-
-    public void setSatuanJarak(String satuanJarak) {
-        this.satuanJarak = satuanJarak;
     }
 
     public String getRatingToko() {

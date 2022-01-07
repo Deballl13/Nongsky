@@ -69,7 +69,7 @@ public class BerandaPopulerAdapter extends RecyclerView.Adapter<BerandaPopulerAd
             holder.textTipeTongkrongan.setText(nongskuy.getTipeToko());
 
             holder.textJarakTongkrongan.setBackground(null);
-            holder.textJarakTongkrongan.setText(nongskuy.getJarakToko().toString() + " " + "Km");
+            holder.textJarakTongkrongan.setText(nongskuy.getJarakToko() + " Km");
 
             holder.ratingPopuler.setBackground(null);
             holder.ratingPopuler.setCompoundDrawablesWithIntrinsicBounds(
@@ -96,7 +96,8 @@ public class BerandaPopulerAdapter extends RecyclerView.Adapter<BerandaPopulerAd
 
     // view holder
     public class BerandaPopulerViewHolder extends RecyclerView.ViewHolder {
-        TextView textNamaTokoPopuler, textAlamatTokoPopuler, textTipeTongkrongan, textJarakTongkrongan, ratingPopuler;
+        TextView textNamaTokoPopuler, textAlamatTokoPopuler, textTipeTongkrongan,
+                textJarakTongkrongan, ratingPopuler;
         ShapeableImageView imageTokoPopuler;
         ShimmerFrameLayout shimmerFrameLayout;
 

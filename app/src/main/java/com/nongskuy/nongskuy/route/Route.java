@@ -2,6 +2,7 @@ package com.nongskuy.nongskuy.route;
 
 import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MessageClass;
+import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 import com.nongskuy.nongskuy.model.PencarianClass;
@@ -45,11 +46,14 @@ public interface Route {
     @GET("pesan/riwayat")
     Call<RiwayatNongskuyClass> riwayat(@Header("Authorization") String token);
 
-    @GET("toko/populer")
+    @GET("nongskuy/populer")
     Call<NongskuyPopulerClass> tokoPopuler(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
 
     @FormUrlEncoded
-    @POST("toko/search")
+    @POST("nongskuy/search")
     Call<PencarianClass> search(@Field("keyword") String keyword, @Query("latitude") Double latitude, @Query("longitude") Double longitude);
+
+    @GET("nongskuy/terdekat")
+    Call<NongskuyTerdekatClass> terdekat(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
 
 }

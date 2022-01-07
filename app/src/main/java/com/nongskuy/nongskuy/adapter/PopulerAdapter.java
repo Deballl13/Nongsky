@@ -78,7 +78,7 @@ public class PopulerAdapter extends RecyclerView.Adapter<PopulerAdapter.PopulerV
             holder.textTipeTongkrongan.setText(nongskuy.getTipeToko());
 
             holder.textJarakTongkrongan.setBackground(null);
-            holder.textJarakTongkrongan.setText(nongskuy.getJarakToko().toString() + " " + "Km");
+            holder.textJarakTongkrongan.setText(nongskuy.getJarakToko().toString() + " Km");
 
             holder.ratingPopuler.setVisibility(View.VISIBLE);
             holder.ratingPopuler.setText(nongskuy.getRatingToko());

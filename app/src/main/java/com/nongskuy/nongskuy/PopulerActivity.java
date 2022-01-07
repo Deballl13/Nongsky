@@ -76,7 +76,7 @@ public class PopulerActivity extends AppCompatActivity implements BottomNavigati
                                     nongskuyPopulerData.getNamaToko(),
                                     nongskuyPopulerData.getAlamat(),
                                     nongskuyPopulerData.getTipe(),
-                                    4.5,
+                                    nongskuyPopulerData.getJarak(),
                                     nongskuyPopulerData.getRating(),
                                     Double.parseDouble(nongskuyPopulerData.getLatitude()),
                                     Double.parseDouble(nongskuyPopulerData.getLongitude())
