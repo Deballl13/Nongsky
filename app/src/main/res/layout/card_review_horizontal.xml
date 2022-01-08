@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="253dp"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:paddingVertical="10dp"
         android:paddingHorizontal="8dp">
 
@@ -42,31 +42,33 @@
             android:id="@+id/textKomentarReview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="18dp"
             android:ellipsize="end"
             android:ems="3"
             android:fontFamily="@font/manrope_regular"
+            android:gravity="center_vertical"
             android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
             android:maxWidth="170dp"
             android:maxLines="4"
             android:minWidth="170dp"
             android:text="Panas Ayam 111111111111111111111111111111111111111111111111111111111111111111111111111"
-            android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/textNamaUserReview"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imgStarReview"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.384"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgUserReview"
             android:layout_width="33dp"
             android:layout_height="33dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textKomentarReview" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/textNamaUserReview"
@@ -100,8 +102,7 @@
             android:textColor="@color/dark_gray"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgUserReview"
-            app:layout_constraintStart_toEndOf="@+id/imgUserReview"
-            app:layout_constraintTop_toBottomOf="@+id/textNamaUserReview" />
+            app:layout_constraintStart_toEndOf="@+id/imgUserReview" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

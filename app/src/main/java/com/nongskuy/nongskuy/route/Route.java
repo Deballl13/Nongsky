@@ -4,6 +4,7 @@ import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MessageClass;
 import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.PromoClass;
+import com.nongskuy.nongskuy.model.ReviewClass;
 import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 import com.nongskuy.nongskuy.model.PencarianClass;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
@@ -14,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Route {
@@ -56,4 +58,6 @@ public interface Route {
     @GET("nongskuy/terdekat")
     Call<NongskuyTerdekatClass> terdekat(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
 
+    @GET("nongskuy/{id}/review")
+    Call<ReviewClass> review(@Path("id") Integer idToko);
 }

@@ -156,9 +156,9 @@
             android:textAllCaps="false"
             android:textSize="12sp"
             app:icon="@drawable/ic_baseline_add"
-            app:layout_constraintBottom_toBottomOf="@+id/rvReviewStore"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textReviewStore" />
+            app:layout_constraintTop_toBottomOf="@id/textReviewStore"
+            app:layout_constraintBottom_toTopOf="@+id/rvHariOps"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLihatSemuaReview"
@@ -192,14 +192,57 @@
             app:layout_constraintTop_toBottomOf="@+id/textReviewStore"
             tools:listitem="@layout/card_review_horizontal" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
+            android:id="@+id/rvHariOps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="Hari Ops"
             android:layout_marginTop="20dp"
             android:paddingHorizontal="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvReviewStore" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ReviewTidakDitemukan"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnTambahReview"
+            app:cardCornerRadius="10dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@+id/btnTambahReview"
+            app:layout_constraintBottom_toBottomOf="@id/btnTambahReview" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/imageReviewTidakDitemukan"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_baseline_rate_review_24" />
+
+                <TextView
+                    android:id="@+id/textKeteranganReviewTidakAda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageReviewTidakDitemukan"
+                    android:fontFamily="@font/manrope_regular"
+                    android:paddingHorizontal="20dp"
+                    android:text="Ups... tempat nongkrong ini belum punya review nih"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

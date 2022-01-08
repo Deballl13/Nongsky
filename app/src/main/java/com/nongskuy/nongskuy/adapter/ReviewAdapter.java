@@ -12,12 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.nongskuy.nongskuy.R;
+import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.Review;
 
 import java.util.ArrayList;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>{
     private Context context;
+    private ArrayList<Review> listReview;
+
+    public ReviewAdapter(ArrayList<Review> listReview) {
+        this.listReview = listReview;
+    }
 
     public class ReviewViewHolder extends RecyclerView.ViewHolder {
         TextView textNilaiReview, textKomentarReview, textNamaUserReview, textTanggalReview;
@@ -36,12 +42,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         }
     }
 
-    ArrayList<Review> listReview = new ArrayList<>();
-    public void setListReview(ArrayList<Review> listReview){
-        this.listReview = listReview;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public ReviewAdapter.ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,8 +57,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
         holder.imgStarReview.setImageResource(R.drawable.ic_star);
         holder.imgUserReview.setImageResource(R.drawable.avatar);
-        holder.textNamaUserReview.setText(review.getIdUser().toString());
-        holder.textNilaiReview.setText(review.getRating().toString());
+        holder.textNamaUserReview.setText(review.getNamaUser());
+        holder.textNilaiReview.setText(review.getRating());
         holder.textKomentarReview.setText(review.getKomentar());
         holder.textTanggalReview.setText(review.getTanggal());
     }

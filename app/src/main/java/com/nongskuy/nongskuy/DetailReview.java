@@ -57,19 +57,19 @@ public class DetailReview extends AppCompatActivity {
                 1, 1,1,
                 "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
                 "19/10/2021",
-                4.5
+                "4.5"
         ));
         listReview.add(new Review(
                 2, 2,1,
                 "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
                 "19/10/2022",
-                4.8
+                "4.8"
         ));
         listReview.add(new Review(
                 3, 3,1,
                 "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
                 "19/10/2023",
-                4.7
+                "4.7"
         ));
 
         return listReview;

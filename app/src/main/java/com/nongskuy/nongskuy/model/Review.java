@@ -5,19 +5,28 @@ public class Review {
     private Integer idReview;
     private Integer idUser;
     private Integer idToko;
+    private String namaUser;
     private String komentar;
     private String tanggal;
-    private Double rating;
+    private String rating;
     private String gambar;
 
-    public Review(Integer idReview, Integer idUser, Integer idToko, String komentar, String tanggal, Double rating){
+    //horizontal review RV
+    public Review(Integer idReview, String namaUser, String komentar, String tanggal, String rating){
+        this.idReview = idReview;
+        this.namaUser = namaUser;
+        this.komentar = komentar;
+        this.tanggal = tanggal;
+        this.rating = rating;
+    }
+
+    public Review(Integer idReview, Integer idUser, Integer idToko, String komentar, String tanggal, String rating){
         this.idReview = idReview;
         this.idUser = idUser;
         this.idToko = idToko;
         this.komentar = komentar;
         this.tanggal = tanggal;
         this.rating = rating;
-        //this.gambar = gambar;
     }
 
     public Integer getIdReview() {
@@ -60,11 +69,11 @@ public class Review {
         this.tanggal = tanggal;
     }
 
-    public Double getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -74,5 +83,13 @@ public class Review {
 
     public void setGambar(String gambar) {
         this.gambar = gambar;
+    }
+
+    public String getNamaUser() {
+        return namaUser;
+    }
+
+    public void setNamaUser(String namaUser) {
+        this.namaUser = namaUser;
     }
 }

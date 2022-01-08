@@ -27,12 +27,27 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.adapter.FasilitasAdapter;
 import com.nongskuy.nongskuy.adapter.MenuAdapter;
+import com.nongskuy.nongskuy.adapter.PopulerAdapter;
 import com.nongskuy.nongskuy.adapter.ReviewAdapter;
+import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
+import com.nongskuy.nongskuy.data.NongskuyPopulerData;
+import com.nongskuy.nongskuy.data.ReviewData;
+import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.Menu;
 import com.nongskuy.nongskuy.model.Nongskuy;
+import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
+import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.Review;
+import com.nongskuy.nongskuy.model.ReviewClass;
+import com.nongskuy.nongskuy.model.RiwayatNongskuy;
+import com.nongskuy.nongskuy.model.RiwayatNongskuyClass;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -44,12 +59,19 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
     private ImageView imageDetailNongskuy;
     private TextView textNamaNongskuy, textAlamatNongskuy;
     private SupportMapFragment supportMapFragment;
-    private String idToko, namaToko, gambarToko;
+    private Integer idToko;
+    private String namaToko, gambarToko;
+    private Config config;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_nongskuy);
+
+        config = new Config();
+        sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
 
         //get id
         btnLihatSemuaReview = findViewById(R.id.btnLihatSemuaReview);
@@ -60,7 +82,7 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
 
         //Get Data Intent
         Intent intent = getIntent();
-        idToko = intent.getStringExtra("IdToko");
+        idToko = intent.getIntExtra("IdToko", 0);
         namaToko = intent.getStringExtra("NamaToko");
         gambarToko = intent.getStringExtra("GambarToko");
 
@@ -83,14 +105,13 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         rvMenu.setAdapter(menuAdapter);
         rvMenu.setLayoutManager(linearLayoutManagerMenu);
 
-        //Review Recycler View
-        reviewAdapter = new ReviewAdapter();
-        reviewAdapter.setListReview(dataDummyReview());
 
+        //Review Recycler View
         LinearLayoutManager linearLayoutManagerReview = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvReview = findViewById(R.id.rvReviewStore);
-        rvReview.setAdapter(reviewAdapter);
         rvReview.setLayoutManager(linearLayoutManagerReview);
+        loadDataReview(idToko);
+
 
         //Fasilitas Recyclerview
         fasilitasAdapter = new FasilitasAdapter();
@@ -120,6 +141,51 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         startActivity(intent);
     }
 
+    private void loadDataReview(Integer idToko) {
+        Call<ReviewClass> call = config.configRetrofit().review(idToko);
+        call.enqueue(new Callback<ReviewClass>() {
+            @Override
+            public void onResponse(Call<ReviewClass> call, Response<ReviewClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        ReviewClass reviewClass = response.body();
+                        List<ReviewData> listReview = reviewClass.getReview();
+                        ArrayList<Review> arrayListReview = new ArrayList<>();
+                        ReviewAdapter reviewAdapter = new ReviewAdapter(arrayListReview);
+
+                        //cek isi list
+                        if(listReview.size() == 0){
+                            // menghilangkan recyclerview
+                            rvReview.setVisibility(View.GONE);
+
+                            // menampilkan review tidak ada
+                            findViewById(R.id.ReviewTidakDitemukan).setVisibility(View.VISIBLE);
+                        }
+
+                        for (ReviewData reviewData : listReview){
+                            Review review = new Review(
+                                    reviewData.getId(),
+                                    reviewData.getNama(),
+                                    reviewData.getKomentar(),
+                                    reviewData.getTanggal(),
+                                    reviewData.getRating()
+                            );
+                            arrayListReview.add(review);
+                            rvReview.setAdapter(reviewAdapter);
+                            reviewAdapter.notifyDataSetChanged();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewClass> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     public ArrayList<Menu> dataDummyMenu(){
         ArrayList<Menu> listMenu = new ArrayList<>();
         listMenu.add(new Menu(
@@ -142,30 +208,6 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         ));
 
         return listMenu;
-    }
-
-    public ArrayList<Review> dataDummyReview(){
-        ArrayList<Review> listReview = new ArrayList<>();
-        listReview.add(new Review(
-                1, 1,1,
-                "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
-                "19/10/2021",
-                4.5
-        ));
-        listReview.add(new Review(
-                2, 2,1,
-                "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
-                "19/10/2022",
-                4.8
-        ));
-        listReview.add(new Review(
-                3, 3,1,
-                "“Tempatnya nyaman banget, makanan juga enak. Cuma fasilitas udah banyak rusak”",
-                "19/10/2023",
-                4.7
-        ));
-
-        return listReview;
     }
 
     public ArrayList<Nongskuy> dataDummyFasilitas(){
