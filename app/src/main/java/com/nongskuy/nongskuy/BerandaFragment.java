@@ -9,25 +9,28 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.nongskuy.nongskuy.adapter.BerandaPopulerAdapter;
@@ -41,10 +44,13 @@ import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
+
 import org.riversun.promise.Func;
 import org.riversun.promise.Promise;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,6 +72,7 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
     private Boolean isGpsEnabled;
     private Double latitude;
     private Double longitude;
+    private CardView cardViewTerdekatTidakDitemukan;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -94,6 +101,7 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         namaUser = view.findViewById(R.id.textName);
         refreshLayout = view.findViewById(R.id.refreshBeranda);
         searchViewBeranda = view.findViewById(R.id.searchViewBeranda);
+        cardViewTerdekatTidakDitemukan = view.findViewById(R.id.tokoTerdekatTidakDitemukan);
 
         // cek permission android
         if (ActivityCompat.checkSelfPermission(getActivity(),
@@ -219,14 +227,13 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         searchViewBeranda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                if(latitude != null && longitude != null){
+                if (latitude != null && longitude != null) {
                     Intent intent = new Intent(getActivity(), PencarianActivity.class);
                     intent.putExtra("Keyword", s);
                     intent.putExtra("Latitude", latitude);
                     intent.putExtra("Longitude", longitude);
                     startActivity(intent);
-                }
-                else{
+                } else {
                     Toast.makeText(getActivity(), "data sedang diunduh", Toast.LENGTH_SHORT).show();
                 }
 
@@ -293,6 +300,10 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
     public void refreshLayout() {
         // cek gps hidup atau tidak
         isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        // reset latitude dan longitude
+        latitude = null;
+        longitude = null;
 
         // disabled button
         btnLihatSemuaPopuler.setEnabled(false);
@@ -419,6 +430,13 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
     };
 
     Func loadDataNongskuyTerdekat = (action, data) -> {
+        // menampilkan recyclerview dan button terdekat
+        recyclerViewTerdekat.setVisibility(View.VISIBLE);
+        btnLihatSemuaTerdekat.setVisibility(View.VISIBLE);
+
+        // menghilangkan cardview tidak ditemukan
+        cardViewTerdekatTidakDitemukan.setVisibility(View.GONE);
+
         // load data
         Call<NongskuyTerdekatClass> call = config.configRetrofit().terdekat(latitude, longitude);
         call.enqueue(new Callback<NongskuyTerdekatClass>() {
@@ -431,29 +449,40 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
                         ArrayList<Nongskuy> arrayListTokoTerdekat = new ArrayList<>();
                         BerandaTerdekatAdapter berandaTerdekatAdapter = new BerandaTerdekatAdapter(arrayListTokoTerdekat);
 
-                        for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
-                            Nongskuy nongskuy = new Nongskuy(
-                                    nongskuyTerdekatData.getId(),
-                                    nongskuyTerdekatData.getGambar(),
-                                    nongskuyTerdekatData.getNamaToko(),
-                                    nongskuyTerdekatData.getAlamat(),
-                                    nongskuyTerdekatData.getTipe(),
-                                    nongskuyTerdekatData.getJarak(),
-                                    Double.parseDouble(nongskuyTerdekatData.getLatitude()),
-                                    Double.parseDouble(nongskuyTerdekatData.getLongitude())
-                            );
+                        //cek jumlah data
+                        if (nongskuyTerdekatClass.getJumlah() == 0) {
+                            // menampilkan cardview tidak ditemukan
+                            cardViewTerdekatTidakDitemukan.setVisibility(View.VISIBLE);
 
-                            arrayListTokoTerdekat.add(nongskuy);
-                            berandaTerdekatAdapter.setShimmer(false);
-                            recyclerViewTerdekat.setAdapter(berandaTerdekatAdapter);
-                            berandaTerdekatAdapter.notifyDataSetChanged();
+                            // menghilangkan recyclerview terdekat dan tombol lihat semua
+                            recyclerViewTerdekat.setVisibility(View.GONE);
+                            btnLihatSemuaTerdekat.setVisibility(View.GONE);
+                        } else {
+                            for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
+                                Nongskuy nongskuy = new Nongskuy(
+                                        nongskuyTerdekatData.getId(),
+                                        nongskuyTerdekatData.getGambar(),
+                                        nongskuyTerdekatData.getNamaToko(),
+                                        nongskuyTerdekatData.getAlamat(),
+                                        nongskuyTerdekatData.getTipe(),
+                                        nongskuyTerdekatData.getJarak(),
+                                        Double.parseDouble(nongskuyTerdekatData.getLatitude()),
+                                        Double.parseDouble(nongskuyTerdekatData.getLongitude())
+                                );
+
+                                arrayListTokoTerdekat.add(nongskuy);
+                                berandaTerdekatAdapter.setShimmer(false);
+                                recyclerViewTerdekat.setAdapter(berandaTerdekatAdapter);
+                                berandaTerdekatAdapter.notifyDataSetChanged();
+                            }
+
+                            // set terdekat onclick
+                            berandaTerdekatAdapter.setTerdekatClickObject(BerandaFragment.this);
+
+                            // enabled click button
+                            btnLihatSemuaTerdekat.setEnabled(true);
                         }
 
-//                        set populer on click
-                        berandaTerdekatAdapter.setTerdekatClickObject(BerandaFragment.this);
-
-                        // enabled click button
-                        btnLihatSemuaTerdekat.setEnabled(true);
                         action.resolve();
                     }
                 }

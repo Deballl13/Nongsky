@@ -75,8 +75,7 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
     }
 
     public void loadDataSearch(String keyword){
-        //set visibility
-        //gone komponen
+        // menampilkan recyclerview pencarian
         rvPencarian.setVisibility(View.VISIBLE);
         findViewById(R.id.textHasilCari).setVisibility(View.VISIBLE);
 
@@ -102,8 +101,8 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
                         ArrayList<Nongskuy> arrayListPencarianToko = new ArrayList<>();
                         PencarianAdapter pencarianAdapter = new PencarianAdapter(arrayListPencarianToko);
 
-                        //cek isi arraylist listPencarian
-                        if(listPencarian.size() == 0){
+                        //cek jumlah data
+                        if(pencarianClass.getJumlah() == 0){
                             //gone komponen
                             rvPencarian.setVisibility(View.GONE);
                             findViewById(R.id.textHasilCari).setVisibility(View.GONE);
@@ -131,6 +130,8 @@ public class PencarianActivity extends AppCompatActivity implements PencarianAda
                                 rvPencarian.setAdapter(pencarianAdapter);
                                 pencarianAdapter.notifyDataSetChanged();
                             }
+
+                            // set pencarian onclick
                             pencarianAdapter.setPencarianClickObject(PencarianActivity.this);
                         }
                     }
