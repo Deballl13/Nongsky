@@ -81,7 +81,7 @@
                 android:ems="3"
                 android:fontFamily="@font/manrope_regular"
                 android:maxLines="1"
-                android:minWidth="70dp"
+                android:minWidth="132dp"
                 android:maxWidth="132dp"
                 android:textColor="@color/black"
                 android:textSize="13sp"

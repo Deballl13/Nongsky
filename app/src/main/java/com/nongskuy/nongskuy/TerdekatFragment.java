@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,17 +28,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.nongskuy.nongskuy.adapter.BerandaTerdekatAdapter;
 import com.nongskuy.nongskuy.data.NongskuyTerdekatData;
-import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.services.FetchAddressIntentService;
 import org.riversun.promise.Func;
 import org.riversun.promise.Promise;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,7 +47,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
     private Boolean isGpsEnabled;
     private Double latitude;
     private Double longitude;
-    private ArrayList<Nongskuy> arrayListTokoTerdekat;
+    private List<NongskuyTerdekatData> listTokoTerdekat;
 
     public TerdekatFragment() {
         // Required empty public constructor
@@ -70,7 +64,6 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
         resultReceiver = new AddressResultReceiver(new Handler());
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        arrayListTokoTerdekat = new ArrayList<>();
 
         // cek permission android
         if (ActivityCompat.checkSelfPermission(getActivity(),
@@ -82,7 +75,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
                     Manifest.permission.ACCESS_COARSE_LOCATION
             });
         }
-        else if(isGpsEnabled){
+        else if (isGpsEnabled) {
             getCurrentLocation();
         }
         else {
@@ -126,24 +119,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
                 if (response.code() == 200) {
                     if (response.isSuccessful()) {
                         NongskuyTerdekatClass nongskuyTerdekatClass = response.body();
-                        List<NongskuyTerdekatData> listTokoTerdekat = nongskuyTerdekatClass.getToko();
-
-                        for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
-                            Nongskuy nongskuy = new Nongskuy(
-                                    nongskuyTerdekatData.getId(),
-                                    nongskuyTerdekatData.getGambar(),
-                                    nongskuyTerdekatData.getNamaToko(),
-                                    nongskuyTerdekatData.getAlamat(),
-                                    nongskuyTerdekatData.getTipe(),
-                                    nongskuyTerdekatData.getJarak(),
-                                    Double.parseDouble(nongskuyTerdekatData.getLatitude()),
-                                    Double.parseDouble(nongskuyTerdekatData.getLongitude())
-                            );
-
-                            arrayListTokoTerdekat.add(nongskuy);
-                        }
-
-                        supportMapFragment.getMapAsync(TerdekatFragment.this);
+                        listTokoTerdekat = nongskuyTerdekatClass.getToko();
                         action.resolve();
                     }
                 }
@@ -157,13 +133,10 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
     };
 
     Func mapAsync = (action, data) -> {
-        // set nilai latitude dan longitude
-        latitude = ((Location) data).getLatitude();
-        longitude = ((Location) data).getLongitude();
 
-        Promise.resolve().then(loadDataNongskuyTerdekat).start();
-
+        // menampilkan lokasi
         supportMapFragment.getMapAsync(this);
+
         action.resolve();
     };
 
@@ -173,6 +146,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
 
         Promise.resolve()
                 .then(new Promise(((MainActivity) getActivity()).getCurrentLocation))
+                .then(new Promise(loadDataNongskuyTerdekat))
                 .then(new Promise(mapAsync))
                 .start();// start Promise operation
     }
@@ -183,8 +157,7 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
         if (requestCode == 101) {
             if (resultCode == Activity.RESULT_OK) {
                 getCurrentLocation();
-            }
-            else if(resultCode == Activity.RESULT_CANCELED){
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 Intent intent = new Intent(getActivity(), GpsTerputus.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -216,8 +189,15 @@ public class TerdekatFragment extends Fragment implements OnMapReadyCallback {
         location1.setLongitude(longitude);
         fetchAddressFromLatLong(location1);
 
-        if(arrayListTokoTerdekat.size() != 0){
-            Toast.makeText(getContext(), "berhasil", Toast.LENGTH_SHORT).show();
+
+        if (listTokoTerdekat.size() != 0) {
+            for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
+                LatLng latLng2 = new LatLng(Double.parseDouble(nongskuyTerdekatData.getLatitude()),
+                        Double.parseDouble(nongskuyTerdekatData.getLongitude()));
+                MarkerOptions markerOptions2 = new MarkerOptions().position(latLng2)
+                        .title(nongskuyTerdekatData.getNamaToko());
+                googleMap.addMarker(markerOptions2);
+            }
         }
     }
 
