@@ -34,7 +34,8 @@ public interface Route {
 
     @FormUrlEncoded
     @PUT("ubahpassword")
-    Call<MessageClass> ubahPassword(@Header("Authorization") String token, @Field("password") String password);
+    Call<MessageClass> ubahPassword(@Header("Authorization") String token,
+                                    @Field("password") String password);
 
     @FormUrlEncoded
     @PUT("ubahprofil")
@@ -49,14 +50,18 @@ public interface Route {
     Call<RiwayatNongskuyClass> riwayat(@Header("Authorization") String token);
 
     @GET("nongskuy/populer")
-    Call<NongskuyPopulerClass> tokoPopuler(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
+    Call<NongskuyPopulerClass> tokoPopuler(@Query("latitude") Double latitude,
+                                           @Query("longitude") Double longitude);
 
     @FormUrlEncoded
     @POST("nongskuy/search")
-    Call<PencarianClass> search(@Field("keyword") String keyword, @Query("latitude") Double latitude, @Query("longitude") Double longitude);
+    Call<PencarianClass> search(@Field("keyword") String keyword,
+                                @Query("latitude") Double latitude,
+                                @Query("longitude") Double longitude);
 
     @GET("nongskuy/terdekat")
-    Call<NongskuyTerdekatClass> terdekat(@Query("latitude") Double latitude, @Query("longitude") Double longitude);
+    Call<NongskuyTerdekatClass> terdekat(@Query("latitude") Double latitude,
+                                         @Query("longitude") Double longitude);
 
     @GET("nongskuy/{id}/review")
     Call<ReviewClass> review(@Path("id") Integer idToko);

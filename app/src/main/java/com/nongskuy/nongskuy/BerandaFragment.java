@@ -301,19 +301,30 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         // cek gps hidup atau tidak
         isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
+        // menampilkan recyclerview dan button terdekat
+        recyclerViewTerdekat.setVisibility(View.VISIBLE);
+        btnLihatSemuaTerdekat.setVisibility(View.VISIBLE);
+
+        // menghilangkan cardview tidak ditemukan
+        cardViewTerdekatTidakDitemukan.setVisibility(View.GONE);
+
         // reset latitude dan longitude
         latitude = null;
         longitude = null;
 
         // disabled button
         btnLihatSemuaPopuler.setEnabled(false);
-        btnLihatSemuaPromo.setEnabled(false);
         btnLihatSemuaTerdekat.setEnabled(false);
 
         // active shimmer
         recyclerViewPopuler.setAdapter(new BerandaPopulerAdapter(null));
-        recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
         recyclerViewTerdekat.setAdapter(new BerandaTerdekatAdapter(null));
+
+        // promo beranda user
+        if (token != null) {
+            btnLihatSemuaPromo.setEnabled(false);
+            recyclerViewPromo.setAdapter(new BerandaPromoAdapter(null));
+        }
 
         if (isGpsEnabled) {
             getCurrentLocation();
@@ -430,13 +441,6 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
     };
 
     Func loadDataNongskuyTerdekat = (action, data) -> {
-        // menampilkan recyclerview dan button terdekat
-        recyclerViewTerdekat.setVisibility(View.VISIBLE);
-        btnLihatSemuaTerdekat.setVisibility(View.VISIBLE);
-
-        // menghilangkan cardview tidak ditemukan
-        cardViewTerdekatTidakDitemukan.setVisibility(View.GONE);
-
         // load data
         Call<NongskuyTerdekatClass> call = config.configRetrofit().terdekat(latitude, longitude);
         call.enqueue(new Callback<NongskuyTerdekatClass>() {
@@ -457,7 +461,8 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
                             // menghilangkan recyclerview terdekat dan tombol lihat semua
                             recyclerViewTerdekat.setVisibility(View.GONE);
                             btnLihatSemuaTerdekat.setVisibility(View.GONE);
-                        } else {
+                        }
+                        else {
                             for (NongskuyTerdekatData nongskuyTerdekatData : listTokoTerdekat) {
                                 Nongskuy nongskuy = new Nongskuy(
                                         nongskuyTerdekatData.getId(),
@@ -500,7 +505,12 @@ public class BerandaFragment extends Fragment implements BerandaPopulerAdapter.O
         longitude = ((Location) data).getLongitude();
 
         // load data
-        Promise.all(loadDataNongskuyPopuler, loadDataPromo, loadDataNongskuyTerdekat).start();
+        if (token != null) {
+            Promise.all(loadDataNongskuyPopuler, loadDataPromo, loadDataNongskuyTerdekat).start();
+        }
+        else{
+            Promise.all(loadDataNongskuyPopuler, loadDataNongskuyTerdekat).start();
+        }
 
         action.resolve();
     };
