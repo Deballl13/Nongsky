@@ -157,6 +157,7 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
                         if(listReview.size() == 0){
                             // menghilangkan recyclerview
                             rvReview.setVisibility(View.GONE);
+                            btnLihatSemuaReview.setVisibility(View.GONE);
 
                             // menampilkan review tidak ada
                             findViewById(R.id.ReviewTidakDitemukan).setVisibility(View.VISIBLE);

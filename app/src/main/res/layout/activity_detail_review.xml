@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_gray"
     android:inputType="textNoSuggestions"
-    tools:context=".DetailNongskuy">
+    tools:context=".DetailReview">
 
     <ScrollView
         android:id="@+id/scrollViewDetailReview"
