@@ -31,12 +31,14 @@ import com.nongskuy.nongskuy.adapter.PopulerAdapter;
 import com.nongskuy.nongskuy.adapter.ReviewAdapter;
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
 import com.nongskuy.nongskuy.data.MenuData;
+import com.nongskuy.nongskuy.data.NongskuyData;
 import com.nongskuy.nongskuy.data.NongskuyPopulerData;
 import com.nongskuy.nongskuy.data.ReviewData;
 import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.Menu;
 import com.nongskuy.nongskuy.model.MenuClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
+import com.nongskuy.nongskuy.model.NongskuyClass;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
 import com.nongskuy.nongskuy.model.Promo;
 import com.nongskuy.nongskuy.model.Review;
@@ -111,22 +113,21 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         rvMenu.setLayoutManager(linearLayoutManagerMenu);
         loadDataMenu(idToko, token);
 
-
         //Review Recycler View
         LinearLayoutManager linearLayoutManagerReview = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvReview = findViewById(R.id.rvReviewStore);
         rvReview.setLayoutManager(linearLayoutManagerReview);
         loadDataReview(idToko);
 
-
         //Fasilitas Recyclerview
-        fasilitasAdapter = new FasilitasAdapter();
-        fasilitasAdapter.setListFasilitas(dataDummyFasilitas());
+//        fasilitasAdapter = new FasilitasAdapter();
+//        fasilitasAdapter.setListFasilitas(dataDummyFasilitas());
 
         LinearLayoutManager linearLayoutManagerFasilitas = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvFasilitas = findViewById(R.id.rvFasilitas);
-        rvFasilitas.setAdapter(fasilitasAdapter);
+//        rvFasilitas.setAdapter(fasilitasAdapter);
         rvFasilitas.setLayoutManager(linearLayoutManagerFasilitas);
+        loadDataFasilitas(idToko);
     }
 
     //Intent ke halaman pesan tempat
@@ -169,7 +170,6 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
                         ArrayList<Menu> arrayListMenu = new ArrayList<>();
                         MenuAdapter menuAdapter = new MenuAdapter(arrayListMenu);
 
-//                        if(token != null){
                             for(MenuData menuData : listMenu){
                                 Menu menu = new Menu(
                                         menuData.getId(),
@@ -184,24 +184,6 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
                                 rvMenu.setAdapter(menuAdapter);
                                 menuAdapter.notifyDataSetChanged();
                             }
-                        //}
-
-//                        else{
-//                            for(MenuData menuData : listMenu){
-//                                Menu menu = new Menu(
-//                                        menuData.getId(),
-//                                        menuData.getNamaMenu(),
-//                                        menuData.getGambar(),
-//                                        menuData.getHarga(),
-//                                        menuData.get
-//                                );
-//                                arrayListMenu.add(menu);
-//                                menuAdapter.setShimmer(false);
-//                                rvMenu.setAdapter(menuAdapter);
-//                                menuAdapter.notifyDataSetChanged();
-//                            }
-//
-//                        }
                     }
                 }
             }
@@ -260,17 +242,58 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         });
     }
 
-    public ArrayList<Nongskuy> dataDummyFasilitas(){
-        ArrayList<Nongskuy> listFasilitas = new ArrayList<>();
-        listFasilitas.add(new Nongskuy(
-            "24 Hours"
-        ));
-        listFasilitas.add(new Nongskuy(
-                "WIFI"
-        ));
+    private void loadDataFasilitas(Integer idToko) {
+        Call<NongskuyClass> call = config.configRetrofit().show(idToko);
+        call.enqueue(new Callback<NongskuyClass>() {
+            @Override
+            public void onResponse(Call<NongskuyClass> call, Response<NongskuyClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        NongskuyClass nongskuyClass = response.body();
+                        List<NongskuyData> listFasilitas = nongskuyClass.getToko();
+                        ArrayList<Nongskuy> arrayListFasilitas = new ArrayList<>();
+                        FasilitasAdapter fasilitasAdapter = new FasilitasAdapter(arrayListFasilitas);
 
-        return listFasilitas;
+                        ArrayList<String[]> fasilitas = new ArrayList<>();
+
+                        //ambil data fasilitas, split
+                        for(NongskuyData nongskuyData : listFasilitas){
+                            fasilitas.add(nongskuyData.getFasilitas().split(","));
+                        }
+
+                        //memasukkan data fasilitas ke model nongskuy
+                        for(String[] sp_fasilitas : fasilitas){
+                            for(String item : sp_fasilitas){
+                               Nongskuy nongskuy = new Nongskuy(item);
+                               arrayListFasilitas.add(nongskuy);
+                               rvFasilitas.setAdapter(fasilitasAdapter);
+                               fasilitasAdapter.notifyDataSetChanged();
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NongskuyClass> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+//    public ArrayList<Nongskuy> dataDummyFasilitas(){
+//        ArrayList<Nongskuy> listFasilitas = new ArrayList<>();
+//        listFasilitas.add(new Nongskuy(
+//            "24 Hours"
+//        ));
+//        listFasilitas.add(new Nongskuy(
+//                "WIFI"
+//        ));
+//
+//        return listFasilitas;
+//    }
 
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
