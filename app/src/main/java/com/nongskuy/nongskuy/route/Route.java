@@ -3,7 +3,7 @@ package com.nongskuy.nongskuy.route;
 import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MenuClass;
 import com.nongskuy.nongskuy.model.MessageClass;
-import com.nongskuy.nongskuy.model.Nongskuy;
+import com.nongskuy.nongskuy.model.NongskuyClass;
 import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.ReviewClass;
@@ -66,7 +66,7 @@ public interface Route {
                                          @Query("longitude") Double longitude);
 
     @GET("nongskuy/{id}")
-    Call<Nongskuy> show(@Path("id") Integer idToko);
+    Call<NongskuyClass> show(@Path("id") Integer idToko);
 
     @GET("nongskuy/{id}/review")
     Call<ReviewClass> review(@Path("id") Integer idToko);

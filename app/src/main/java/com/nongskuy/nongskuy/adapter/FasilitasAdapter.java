@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class FasilitasAdapter extends RecyclerView.Adapter<FasilitasAdapter.FasilitasViewHolder>  {
     private Context context;
+    ArrayList<Nongskuy> listFasilitas;
 
-    ArrayList<Nongskuy> listFasilitas = new ArrayList<>();
-    public void setListFasilitas(ArrayList<Nongskuy> listFasilitas){
+    public FasilitasAdapter(ArrayList<Nongskuy> listFasilitas) {
         this.listFasilitas = listFasilitas;
     }
 
@@ -37,8 +37,45 @@ public class FasilitasAdapter extends RecyclerView.Adapter<FasilitasAdapter.Fasi
     public void onBindViewHolder(@NonNull FasilitasAdapter.FasilitasViewHolder holder, int position) {
         Nongskuy nongskuy = listFasilitas.get(position);
 
-        holder.imgFasilitas.setImageResource(R.drawable.wifi);
-        holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+        switch (nongskuy.getFasilitasToko()) {
+            case "Mushalla":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.mosque);
+                break;
+            case "Kamar Mandi":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.toilet);
+                break;
+            case "Free WiFi":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.wifi);
+                break;
+            case "24 Jam":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.ic_24hours);
+                break;
+            case "Smoking Area":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.smoking);
+                break;
+            case "VIP Room":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.vip);
+                break;
+            case "Area Bermain":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.playground);
+                break;
+            case "No Smoking Area":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.nosmoking);
+                break;
+            case "Live Music":
+                holder.textFasilitas.setText(nongskuy.getFasilitasToko());
+                holder.imgFasilitas.setImageResource(R.drawable.music);
+                break;
+        }
+
     }
 
     @Override
