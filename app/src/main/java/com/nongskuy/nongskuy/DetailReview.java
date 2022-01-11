@@ -42,7 +42,7 @@ public class DetailReview extends AppCompatActivity {
         textNamaDetailReview = findViewById(R.id.textNamaReview);
         ratingStars = findViewById(R.id.ratingBarReview);
         textKomentar = findViewById(R.id.textFieldKomentar);
-        nilaiRating = findViewById(R.id.textKomentarReviewDetail);
+        nilaiRating = findViewById(R.id.angkaReview);
 
         //Get Data Intent
         Intent intent = getIntent();
