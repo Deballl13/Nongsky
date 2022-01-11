@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -44,6 +45,8 @@ public class DetailReview extends AppCompatActivity {
         textKomentar = findViewById(R.id.textFieldKomentar);
         nilaiRating = findViewById(R.id.angkaReview);
 
+
+
         //Get Data Intent
         Intent intent = getIntent();
         textNamaDetailReview.setText(intent.getStringExtra("NamaToko"));
@@ -66,9 +69,10 @@ public class DetailReview extends AppCompatActivity {
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                double rate = (double) rating;
-                nilaiRating.setText(String.valueOf(rate));
-                //rate = ratingBar.getRating();
+                rate = ratingBar.getRating();
+                double rates = (double) rate;
+                Log.i("rating", String.valueOf(rates));
+                //nilaiRating.setText(String.valueOf(rates));
             }
         });
 

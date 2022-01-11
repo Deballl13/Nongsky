@@ -6,7 +6,7 @@
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/colorcollection.xml" value="0.19583333333333333" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/custom_edit_text.xml" value="0.20052083333333334" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/drawable/rounded_btn.xml" value="0.19583333333333333" />
-        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_nongskuy.xml" value="0.1" />
+        <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_nongskuy.xml" value="0.11888111888111888" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_review.xml" value="0.16037735849056603" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_detail_store.xml" value="0.1" />
         <entry key="..\:/06. Study/Nongsky/app/src/main/res/layout/activity_get_started.xml" value="0.3333333333333333" />
@@ -137,9 +137,12 @@
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/mipmap-anydpi-v26/WifiGps.xml" value="0.2703125" />
         <entry key="..\:/Users/MSI BRAVO15/AndroidStudioProjects/Nongsky/app/src/main/res/mipmap-anydpi-v26/WifiGps_round.xml" value="0.2703125" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/drawable/ic_arrow_right.xml" value="0.2703125" />
+        <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_detail_nongskuy.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_detail_review.xml" value="0.264" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_detail_store.xml" value="0.264" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_ganti_kata_sandi.xml" value="0.18840579710144928" />
+        <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/activity_ubah_profil.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/card_detail_review.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/card_fasilitas.xml" value="0.6" />
         <entry key="..\:/Users/radhi/StudioProjects/Nongsky/app/src/main/res/layout/card_menu_horizontal.xml" value="0.264" />
