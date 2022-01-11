@@ -10,99 +10,109 @@
     app:cardCornerRadius="10dp"
     android:layout_centerInParent="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="253dp"
-        android:layout_height="160dp"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="8dp">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerReviewHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgStarReview"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:contentDescription="TODO"
-            app:layout_constraintBottom_toBottomOf="@+id/textKomentarReview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textKomentarReview" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="253dp"
+            android:layout_height="160dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="8dp">
 
-        <TextView
-            android:id="@+id/textNilaiReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/fredokaone_regular"
-            android:text="4.5"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgStarReview"
-            app:layout_constraintStart_toStartOf="@+id/imgStarReview" />
+            <ImageView
+                android:id="@+id/imgStarReview"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/shimmer_background_image"
+                android:contentDescription="TODO"
+                app:layout_constraintBottom_toBottomOf="@+id/textKomentarReview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textKomentarReview" />
 
-        <TextView
-            android:id="@+id/textKomentarReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:ellipsize="end"
-            android:ems="3"
-            android:fontFamily="@font/manrope_regular"
-            android:gravity="center_vertical"
-            android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
-            android:maxWidth="170dp"
-            android:maxLines="4"
-            android:minWidth="170dp"
-            android:text="Panas Ayam 111111111111111111111111111111111111111111111111111111111111111111111111111"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/textNamaUserReview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imgStarReview"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.384"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <TextView
+                android:id="@+id/textNilaiReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shimmer_background_text"
+                android:fontFamily="@font/fredokaone_regular"
+                android:maxWidth="30dp"
+                android:minWidth="30dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgStarReview"
+                app:layout_constraintStart_toStartOf="@+id/imgStarReview" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imgUserReview"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            <TextView
+                android:id="@+id/textKomentarReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:ellipsize="end"
+                android:ems="3"
+                android:fontFamily="@font/manrope_regular"
+                android:gravity="center_vertical"
+                android:inputType="textMultiLine|textImeMultiLine|textNoSuggestions"
+                android:maxWidth="170dp"
+                android:maxLines="3"
+                android:minWidth="170dp"
+                android:background="@drawable/shimmer_background_text"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textNamaUserReview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imgStarReview"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.384"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/textNamaUserReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textAlignment="textStart"
-            android:text="Radhian Wahyu Elhaq"
-            android:ems="3"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:minWidth="190dp"
-            android:maxWidth="190dp"
-            android:textSize="12sp"
-            android:fontFamily="@font/manrope_regular"
-            android:textColor="@color/dark_gray"
-            app:layout_constraintStart_toEndOf="@+id/imgUserReview"
-            app:layout_constraintTop_toTopOf="@+id/imgUserReview" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgUserReview"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shimmer_background_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"/>
 
-        <TextView
-            android:id="@+id/textTanggalReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/manrope_regular"
-            android:text="19-20-2021"
-            android:maxLines="1"
-            android:minWidth="70dp"
-            android:maxWidth="70dp"
-            android:textAlignment="textStart"
-            android:textColor="@color/dark_gray"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgUserReview"
-            app:layout_constraintStart_toEndOf="@+id/imgUserReview" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textNamaUserReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textAlignment="textStart"
+                android:background="@drawable/shimmer_background_text"
+                android:ems="3"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:minWidth="190dp"
+                android:maxWidth="190dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/manrope_regular"
+                android:textColor="@color/dark_gray"
+                app:layout_constraintStart_toEndOf="@+id/imgUserReview"
+                app:layout_constraintTop_toTopOf="@+id/imgUserReview" />
 
+            <TextView
+                android:id="@+id/textTanggalReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/manrope_regular"
+                android:background="@drawable/shimmer_background_text"
+                android:maxLines="1"
+                android:minWidth="70dp"
+                android:maxWidth="70dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/dark_gray"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imgUserReview"
+                app:layout_constraintStart_toEndOf="@+id/imgUserReview" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </androidx.cardview.widget.CardView>
