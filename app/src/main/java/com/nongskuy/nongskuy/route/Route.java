@@ -65,4 +65,7 @@ public interface Route {
 
     @GET("nongskuy/{id}/review")
     Call<ReviewClass> review(@Path("id") Integer idToko);
+
+//    @GET("nongskuy/{id}/menu")
+//    Call<ReviewClass> menu(@Path("id") Integer idToko, @Query("guest") String guest);
 }

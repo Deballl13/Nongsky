@@ -91,16 +91,23 @@
             app:layout_constraintBottom_toBottomOf="@+id/maps_store"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFasilitas"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/layoutFasilitas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/maps_store"
-            tools:listitem="@layout/card_fasilitas_horizontal" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/maps_store">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFasilitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                tools:listitem="@layout/card_fasilitas_horizontal" />
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/textMenuUnggulan"
@@ -113,7 +120,7 @@
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvFasilitas" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutFasilitas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMenu"
@@ -122,6 +129,7 @@
             android:layout_marginTop="15dp"
             android:clipToPadding="false"
             android:orientation="horizontal"
+
             android:paddingHorizontal="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,11 +151,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTambahReview"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
+            android:layout_width="50dp"
+            android:layout_height="160dp"
             android:layout_marginStart="14dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="@color/white_gray"
+            android:backgroundTint="@color/gray"
             android:fontFamily="@font/manrope_regular"
             android:gravity="center_horizontal"
             android:insetTop="0dp"
@@ -157,7 +165,6 @@
             android:textSize="12sp"
             app:icon="@drawable/ic_baseline_add"
             app:layout_constraintTop_toBottomOf="@id/textReviewStore"
-            app:layout_constraintBottom_toTopOf="@+id/rvHariOps"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
@@ -185,36 +192,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/btnTambahReview"
-            app:layout_constraintTop_toBottomOf="@+id/textReviewStore"
+            app:layout_constraintTop_toTopOf="@+id/btnTambahReview"
             tools:listitem="@layout/card_review_horizontal" />
-
-        <TextView
-            android:id="@+id/rvHariOps"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hari Ops"
-            android:layout_marginTop="20dp"
-            android:paddingHorizontal="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvReviewStore" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/ReviewTidakDitemukan"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="160dp"
             android:layout_marginStart="85dp"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnTambahReview"
             app:cardCornerRadius="10dp"
             android:visibility="gone"
-            app:layout_constraintTop_toTopOf="@+id/btnTambahReview"
+            app:layout_constraintTop_toBottomOf="@+id/textReviewStore"
             app:layout_constraintBottom_toBottomOf="@id/btnTambahReview" >
 
             <RelativeLayout
@@ -226,7 +220,7 @@
                     android:id="@+id/imageReviewTidakDitemukan"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="35dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/ic_baseline_rate_review_24" />
 
@@ -242,6 +236,55 @@
                     android:textColor="@color/black" />
 
             </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTentangNongskuy"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTambahReview">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textTeleponNongskuy"
+                    android:text="081563014800"
+                    android:layout_marginStart="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/textInstagramNongskuy"
+                    android:layout_marginStart="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:text="mcdonaldsid"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textTeleponNongskuy"/>
+
+                <TextView
+                    android:id="@+id/textWebNongskuy"
+                    android:layout_marginStart="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="AAAAA"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textInstagramNongskuy"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
