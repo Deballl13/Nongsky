@@ -80,4 +80,11 @@ public interface Route {
 
     @GET("nongskuy/{id}.metodebayar")
     Call<MetodeBayarNongskuyClass> metodeBayarNongskuy(@Path("id") Integer id, @Header("Authorization") String token);
+
+    @FormUrlEncoded
+    @POST("nongskuy/{id}/review")
+    Call<MessageClass> addReview(@Path("id") Integer idToko, @Field("rating") Double rating,
+                                 @Field("komentar") String komentar,
+                                 @Header("Authorization") String token);
+
 }

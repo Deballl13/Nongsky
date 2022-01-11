@@ -11,7 +11,6 @@
     android:inputType="textNoSuggestions"
     tools:context=".DetailReview">
 
-
     <ScrollView
         android:id="@+id/scrollViewDetailReview"
         android:layout_width="match_parent"
@@ -23,16 +22,6 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:paddingBottom="15dp">
-
-            <TextView
-                android:id="@+id/angkaReview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBarReview" />
 
             <ImageView
                 android:id="@+id/imageDetailReview"
@@ -87,9 +76,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="20dp"
-                android:numStars="5"
-                android:progressBackgroundTint="@color/gray"
                 android:progressTint="@color/yellow"
+                android:progressBackgroundTint="@color/gray"
+                android:numStars="5"
                 android:stepSize="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -165,10 +154,10 @@
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="Simpan"
+                android:onClick="simpanReview"
                 app:cornerRadius="50dp"
                 android:textSize="14sp"
                 android:textAllCaps="false"
-                android:onClick="simpanReview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnTambahFotoReview" />
@@ -200,9 +189,6 @@
                 android:paddingBottom="10dp"
                 tools:listitem="@layout/card_detail_review"
                 />
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
