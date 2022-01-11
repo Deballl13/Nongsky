@@ -56,6 +56,23 @@ public class Nongskuy {
         this.longToko = longToko;
     }
 
+    //detail nongskuy
+    public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko, String noHpToko, String igToko,
+                    String webToko, String hariOpsToko, String fasilitasToko, Double latToko, Double longToko){
+        this.idToko = idToko;
+        this.gambarToko = gambarToko;
+        this.namaToko = namaToko;
+        this.alamatToko = alamatToko;
+        this.tipeToko = tipeToko;
+        this.noHpToko = noHpToko;
+        this.igToko = igToko;
+        this.webToko = webToko;
+        this.hariOpsToko = hariOpsToko;
+        this.fasilitasToko = fasilitasToko;
+        this.latToko = latToko;
+        this.longToko = longToko;
+    }
+
     //recyclerview fasilitas store
     public Nongskuy(String fasilitasToko){
         this.fasilitasToko = fasilitasToko;

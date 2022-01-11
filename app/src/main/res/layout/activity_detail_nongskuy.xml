@@ -57,6 +57,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:onClick="toPesanTempat"
+            android:visibility="gone"
             android:text="Pesan Tempat"
             android:textAllCaps="false"
             android:textSize="16sp"
@@ -128,13 +129,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:clipToPadding="false"
+            android:paddingBottom="10dp"
             android:orientation="horizontal"
 
             android:paddingHorizontal="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textMenuUnggulan"
-            tools:listitem="@layout/card_menu_horizontal" />
+            app:layout_constraintTop_toBottomOf="@+id/textMenuUnggulan" />
 
         <TextView
             android:id="@+id/textReviewStore"
@@ -161,6 +162,7 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:onClick="toReview"
+            android:enabled="false"
             android:textAllCaps="false"
             android:textSize="12sp"
             app:icon="@drawable/ic_baseline_add"
@@ -176,6 +178,7 @@
             android:gravity="end"
             android:onClick="toReview"
             android:text="lihat semua"
+            android:visibility="gone"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="10sp"
@@ -192,6 +195,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:clipToPadding="false"
+            android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/btnTambahReview"

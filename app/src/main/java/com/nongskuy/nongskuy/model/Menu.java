@@ -7,13 +7,23 @@ public class Menu {
     private String namaMenu;
     private Integer harga;
     private String gambar;
+    private String jenisPromo;
+    private Integer persentase;
 
-    public Menu(Integer idMenu, Integer idToko, String namaMenu, Integer harga){
+    public Menu(Integer idMenu, String namaMenu, String gambar, Integer harga, String jenisPromo, Integer persentase){
         this.idMenu = idMenu;
-        this.idToko = idToko;
         this.namaMenu = namaMenu;
+        this.gambar = gambar;
         this.harga = harga;
-        //this.gambar = gambar;
+        this.jenisPromo = jenisPromo;
+        this.persentase = persentase;
+    }
+
+    public Menu(Integer idMenu, String namaMenu, String gambar, Integer harga){
+        this.idMenu = idMenu;
+        this.namaMenu = namaMenu;
+        this.gambar = gambar;
+        this.harga = harga;
     }
 
     public Integer getIdMenu() {
@@ -56,5 +66,19 @@ public class Menu {
         this.gambar = gambar;
     }
 
+    public String getJenisPromo() {
+        return jenisPromo;
+    }
 
+    public void setJenisPromo(String jenisPromo) {
+        this.jenisPromo = jenisPromo;
+    }
+
+    public Integer getPersentase() {
+        return persentase;
+    }
+
+    public void setPersentase(Integer persentase) {
+        this.persentase = persentase;
+    }
 }

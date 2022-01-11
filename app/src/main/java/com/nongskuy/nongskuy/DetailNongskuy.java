@@ -30,10 +30,12 @@ import com.nongskuy.nongskuy.adapter.MenuAdapter;
 import com.nongskuy.nongskuy.adapter.PopulerAdapter;
 import com.nongskuy.nongskuy.adapter.ReviewAdapter;
 import com.nongskuy.nongskuy.adapter.RiwayatNongskuyAdapter;
+import com.nongskuy.nongskuy.data.MenuData;
 import com.nongskuy.nongskuy.data.NongskuyPopulerData;
 import com.nongskuy.nongskuy.data.ReviewData;
 import com.nongskuy.nongskuy.data.RiwayatNongskuyData;
 import com.nongskuy.nongskuy.model.Menu;
+import com.nongskuy.nongskuy.model.MenuClass;
 import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyPopulerClass;
 import com.nongskuy.nongskuy.model.Promo;
@@ -55,7 +57,7 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
     private MenuAdapter menuAdapter;
     private ReviewAdapter reviewAdapter;
     private FasilitasAdapter fasilitasAdapter;
-    private MaterialButton btnLihatSemuaReview, btnTambahReview;
+    private MaterialButton btnLihatSemuaReview, btnTambahReview, btnPesanTempat;
     private ImageView imageDetailNongskuy;
     private TextView textNamaNongskuy, textAlamatNongskuy;
     private SupportMapFragment supportMapFragment;
@@ -69,16 +71,23 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_nongskuy);
 
+        //get id
+        btnLihatSemuaReview = findViewById(R.id.btnLihatSemuaReview);
+        btnTambahReview = findViewById(R.id.btnTambahReview);
+        btnPesanTempat = findViewById(R.id.btnPesanTempat);
+        imageDetailNongskuy = findViewById(R.id.imageDetailStore);
+        textNamaNongskuy = findViewById(R.id.textNamaToko);
+        textAlamatNongskuy = findViewById(R.id.textAlamatToko);
+
         config = new Config();
         sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("Token", null);
 
-        //get id
-        btnLihatSemuaReview = findViewById(R.id.btnLihatSemuaReview);
-        btnTambahReview = findViewById(R.id.btnTambahReview);
-        imageDetailNongskuy = findViewById(R.id.imageDetailStore);
-        textNamaNongskuy = findViewById(R.id.textNamaToko);
-        textAlamatNongskuy = findViewById(R.id.textAlamatToko);
+        if(token != null){
+            btnLihatSemuaReview.setVisibility(View.VISIBLE);
+            btnTambahReview.setEnabled(true);
+            btnPesanTempat.setVisibility(View.VISIBLE);
+        }
 
         //Get Data Intent
         Intent intent = getIntent();
@@ -96,14 +105,11 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps_store);
         supportMapFragment.getMapAsync(this);
 
-        //Menu Recycler View
-        menuAdapter = new MenuAdapter();
-        menuAdapter.setListMenu(dataDummyMenu());
-
+       // Menu Recycler View
         LinearLayoutManager linearLayoutManagerMenu = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         rvMenu = findViewById(R.id.rvMenu);
-        rvMenu.setAdapter(menuAdapter);
         rvMenu.setLayoutManager(linearLayoutManagerMenu);
+        loadDataMenu(idToko, token);
 
 
         //Review Recycler View
@@ -141,7 +147,74 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
         startActivity(intent);
     }
 
+    private void loadDataMenu(Integer idToko, String token) {
+        Call<MenuClass> call;
+        rvMenu.setAdapter(new MenuAdapter(null));
+
+        if(token != null){
+             call = config.configRetrofit().menu(idToko);
+
+        }
+        else{
+            call = config.configRetrofit().menu(idToko, true);
+        }
+
+        call.enqueue(new Callback<MenuClass>() {
+            @Override
+            public void onResponse(Call<MenuClass> call, Response<MenuClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        MenuClass menuClass = response.body();
+                        List<MenuData> listMenu = menuClass.getMenu();
+                        ArrayList<Menu> arrayListMenu = new ArrayList<>();
+                        MenuAdapter menuAdapter = new MenuAdapter(arrayListMenu);
+
+//                        if(token != null){
+                            for(MenuData menuData : listMenu){
+                                Menu menu = new Menu(
+                                        menuData.getId(),
+                                        menuData.getNamaMenu(),
+                                        menuData.getGambar(),
+                                        menuData.getHarga(),
+                                        menuData.getJenisPromo(),
+                                        menuData.getPersentase()
+                                );
+                                arrayListMenu.add(menu);
+                                menuAdapter.setShimmer(false);
+                                rvMenu.setAdapter(menuAdapter);
+                                menuAdapter.notifyDataSetChanged();
+                            }
+                        //}
+
+//                        else{
+//                            for(MenuData menuData : listMenu){
+//                                Menu menu = new Menu(
+//                                        menuData.getId(),
+//                                        menuData.getNamaMenu(),
+//                                        menuData.getGambar(),
+//                                        menuData.getHarga(),
+//                                        menuData.get
+//                                );
+//                                arrayListMenu.add(menu);
+//                                menuAdapter.setShimmer(false);
+//                                rvMenu.setAdapter(menuAdapter);
+//                                menuAdapter.notifyDataSetChanged();
+//                            }
+//
+//                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MenuClass> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void loadDataReview(Integer idToko) {
+        rvReview.setAdapter(new ReviewAdapter(null));
         Call<ReviewClass> call = config.configRetrofit().review(idToko);
         call.enqueue(new Callback<ReviewClass>() {
             @Override
@@ -172,6 +245,7 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
                                     reviewData.getRating()
                             );
                             arrayListReview.add(review);
+                            reviewAdapter.setShimmer(false);
                             rvReview.setAdapter(reviewAdapter);
                             reviewAdapter.notifyDataSetChanged();
                         }
@@ -184,31 +258,6 @@ public class DetailNongskuy extends AppCompatActivity implements OnMapReadyCallb
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-
-    public ArrayList<Menu> dataDummyMenu(){
-        ArrayList<Menu> listMenu = new ArrayList<>();
-        listMenu.add(new Menu(
-                1,
-                1,
-                "Paket Hemat 1",
-                20000
-        ));
-        listMenu.add(new Menu(
-                2,
-                1,
-                "Paket Hemat 2",
-                21000
-        ));
-        listMenu.add(new Menu(
-                3,
-                1,
-                "Paket Hemat 3",
-                25000
-        ));
-
-        return listMenu;
     }
 
     public ArrayList<Nongskuy> dataDummyFasilitas(){

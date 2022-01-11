@@ -1,7 +1,9 @@
 package com.nongskuy.nongskuy.route;
 
 import com.nongskuy.nongskuy.model.AuthClass;
+import com.nongskuy.nongskuy.model.MenuClass;
 import com.nongskuy.nongskuy.model.MessageClass;
+import com.nongskuy.nongskuy.model.Nongskuy;
 import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.PromoClass;
 import com.nongskuy.nongskuy.model.ReviewClass;
@@ -63,9 +65,15 @@ public interface Route {
     Call<NongskuyTerdekatClass> terdekat(@Query("latitude") Double latitude,
                                          @Query("longitude") Double longitude);
 
+    @GET("nongskuy/{id}")
+    Call<Nongskuy> show(@Path("id") Integer idToko);
+
     @GET("nongskuy/{id}/review")
     Call<ReviewClass> review(@Path("id") Integer idToko);
 
-//    @GET("nongskuy/{id}/menu")
-//    Call<ReviewClass> menu(@Path("id") Integer idToko, @Query("guest") String guest);
+    @GET("nongskuy/{id}/menu")
+    Call<MenuClass> menu(@Path("id") Integer idToko);
+
+    @GET("nongskuy/{id}/menu")
+    Call<MenuClass> menu(@Path("id") Integer idToko, @Query("guest") boolean guest);
 }
