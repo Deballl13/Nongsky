@@ -16,6 +16,9 @@ public class Nongskuy {
     private String jarakToko;
     private Double latToko;
     private Double longToko;
+    private Integer idMetodeBayar;
+    private String namaMetodeBayar;
+    private String no_rek;
 
     // recyclerview populer
     public Nongskuy(Integer idToko, String gambarToko, String namaToko, String alamatToko, String tipeToko,
@@ -75,6 +78,13 @@ public class Nongskuy {
     //recycler view fasilitas
     public Nongskuy(String fasilitasToko){
         this.fasilitasToko = fasilitasToko;
+    }
+
+    // recycler view metode bayar
+    public Nongskuy(Integer idMetodeBayar, String namaMetodeBayar, String no_rek){
+        this.idMetodeBayar = idMetodeBayar;
+        this.namaMetodeBayar = namaMetodeBayar;
+        this.no_rek = no_rek;
     }
 
     public Integer getIdToko() {
@@ -187,5 +197,29 @@ public class Nongskuy {
 
     public void setLongToko(Double longToko) {
         this.longToko = longToko;
+    }
+
+    public Integer getIdMetodeBayar() {
+        return idMetodeBayar;
+    }
+
+    public void setIdMetodeBayar(Integer idMetodeBayar) {
+        this.idMetodeBayar = idMetodeBayar;
+    }
+
+    public String getNamaMetodeBayar() {
+        return namaMetodeBayar;
+    }
+
+    public void setNamaMetodeBayar(String namaMetodeBayar) {
+        this.namaMetodeBayar = namaMetodeBayar;
+    }
+
+    public String getNo_rek() {
+        return no_rek;
+    }
+
+    public void setNo_rek(String no_rek) {
+        this.no_rek = no_rek;
     }
 }

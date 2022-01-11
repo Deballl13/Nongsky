@@ -3,33 +3,52 @@ package com.nongskuy.nongskuy;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
 import com.bumptech.glide.Glide;
+import com.nongskuy.nongskuy.data.MetodeBayarNongskuyData;
+import com.nongskuy.nongskuy.model.MetodeBayarNongskuyClass;
+import com.nongskuy.nongskuy.model.Nongskuy;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PesanTempatActivity extends AppCompatActivity {
 
-    EditText Tanggal, Waktu;
-    Calendar calendar;
-    TextView jumlahKursi, totalDp, textNamaTokoPesan;
-    Button btnTambahKursi, btnKurangKursi;
-    ImageView imageNongskuyPesan;
-    int Hour, Minute;
-    int count = 0, dp = 10000;
-    Helper helper = new Helper();
+    private EditText Tanggal, Waktu;
+    private AutoCompleteTextView metodeBayar;
+    private ArrayAdapter<Nongskuy> arrayAdapter;
+    private Calendar calendar;
+    private Time time;
+    private TextView jumlahKursi, totalDp, textNamaTokoPesan;
+    private Button btnTambahKursi, btnKurangKursi;
+    private ImageView imageNongskuyPesan;
+    private int Hour, Minute;
+    private Integer count = 0, dp = 10000;
+    private Helper helper;
+    private SharedPreferences sharedPreferences;
+    private Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +64,12 @@ public class PesanTempatActivity extends AppCompatActivity {
         btnKurangKursi = findViewById(R.id.btnKurangKursi);
         imageNongskuyPesan = findViewById(R.id.imageNongskuyPesan);
         textNamaTokoPesan = findViewById(R.id.textNamaTokoPesan);
+        metodeBayar = findViewById(R.id.metodeBayar);
+        helper = new Helper();
+        btnKurangKursi.setEnabled(false);
+        config = new Config();
+        sharedPreferences = sharedPreferences = getSharedPreferences("com.nongskuy.nongskuy.PREFS", Context.MODE_PRIVATE);
+
 
         //Get data intent
         Intent intent = getIntent();
@@ -52,6 +77,7 @@ public class PesanTempatActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(Uri.parse(intent.getStringExtra("GambarToko")))
                 .into(imageNongskuyPesan);
+        loadDataMetodeBayar(intent.getIntExtra("IdToko", 0));
 
         calendar = Calendar.getInstance();
 
@@ -73,6 +99,24 @@ public class PesanTempatActivity extends AppCompatActivity {
             }
         };
 
+        TimePickerDialog.OnTimeSetListener timePickerDialog = new TimePickerDialog.OnTimeSetListener(){
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                //Inisialisasi waktu
+                calendar.set(calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+
+                updateTime();
+            }
+
+            public void updateTime(){
+                //Set selected time
+                String formatWaktu = "kk:mm";
+                SimpleDateFormat timeformat = new SimpleDateFormat(formatWaktu, Locale.US);
+                Waktu.setText(timeformat.format(calendar.getTime()));
+            }
+        };
+
         Tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,52 +125,76 @@ public class PesanTempatActivity extends AppCompatActivity {
             }
         });
 
+
         Waktu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(PesanTempatActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        //Inisialisasi waktu
-                        Hour = hourOfDay;
-                        Minute = minute;
-
-                        //Set hour and minute
-                        calendar.set(0,0,0, Hour, Minute);
-                        //Set selected time
-                        String formatWaktu = "hh:mm aa";
-                        SimpleDateFormat timeformat = new SimpleDateFormat(formatWaktu, Locale.US);
-                        Waktu.setText(timeformat.format(calendar.getTime()));
-                    }
-                }, 24, 0, true);
-                //Display
-                timePickerDialog.updateTime(Hour, Minute);
-                timePickerDialog.show();
+                new TimePickerDialog(PesanTempatActivity.this, timePickerDialog, calendar.getTime().getHours(),
+                        calendar.getTime().getMinutes(), true).show();
             }
         });
     }
 
     public void increment(View v){
-        if(count<=20){
-            count++;
-            btnTambahKursi.setEnabled(true);
-        }
-        else{
+        count++;
+        btnKurangKursi.setEnabled(true);
+
+        if(count == 20){
             btnTambahKursi.setEnabled(false);
         }
-        jumlahKursi.setText("" + count);
+
+        jumlahKursi.setText(String.valueOf(count));
         totalDp.setText(helper.mataUangRupiah(dp*count));
     }
+
     public void decrement (View v){
-        if(count <= 0) {
-            count = 0;
+        count--;
+        btnTambahKursi.setEnabled(true);
+
+        if(count == 0){
             btnKurangKursi.setEnabled(false);
         }
-        else {
-            count--;
-            btnKurangKursi.setEnabled(true);
-        }
-        jumlahKursi.setText("" + count);
+
+        jumlahKursi.setText(String.valueOf(count));
         totalDp.setText(helper.mataUangRupiah(dp*count));
+    }
+
+    public void loadDataMetodeBayar(Integer id){
+        String token = sharedPreferences.getString("Token", null);
+
+        // load data
+        Call<MetodeBayarNongskuyClass> call = config.configRetrofit().metodeBayarNongskuy(id, token);
+        call.enqueue(new Callback<MetodeBayarNongskuyClass>() {
+            @Override
+            public void onResponse(Call<MetodeBayarNongskuyClass> call, Response<MetodeBayarNongskuyClass> response) {
+                if(response.code() == 200){
+                    if(response.isSuccessful()){
+                        MetodeBayarNongskuyClass metodeBayarNongskuyClass = response.body();
+                        List<MetodeBayarNongskuyData> listMetodeBayarNongskuy = metodeBayarNongskuyClass.getMetodeBayar();
+                        int i = 0;
+                        Nongskuy[] items = {};
+
+                        for(MetodeBayarNongskuyData metodeBayarNongskuyData : listMetodeBayarNongskuy){
+                            Nongskuy nongskuy = new Nongskuy(
+                                    metodeBayarNongskuyData.getId(),
+                                    metodeBayarNongskuyData.getNamaMetodePembayaran(),
+                                    metodeBayarNongskuyData.getNoRek()
+                            );
+
+                            items[i] = nongskuy;
+                            i++;
+                        }
+
+//                        arrayAdapter = new ArrayAdapter<Nongskuy>(this, R.layout.list_metode_bayar_nongskuy, items);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MetodeBayarNongskuyClass> call, Throwable t) {
+
+            }
+        });
     }
 }

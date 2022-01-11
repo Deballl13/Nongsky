@@ -93,7 +93,7 @@
         <EditText
             android:id="@+id/Tanggal"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_edit_text"
@@ -103,7 +103,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:fontFamily="@font/manrope_regular"
-            android:gravity="start"
+            android:gravity="center_vertical"
             android:hint="Pilih tanggal pesan"
             android:inputType="date"
             android:paddingHorizontal="10dp"
@@ -127,28 +127,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Tanggal" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/bayar"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/custom_edit_text"
             android:clickable="false"
             android:cursorVisible="false"
             android:ems="10"
+            app:hintAnimationEnabled="false"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:fontFamily="@font/manrope_regular"
             android:gravity="start"
             android:hint="Pilih cara bayar"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="10dp"
             android:textColor="@color/black"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textJdlPembayaran"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/metodeBayar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/textJdlWaktu"
@@ -166,13 +174,13 @@
         <EditText
             android:id="@+id/Waktu"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/custom_edit_text"
             android:ems="10"
             android:fontFamily="@font/manrope_regular"
-            android:gravity="start"
+            android:gravity="center_vertical"
             android:hint="Pilih waktu pesan"
             android:inputType="time"
             android:paddingHorizontal="10dp"
@@ -227,7 +235,8 @@
             android:padding="0dp"
             android:text="-"
             app:layout_constraintStart_toEndOf="@+id/bayar"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"/>
+            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <Button
             android:id="@+id/btnTambahKursi"
@@ -241,21 +250,22 @@
             android:padding="0dp"
             android:text="+"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"/>
+            app:layout_constraintTop_toBottomOf="@+id/textJdlKursi"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/textJdlDP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="282dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/manrope_bold"
             android:text="Total DP"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageNongskuyPesan" />
+            app:layout_constraintTop_toBottomOf="@+id/bayar" />
 
         <TextView
             android:id="@+id/totalDP"

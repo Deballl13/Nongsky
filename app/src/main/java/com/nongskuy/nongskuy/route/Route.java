@@ -3,6 +3,7 @@ package com.nongskuy.nongskuy.route;
 import com.nongskuy.nongskuy.model.AuthClass;
 import com.nongskuy.nongskuy.model.MenuClass;
 import com.nongskuy.nongskuy.model.MessageClass;
+import com.nongskuy.nongskuy.model.MetodeBayarNongskuyClass;
 import com.nongskuy.nongskuy.model.NongskuyClass;
 import com.nongskuy.nongskuy.model.NongskuyTerdekatClass;
 import com.nongskuy.nongskuy.model.PromoClass;
@@ -76,4 +77,7 @@ public interface Route {
 
     @GET("nongskuy/{id}/menu")
     Call<MenuClass> menu(@Path("id") Integer idToko, @Query("guest") boolean guest);
+
+    @GET("nongskuy/{id}.metodebayar")
+    Call<MetodeBayarNongskuyClass> metodeBayarNongskuy(@Path("id") Integer id, @Header("Authorization") String token);
 }
